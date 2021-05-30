@@ -1,0 +1,7 @@
+{
+  "name": "MoviesToWatch",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
