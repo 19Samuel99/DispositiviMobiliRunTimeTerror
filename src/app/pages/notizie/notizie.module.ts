@@ -1,29 +1,29 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
-import {RouterModule, Routes} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {LoginPage} from './login.page';
+import {NotiziePage} from './notizie.page';
 import {TranslateModule} from '@ngx-translate/core';
 
 const routes: Routes = [
     {
         path: '',
-        component: LoginPage
+        component: NotiziePage
     }
 ];
 
 @NgModule({
     imports: [
         CommonModule,
-        ReactiveFormsModule,
+        FormsModule,
         TranslateModule.forChild(),
         IonicModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [LoginPage]
+    declarations: [NotiziePage]
 })
-export class LoginPageModule {
+export class NotiziePageModule {
 }
