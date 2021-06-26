@@ -1,7 +1,0 @@
-{
-  "name": "MyUnivaq",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
