@@ -38,16 +38,18 @@ ion-card-content{
   margin-top: 10px;
 
   ion-item{
-    --ion-item-background: #fff;
-    --border-width:0;
-    --inner-border-width:0;
+    --ion-item-background: trasparent;
+    --border-width: 0;
+    --inner-border-width: 0;
     --highlight-color-focus: none;
     margin-bottom: 15px;
 
     ion-input{
-      height: 15px;
+      color: #fff;
+      height: 50px;
       width: 100px;
-      border-radius: 15px;
+      border-radius: 10px 10px 10px 10px;
+      border: 2px solid #fff;
       font-size: 14px;
       --padding-start: 10px;
     }
