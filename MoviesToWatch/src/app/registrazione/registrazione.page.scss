@@ -1,0 +1,71 @@
+ion-content{
+  --ion-background-color: #ffffff;
+  font-family: Montserrat sans-serif;
+
+}
+
+.background-pic{
+  height: 100vh;
+  width: 100%;
+  background: url("https://observer.com/wp-content/uploads/sites/2/2021/05/summer-movies-2021-new-e1620919489437.jpg?quality=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.background-filter{
+  height: 100%;
+  width: 100%;
+  background: rgba(219,0,0, 0.3);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+ion-card{
+  background: #000000;
+  box-shadow: none;
+  text-align: center;
+  margin-top: 130px;
+
+  ion-card-title{
+    color: #db0000;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+ion-card-content{
+  margin-top: 10px;
+
+  ion-item{
+    --ion-item-background: trasparent;
+    --border-width: 0;
+    --inner-border-width: 0;
+    --highlight-color-focus: none;
+    margin-bottom: 15px;
+
+    ion-input{
+      color: #fff;
+      height: 50px;
+      width: 100px;
+      border-radius: 10px 10px 10px 10px;
+      border: 2px solid #fff;
+      font-size: 14px;
+      --padding-start: 10px;
+    }
+  }
+
+  .bottom-section{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ion-button{
+      height: 40px;
+      width: 140px;
+      align-items: center;
+      --background: #db0000;
+    }
+  }
+}
