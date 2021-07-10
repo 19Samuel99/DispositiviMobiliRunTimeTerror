@@ -8,20 +8,20 @@ ion-header{
   ion-toolbar{
 
 
-      ion-title{
-        margin-top: 20px;
-        text-align: center;
-        font-weight: bold;
-        font-size: 40px;
-        color: #db0000;
-        text-shadow: -1px 0 black, 0 1px black, 5px 0 black, 0 -1px black;
-      }
+    ion-title{
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 40px;
+      color: #db0000;
+      text-shadow: -1px 0 black, 0 1px black, 5px 0 black, 0 -1px black;
+    }
 
-      img{
-        margin-top: 8px;
-        height: 70px;
-        weight: 70px;
-      }
+    img{
+      margin-top: 8px;
+      height: 70px;
+      weight: 70px;
+    }
   }
 
   ion-icon{
@@ -33,7 +33,7 @@ ion-header{
 }
 
 ion-content{
-  --ion-background-color: #00000;
+  background-color: #000000;
   font-family: "Montserrat", sans-serif;
 
   ion-card.primo{

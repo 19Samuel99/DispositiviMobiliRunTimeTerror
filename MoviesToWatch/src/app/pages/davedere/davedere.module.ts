@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SplashScreenPageRoutingModule } from './splash-screen-routing.module';
+import { DavederePageRoutingModule } from './davedere-routing.module';
 
-import { SplashScreenPage } from './splash-screen.page';
+import { DavederePage } from './davedere.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SplashScreenPageRoutingModule
+    DavederePageRoutingModule
   ],
-  declarations: [SplashScreenPage]
+  declarations: [DavederePage]
 })
-export class SplashScreenPageModule {}
+export class DavederePageModule {}
