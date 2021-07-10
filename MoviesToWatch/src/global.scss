@@ -38,3 +38,54 @@
 * {
   font-family: 'Montserrat Light'!important;
 }
+
+.head{
+
+    .new-background-color{
+      --background: #282828;
+    }
+
+    ion-toolbar{
+
+
+      ion-title{
+        margin-top: 20px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 40px;
+        color: #db0000;
+        text-shadow: -1px 0 black, 0 1px black, 5px 0 black, 0 -1px black;
+      }
+
+      img{ //logo
+        margin-top: 8px;
+        height: 70px;
+        width: 70px;
+      }
+    }
+
+    ion-icon{
+      margin-top: 20px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 40px;
+    }
+}
+
+.bottom_menu{
+  ion-tab-button{
+    background-color: #282828;
+  }
+  background-color: #282828;
+
+  ion-icon{
+    color: #db0000;
+    text-align: center;
+  }
+
+  ion-label{
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}

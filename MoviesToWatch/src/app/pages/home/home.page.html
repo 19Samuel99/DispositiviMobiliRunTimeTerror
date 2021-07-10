@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="head">
 
   <ion-toolbar class="new-background-color">
 
@@ -27,12 +27,12 @@
 
 <ion-content>
 
-  <ion-card class="primo">
+  <ion-card class="primo" (click)="linkQuestionario()">
     <img src="../../assets/image/questionario.png"/>
     <div class="card-title">Questionario</div>
   </ion-card>
 
-  <ion-card class="primo">
+  <ion-card class="secondo" (click)="linkToprated()">
     <img src="../../assets/image/best.png"/>
     <div class="card-title">Top rated</div>
   </ion-card>
@@ -41,7 +41,7 @@
 
 
 
-<ion-tab-bar slot="bottom">
+<ion-tab-bar slot="bottom" class="bottom_menu">
 
   <ion-tab-button tab="home" (click)="linkHome()">
     <ion-icon name="home"></ion-icon>

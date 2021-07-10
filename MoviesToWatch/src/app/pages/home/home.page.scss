@@ -1,71 +1,49 @@
-ion-header{
-
-  .new-background-color{
-    --background: #282828;
-  }
-
-
-  ion-toolbar{
-
-
-    ion-title{
-      margin-top: 20px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 40px;
-      color: #db0000;
-      text-shadow: -1px 0 black, 0 1px black, 5px 0 black, 0 -1px black;
-    }
-
-    img{
-      margin-top: 8px;
-      height: 70px;
-      weight: 70px;
-    }
-  }
-
-  ion-icon{
-    margin-top: 20px;
-    color: #fff;
-    font-weight: bold;
-    font-size: 40px;
-  }
-}
-
 ion-content{
   --ion-background-color: #000000;
   font-family: "Montserrat", sans-serif;
 
-  ion-card.primo{
-    height: 120px;
-    width: 120px;
+
+  .primo{
+    background-color: #282828;
+    margin: 10px auto;
+    height: 220px;
+    width: 270px;
     text-align: center;
+    box-shadow: 2px 2px 2px 2px #fff;
+
 
     .card-title{
-      color: #db0000;
-      font-size: 16px;
+      color: #fff;
+      font-size: 18px;
       font-weight: bold;
     }
 
     img{
-      height: 100px;
-      width: 100px;
+      height: 180px;
+      width: 270px;
     }
   }
-}
 
-ion-tab-bar, ion-tab-button{
-  background-color: #282828;
-
-  ion-icon{
-    color: #db0000;
+  .secondo {
+    background-color: #282828;
+    margin: 20px auto 20px;
+    height: 200px;
+    width: 200px;
     text-align: center;
+    box-shadow: 2px 2px 2px 2px #fff;
+
+    .card-title{
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    img{
+      height: 160px;
+      width: 200px;
+    }
   }
 
-  ion-label{
-    color: #fff;
-    font-size: 15px;
-    font-weight: bold;
-  }
 }
+
 
