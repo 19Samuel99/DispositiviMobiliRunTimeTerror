@@ -18,11 +18,11 @@ export class HomePage implements OnInit{
   }
 
   linkFilmvisti(){
-    this.router.navigate(['/filmvisti']);
+    this.router.navigate(['/giavisti']);
   }
 
   linkFilmdavedere(){
-    this.router.navigate(['/filmdavedere']);
+    this.router.navigate(['/davedere']);
   }
 
   linkAreautente(){
