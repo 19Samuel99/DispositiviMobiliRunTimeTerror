@@ -8,9 +8,27 @@ import {Router} from '@angular/router';
 })
 export class AreautentePage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
+  linkHome(){
+    this.router.navigate(['/home']);
+  }
 
+  linkFilmvisti(){
+    this.router.navigate(['/giavisti']);
+  }
+
+  linkFilmdavedere(){
+    this.router.navigate(['/davedere']);
+  }
+
+  linkAreautente(){
+    this.router.navigate(['/areautente']);
+  }
+
+  linkRicerca(){
+    this.router.navigate(['/ricerca']);
+  }
 }
