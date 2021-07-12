@@ -1,0 +1,28 @@
+ion-item-sliding{
+  margin-top: 10px;
+  --ion-background-color: #282828;
+
+
+  ion-label{
+    color: #fff;
+  }
+}
+
+
+img {
+  display: block;
+  max-width:150px;
+  max-height:150px;
+  width: auto;
+  height: auto;
+}
+
+ion-content{
+  --ion-background-color: #000000;
+
+  ion-label{
+    color: #fff;
+
+  }
+
+}
