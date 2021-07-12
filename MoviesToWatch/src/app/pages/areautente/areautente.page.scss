@@ -1,0 +1,32 @@
+ion-item-sliding{
+  margin-top: 10px;
+  --ion-background-color: #282828;
+
+
+  ion-label{
+    color: #fff;
+  }
+}
+
+
+ion-content{
+  --ion-background-color: #000000;
+
+  ion-icon{
+    margin-top: 20px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  ion-label{
+    color: #fff;
+
+    td.sottotitolo {
+      padding-top: 25px;
+    }
+  }
+
+}
+
+

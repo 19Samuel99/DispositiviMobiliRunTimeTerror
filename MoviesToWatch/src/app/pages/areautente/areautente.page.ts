@@ -31,4 +31,8 @@ export class AreautentePage implements OnInit {
   linkRicerca(){
     this.router.navigate(['/ricerca']);
   }
+
+  linkLogin(){
+    this.router.navigate(['/login']);
+  }
 }
