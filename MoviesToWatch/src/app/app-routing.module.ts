@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'ricerca',
     loadChildren: () => import('./pages/ricerca/ricerca.module').then( m => m.RicercaPageModule)
   },
+  {
+    path: 'schedainformativa',
+    loadChildren: () => import('./pages/schedainformativa/schedainformativa.module').then( m => m.SchedainformativaPageModule)
+  },
 
 ];
 

@@ -31,5 +31,8 @@ export class DavederePage implements OnInit {
   linkRicerca(){
     this.router.navigate(['/ricerca']);
   }
+  linkSchedainformativa(){
+    this.router.navigate(['/schedainformativa']);
+  }
 
 }
