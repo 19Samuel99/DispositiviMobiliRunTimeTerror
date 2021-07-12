@@ -8,9 +8,13 @@ import {Router} from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  linkRegistrazione(){
+    this.router.navigate(['/registrazione']);
   }
 
 }
