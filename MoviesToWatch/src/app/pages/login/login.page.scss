@@ -37,6 +37,15 @@ ion-card{
 ion-card-content{
   margin-top: 10px;
 
+  .wrapform{
+    margin-top: 10px;
+  }
+  .error_message{
+    font-size: 15px;
+    color: red;
+    margin-bottom: 15px;
+  }
+
   ion-item{
     --ion-item-background: trasparent;
     --border-width: 0;
@@ -55,11 +64,28 @@ ion-card-content{
     }
   }
 
-  .bottom-section{
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .sign-btn-wrap{
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .facebookbtn{
+    margin-top: 15px;
+    text-align: center;
+    --background: #282828;
+  }
+
+  .googlebtn{
+    margin-top: 15px;
+    text-align: center;
+    --background: #282828;
+  }
+
+  ion-icon{
+    color: white;
+  }
+
 
     ion-button{
       height: 40px;
@@ -74,6 +100,4 @@ ion-card-content{
         color: #db0000;
       }
     }
-
-  }
 }

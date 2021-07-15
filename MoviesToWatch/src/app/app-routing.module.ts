@@ -5,7 +5,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'davedere',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
