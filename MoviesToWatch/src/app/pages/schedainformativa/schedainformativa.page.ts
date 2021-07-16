@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-schedainformativa',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchedainformativaPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
+  linkHome(){
+    this.router.navigate(['/home']);
+  }
 
+  linkFilmvisti(){
+    this.router.navigate(['/giavisti']);
+  }
+
+  linkFilmdavedere(){
+    this.router.navigate(['/davedere']);
+  }
+
+  linkAreautente(){
+    this.router.navigate(['/areautente']);
+  }
+
+  linkRicerca(){
+    this.router.navigate(['/ricerca']);
+  }
 }

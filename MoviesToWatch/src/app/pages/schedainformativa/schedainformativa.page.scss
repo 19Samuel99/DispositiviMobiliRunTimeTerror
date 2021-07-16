@@ -1,5 +1,17 @@
 ion-content{
   --ion-background-color: #000000;
+
+  .locandina{
+    border: 2px solid #282828;
+    border-radius: 4px;
+    padding: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: auto;
+  }
+
  .add-buttons{
    position: relative;
    float: right;
