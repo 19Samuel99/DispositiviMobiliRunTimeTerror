@@ -1,0 +1,28 @@
+ion-content{
+  --ion-background-color: #000000;
+
+ .add-buttons{
+   position: relative;
+   float: right;
+   margin-left: auto;
+   margin-right: 0;
+
+   ion-icon{
+     color: white;
+   }
+   .add-davedere, .add-visti{
+     margin-top: 15px;
+     text-align: center;
+     --background: #282828;
+     border-radius: 5px;
+   }
+ }
+  .grid-info{
+
+    .row-border{
+      padding: 15px 0px 15px 0px ;
+      border-bottom: 2px solid #282828;
+    }
+  }
+
+}
