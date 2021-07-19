@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
+import {TestService} from "../../services/test.service";
 
 @Component({
   selector: 'app-login',
@@ -25,9 +26,9 @@ export class LoginPage implements OnInit {
   };
 
   validationFormUser: FormGroup;
-
+  data: any;
   constructor(private router: Router, public formbuilder: FormBuilder, public authservice: AuthService,
-              private firestore: AngularFirestore, private nav: NavController) { }
+              private firestore: AngularFirestore, private nav: NavController, public testservice: TestService) { }
 
   ngOnInit() {
     this.validationFormUser = this.formbuilder.group({
@@ -44,6 +45,14 @@ export class LoginPage implements OnInit {
 
   linkRegistrazione(){
     this.router.navigate(['/registrazione']);
+  }
+
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  Test(){
+    this.testservice.getFilm().subscribe(data => {
+      console.log(data);  //al posto di data facciamo l'operazione richiesta.
+  });
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -84,3 +93,5 @@ export class LoginPage implements OnInit {
     }
   }
 }
+
+
