@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
-import {TestService} from "../../services/test.service";
+import {TestService} from '../../services/test.service';
 
 @Component({
   selector: 'app-login',
@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Test(){
-    this.testservice.getFilm().subscribe(data => {
+    this.testservice.getFilm('ciao').subscribe(data => {
       console.log(data);  //al posto di data facciamo l'operazione richiesta.
   });
   }

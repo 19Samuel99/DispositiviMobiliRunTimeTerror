@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {TestService} from '../../services/test.service';
 
 @Component({
   selector: 'app-ricerca',
@@ -8,7 +9,9 @@ import {Router} from '@angular/router';
 })
 export class RicercaPage implements OnInit {
 
-  constructor(private router: Router) { }
+  myInput = '';
+
+  constructor(private router: Router, public testservice: TestService) { }
 
   ngOnInit() {
   }
@@ -30,5 +33,11 @@ export class RicercaPage implements OnInit {
 
   linkRicerca(){
     this.router.navigate(['/ricerca']);
+  }
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  Cerca(nome){
+    this.testservice.getFilm(nome).subscribe(data => {
+      console.log(data);  //al posto di data facciamo l'operazione richiesta.
+    });
   }
 }
