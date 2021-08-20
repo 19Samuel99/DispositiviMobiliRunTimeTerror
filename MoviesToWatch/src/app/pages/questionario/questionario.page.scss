@@ -8,16 +8,26 @@ ion-content{
 
   .grid-questionario{
     color: white;
+
     .row-border{
       padding: 15px 0px 15px 0px ;
       border-bottom: 2px solid #282828;
     }
+
     ion-item{
       color: white;
+      --background: #282828;
+
       ion-toggle{
         --background-checked: #db0000;
         --handle-background-checked: #db0000;
       }
     }
+    .list-generi{
+      background-color: #282828;
+    }
+
   }
+
+
 }
