@@ -126,16 +126,56 @@
             </ion-row>
 
           <ion-row class="row-border">
-            <h3>Anno</h3>
+            <h3>Anno di produzione</h3>
+            <ion-select name="ordineanno" id="ordineanno">
+              <ion-select-option value="minore">Minore di</ion-select-option>
+              <ion-select-option value="minoreuguale">Minore o uguale a</ion-select-option>
+              <ion-select-option value="uguale">Uguale a</ion-select-option>
+              <ion-select-option value="maggiore">Maggiore di</ion-select-option>
+              <ion-select-option value="maggioreuguale">Maggiore o uguale a</ion-select-option>
+            </ion-select>
+            <ion-item>
+              <ion-label>Seleziona l'anno</ion-label>
+              <ion-datetime displayFormat="YYYY" pickerFormat="YYYY" [yearValues]=""></ion-datetime>
+            </ion-item>
           </ion-row>
+
           <ion-row class="row-border">
             <h3>Nazionalità</h3>
+            <ion-select name="nazione" id="nazione" multiple="true">
+              <ion-select-option value="USA">USA</ion-select-option>
+              <ion-select-option value="Italia">Italia</ion-select-option>
+              <ion-select-option value="Canada">Canada</ion-select-option>
+              <ion-select-option value="Francia">Francia</ion-select-option>
+              <ion-select-option value="Germania">Germania</ion-select-option>
+              <ion-select-option value="Spagna">Spagna</ion-select-option>
+              <ion-select-option value="Portogallo">Portogallo</ion-select-option>
+              <ion-select-option value="GranBretagna">Gran Bretagna</ion-select-option>
+              <ion-select-option value="Grecia">Grecia</ion-select-option>
+              <ion-select-option value="Turchia">Turchia</ion-select-option>
+              <ion-select-option value="India">India</ion-select-option>
+              <ion-select-option value="Australia">Australia</ion-select-option>
+              <ion-select-option value="Russia">Russia</ion-select-option>
+              <ion-select-option value="Cina">Cina</ion-select-option>
+              <ion-select-option value="Giappone">Giappone</ion-select-option>
+              <ion-select-option value="Corea">Corea del sud</ion-select-option>
+              <ion-select-option value="Argentina">Argentina</ion-select-option>
+            </ion-select>
           </ion-row>
           <ion-row class="row-border">
-            <h3>Attore</h3>
+            <h3></h3>
           </ion-row>
+
           <ion-row class="row-border">
             <h3>Rating</h3>
+            <ion-select name="ordinerating" id="ordinerating">
+              <ion-select-option value="minore">Minore di</ion-select-option>
+              <ion-select-option value="minoreuguale">Minore o uguale a</ion-select-option>
+              <ion-select-option value="uguale">Uguale a</ion-select-option>
+              <ion-select-option value="maggiore">Maggiore di</ion-select-option>
+              <ion-select-option value="maggioreuguale">Maggiore o uguale a</ion-select-option>
+            </ion-select>
+
           </ion-row>
         </ion-col>
 
