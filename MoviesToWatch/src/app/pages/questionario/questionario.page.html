@@ -77,6 +77,10 @@
                         <ion-toggle></ion-toggle>
                       </ion-item>
                       <ion-item>
+                        <ion-label>Romantico</ion-label>
+                        <ion-toggle></ion-toggle>
+                      </ion-item>
+                      <ion-item>
                         <ion-label>Erotico</ion-label>
                         <ion-toggle></ion-toggle>
                       </ion-item>
@@ -92,10 +96,6 @@
                         <ion-label>Guerra</ion-label>
                         <ion-toggle></ion-toggle>
                       </ion-item>
-                      <ion-item>
-                        <ion-label>Horror</ion-label>
-                        <ion-toggle></ion-toggle>
-                      </ion-item>
                     </ion-col>
 
                     <ion-col>
@@ -109,6 +109,10 @@
                       </ion-item>
                       <ion-item>
                         <ion-label>Thriller</ion-label>
+                        <ion-toggle></ion-toggle>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label>Horror</ion-label>
                         <ion-toggle></ion-toggle>
                       </ion-item>
                       <ion-item>
@@ -169,14 +173,26 @@
           <ion-row class="row-border">
             <h3>Rating</h3>
             <ion-select name="ordinerating" id="ordinerating">
-              <ion-select-option value="minore">Minore di</ion-select-option>
-              <ion-select-option value="minoreuguale">Minore o uguale a</ion-select-option>
-              <ion-select-option value="uguale">Uguale a</ion-select-option>
-              <ion-select-option value="maggiore">Maggiore di</ion-select-option>
-              <ion-select-option value="maggioreuguale">Maggiore o uguale a</ion-select-option>
+              <ion-select-option value="uno">1/10</ion-select-option>
+              <ion-select-option value="due">2/10</ion-select-option>
+              <ion-select-option value="tre">3/10</ion-select-option>
+              <ion-select-option value="quattro">4/10</ion-select-option>
+              <ion-select-option value="cinque">5/10</ion-select-option>
+              <ion-select-option value="sei">6/10</ion-select-option>
+              <ion-select-option value="sette">7/10</ion-select-option>
+              <ion-select-option value="otto">8/10</ion-select-option>
+              <ion-select-option value="nove">9/10</ion-select-option>
+              <ion-select-option value="dieci">10/10</ion-select-option>
             </ion-select>
 
           </ion-row>
+
+          <ion-row>
+            <ion-button class="bottone_consiglio" value="block">
+              <ion-label>Consigliami</ion-label>
+            </ion-button>
+          </ion-row>
+
         </ion-col>
 
         <ion-col size="3" size-sm="3">
