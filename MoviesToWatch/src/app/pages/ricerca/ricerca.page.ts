@@ -11,7 +11,7 @@ export class RicercaPage implements OnInit {
 
   myInput = '';
 
-  constructor(private router: Router, public testservice: TestService) { }
+  constructor(private router: Router, public testservice: TestService,) { }
 
   ngOnInit() {
   }

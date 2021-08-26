@@ -1,13 +1,11 @@
-export class Film {
+ interface film {
     id: string;
-    imageUrl: URL;
+    url: URL;
     attori: string[];
     personaggi: string[];
-    durata: number;
-    titolo: string;
-    tipo: string;
+   runningTimeInMinutes: number;
+   title: string;
+   titleType: string;
     genere: string[];
-    anno: number;
-
-
+    year: number;
 }

@@ -52,28 +52,11 @@
   <p>titolo: <span id="titolo"></span><br>
     tipo di titolo: <span id="tTitolo"></span><br>
     anno: <span id="anno"></span><br>
+    immagine: <img id="image" src=""></img><br>
+
 
   </p>
-  <script>
-   indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
-    async function getNomeFilm( nome) {
-      nome.split(' ').join('%20')
-      const response = await fetch(this.indirizzo + nome, {
-        method: "GET",
-        headers:{
-          'x-rapidapi-key': 'af622af5f0msh7c4f3576c3d19e1p1c9877jsna4822a599ad7',
-          'x-rapidapi-host': 'imdb8.p.rapidapi.com'
-        }
-      });
-      const data = await response.json();
-      const {title, titletype, year} = data[0];
-      console.log(year)
-      document.getElementById('titolo').textContent = title;
-      document.getElementById('tTitolo').textContent = titletype;
-      document.getElementById('anno').textContent = year;
-    }
-      getNomeFilm('inception');
-  </script>
+  <input type = "button" onclick = "msgprint()" value = "Message Print">
   <!--https://forum.freecodecamp.org/t/fetch-api-with-api-key/317584/2
   https://www.youtube.com/watch?v=Kw5tC5nQMRY
   https://www.youtube.com/watch?v=uxf0--uiX0I-->
