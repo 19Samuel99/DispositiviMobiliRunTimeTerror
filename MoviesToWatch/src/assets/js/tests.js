@@ -1,4 +1,3 @@
-console.log('porcamadonnaincroce')
  indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
   async function getNomeFilm( nome) {
     nome.split(' ').join('%20')
@@ -13,10 +12,9 @@ console.log('porcamadonnaincroce')
     const data = await response.json();
     console.log(data);
     const {title, titleType, year, image} = data['results'][0];
-    console.log(year)
     document.getElementById('titolo').textContent = title;
     document.getElementById('tTitolo').textContent = titleType;
     document.getElementById('anno').textContent = year;
-    document.getElementById('image').src = image['url'];
+    document.getElementById('immagine').appendchild(image) = image;
   }
     getNomeFilm('inception');
