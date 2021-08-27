@@ -6,13 +6,11 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class TestService {
-
-  private heroesUrl = 'https://imdb8.p.rapidapi.com/title/find?q=';
   constructor(
     private http: HttpClient,
-   ) { }
+   ) { }}
 
-  /** GET heroes from the server */
+  /** GET heroes from the server
   getFilm(nome): Observable<any> {
     const headers= new HttpHeaders()
       .set('x-rapidapi-key', 'af622af5f0msh7c4f3576c3d19e1p1c9877jsna4822a599ad7')
@@ -22,3 +20,4 @@ export class TestService {
     return this.http.get(this.heroesUrl+nome,{ headers });
   }
 }
+   */

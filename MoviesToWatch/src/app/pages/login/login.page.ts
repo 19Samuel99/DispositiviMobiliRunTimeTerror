@@ -49,13 +49,6 @@ export class LoginPage implements OnInit {
 
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  Test(){
-    this.testservice.getFilm('ciao').subscribe(data => {
-      console.log(data);  //al posto di data facciamo l'operazione richiesta.
-  });
-  }
-
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   LoginUser(value){
     console.log('Am logged in');
     try{

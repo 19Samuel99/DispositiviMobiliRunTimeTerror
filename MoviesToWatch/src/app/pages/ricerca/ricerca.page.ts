@@ -35,9 +35,9 @@ export class RicercaPage implements OnInit {
     this.router.navigate(['/ricerca']);
   }
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  Cerca(nome){
+ /** Cerca(nome){
     this.testservice.getFilm(nome).subscribe(data => {
       console.log(data);  //al posto di data facciamo l'operazione richiesta.
     });
-  }
+  }*/
 }

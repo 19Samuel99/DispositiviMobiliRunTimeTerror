@@ -36,10 +36,11 @@
 
       <ion-col size="6" size-sm="6">
         <!-- Default Searchbar -->
-        <ion-searchbar
-          [(ngModel)]="myInput"
-          (search)="Cerca($event.target.value)">
-        </ion-searchbar>
+        <form>
+          <input type="text" id="search" >
+          <button type="button" onclick='getNomeFilm( document.getElementById("search").value);'>Submit</button>
+        </form>
+
       </ion-col>
 
       <ion-col size="3" size-sm="3">
@@ -52,10 +53,8 @@
   <p>titolo: <span id="titolo"></span><br>
     tipo di titolo: <span id="tTitolo"></span><br>
     anno: <span id="anno"></span><br>
-    immagine: <img id="immagine" src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"><br>
-
-
-  </p>
+    immagine: <img id="locandina"><br>
+ </p>
   <input type = "button" onclick = "msgprint()" value = "Message Print">
   <!--https://forum.freecodecamp.org/t/fetch-api-with-api-key/317584/2
   https://www.youtube.com/watch?v=Kw5tC5nQMRY

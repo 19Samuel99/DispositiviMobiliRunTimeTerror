@@ -1,5 +1,6 @@
- indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
+
   async function getNomeFilm( nome) {
+    indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
     nome.split(' ').join('%20')
     const response = await fetch(this.indirizzo + nome, {
       method: "GET",
@@ -11,10 +12,11 @@
     });
     const data = await response.json();
     console.log(data);
-    const {title, titleType, year, image} = data['results'][0];
+    const {title, titleType, year} = data['results'][0];
     document.getElementById('titolo').textContent = title;
     document.getElementById('tTitolo').textContent = titleType;
     document.getElementById('anno').textContent = year;
-    document.getElementById('immagine').appendchild(image) = image;
+    const {url} = data['results'][0]['image'];
+    locandina.src=url
   }
-    getNomeFilm('inception');
+    //getNomeFilm('inception');
