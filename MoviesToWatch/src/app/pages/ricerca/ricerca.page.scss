@@ -1,9 +1,61 @@
 ion-content{
 
-  ion-searchbar{
-    --background: white;
-    --color: black;
-    --border-radius: 40px;
+  .searchbar{
+    background: white;
+    color: black;
+    border-radius: 40px;
+    width: 95%;
+    padding: 12px 20px;
+    margin: 8px 8px;
+    box-sizing: border-box;
+  }
+  .searchbar::placeholder{
+    background: white;
+    color: black;
   }
 
+  .input_button{
+    height: 55px;
+    line-height: 55px;
+    width: 55px;
+    padding: 5px;
+    margin: 8px 0;
+    font-size: 2em ;
+    font-weight: bold;
+    border-radius: 50%;
+    background-color: #db0000;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+   }
+
+  .input_button:hover {
+    background: #D10101;
+  }
+
+
+  ion-item-sliding{
+    margin-top: 10px;
+    --ion-background-color: #282828;
+
+
+    ion-label{
+      color: #fff;
+    }
+  }
+  ion-label{
+    color: #fff;
+
+    td.sottotitolo {
+      padding-top: 25px;
+    }
+  }
+
+  .locandina-ricerca{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: auto;
+  }
 }

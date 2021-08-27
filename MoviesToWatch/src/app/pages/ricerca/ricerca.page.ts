@@ -34,6 +34,11 @@ export class RicercaPage implements OnInit {
   linkRicerca(){
     this.router.navigate(['/ricerca']);
   }
+  /*
+  linkSchedainformativa(){
+    this.router.navigate(['/schedainformativa']);
+  }*/
+
   // eslint-disable-next-line @typescript-eslint/naming-convention
  /** Cerca(nome){
     this.testservice.getFilm(nome).subscribe(data => {

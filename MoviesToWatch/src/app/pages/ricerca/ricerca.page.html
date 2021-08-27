@@ -35,11 +35,59 @@
       </ion-col>
 
       <ion-col size="6" size-sm="6">
-        <!-- Default Searchbar -->
+
         <form>
-          <input type="text" id="search" >
-          <button type="button" onclick='getNomeFilm( document.getElementById("search").value);'>Submit</button>
+          <table class="search_table"style="width:100%">
+            <tr>
+              <td>
+                <input class="searchbar"type="text" id="search" placeholder="Cerca film">
+              </td>
+              <td>
+                <button class="input_button" type="button" onclick='getNomeFilm( document.getElementById("search").value);'>
+                  <ion-icon class="search_icon" name="search" ></ion-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
         </form>
+
+
+        <ion-list show-delete="false" can-swipe="true">
+          <ion-item-sliding>
+            <ion-item (click)="linkSchedainformativa()">
+              <ion-thumbnail slot="start" style="width: 150px; height: 150px">
+                <img  id="locandina" class="locandina-ricerca">
+              </ion-thumbnail>
+              <ion-label style="font-size: 22px; font-weight: bold">
+                <table style="width:100%">
+                  <tr>
+                    <td>
+                      Titolo: <span id="titolo"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="sottotitolo">
+                      Tipo di titolo : <span id="tTitolo"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="sottotitolo">
+                      Anno : <span id="anno"></span>
+                    </td>
+                  </tr>
+
+                </table>
+              </ion-label>
+            </ion-item>
+            <ion-item-options>
+              <ion-item-option style=" font-weight: bold; color: #fff; background-color: #db0000">
+                <ion-icon slot="start" name="trash"></ion-icon>
+                Aggiungi a film da vedere
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+
 
       </ion-col>
 
@@ -49,13 +97,13 @@
 
     </ion-row>
   </ion-grid>
-<!-- prova-->
+<!-- prova
   <p>titolo: <span id="titolo"></span><br>
     tipo di titolo: <span id="tTitolo"></span><br>
     anno: <span id="anno"></span><br>
     immagine: <img id="locandina"><br>
  </p>
-  <input type = "button" onclick = "msgprint()" value = "Message Print">
+  <input type = "button" onclick = "msgprint()" value = "Message Print">-->
   <!--https://forum.freecodecamp.org/t/fetch-api-with-api-key/317584/2
   https://www.youtube.com/watch?v=Kw5tC5nQMRY
   https://www.youtube.com/watch?v=uxf0--uiX0I-->
