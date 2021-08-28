@@ -35,5 +35,18 @@ ion-content{
       border-bottom: 2px solid #282828;
     }
   }
-
+/*
+  .div_circular_img_attore {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+*/
+  .img_attore{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
 }

@@ -10,6 +10,10 @@
       }
 
     });
+
+    //per tenere l'item del risultato nella pagina ricerca hidden fino a quando non si effettua una ricerca
+    document.getElementById("risultato").hidden = false;
+
     const data = await response.json();
     console.log(data);
     const {title, titleType, year} = data['results'][0];
