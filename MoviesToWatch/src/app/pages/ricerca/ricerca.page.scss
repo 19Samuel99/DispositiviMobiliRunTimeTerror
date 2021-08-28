@@ -45,9 +45,11 @@ ion-content{
   }
   ion-label{
     color: #fff;
+    font-size: 17px;
 
     td.sottotitolo {
       padding-top: 25px;
+      font-size: 17px;
     }
   }
 
@@ -57,5 +59,11 @@ ion-content{
     margin-right: auto;
     width: 70%;
     height: auto;
+  }
+
+  .info_film{
+    color: #db0000;
+    font-weight: bold;
+    font-size: 25px;
   }
 }
