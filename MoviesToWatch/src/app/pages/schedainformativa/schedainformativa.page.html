@@ -36,13 +36,17 @@
       <ion-col size="6" size-sm="6">
         <ion-grid class="grid-info">
           <ion-row>
-            <img class="locandina" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png" >
+            <img id="locandina" class="locandina-ricerca" >
           </ion-row>
           <ion-row>
+            <button class="input_button" type="button" onclick='GetFullCredits();'>
+              <ion-icon class="search_icon" name="search" ></ion-icon>
+            </button>
             <div class="add-buttons">
               <ion-button fill="clear"  class="add-davedere">
                 <ion-icon name="add"></ion-icon>
                 <ion-icon name="time"></ion-icon>
+
               </ion-button>
               <ion-button fill="clear"  class="add-visti">
                 <ion-icon name="add"></ion-icon>
@@ -51,28 +55,89 @@
             </div>
           </ion-row>
           <ion-row class="row-border">
-            Title
+            Titolo  <span id="titolo"></span>
           </ion-row>
           <ion-row class="row-border">
-            Anno
+            Anno <span id="anno"></span>
           </ion-row>
           <ion-row class="row-border">
-            Regista
+            Regista <span id="Regista"></span>
           </ion-row>
           <ion-row class="row-border">
-            Ranking
+            Rating <span id="Rating"></span>
           </ion-row>
           <ion-row class="row-border">
-            Descrizione
+            Descrizione <span id="Descrizione"></span>
           </ion-row>
           <ion-row class="row-border">
-            Cast
+
+            Cast <span id="NomeAttore0"></span><br>
+
+            immagine <img  id="ImmagineAttore0">
+
+            Ruolo <span id="Nomecharacter0"></span><br>
+
+            Cast <span id="NomeAttore1"></span><br>
+
+            immagine <img  id="ImmagineAttore1">
+
+            Ruolo <span id="Nomecharacter1"></span><br>
+
+            Cast <span id="NomeAttore2"></span><br>
+
+            immagine <img  id="ImmagineAttore2">
+
+            Ruolo <span id="Nomecharacter2"></span><br>
+
+            Cast <span id="NomeAttore3"></span><br>
+
+            immagine <img  id="ImmagineAttore3">
+
+            Ruolo <span id="Nomecharacter3"></span><br>
+
+            Cast <span id="NomeAttore4"></span><br>
+
+            immagine <img  id="ImmagineAttore4">
+
+            Ruolo <span id="Nomecharacter4"></span><br>
+
+            Cast <span id="NomeAttore5"></span><br>
+
+            immagine <img  id="ImmagineAttore5">
+
+            Ruolo <span id="Nomecharacter5"></span><br>
+
+            Cast <span id="NomeAttore6"></span><br>
+
+            immagine <img  id="ImmagineAttore6">
+
+            Ruolo <span id="Nomecharacter6"></span><br>
+
+            Cast <span id="NomeAttore7"></span><br>
+
+            immagine <img  id="ImmagineAttore7">
+
+            Ruolo <span id="Nomecharacter7"></span><br>
+
+            Cast <span id="NomeAttore8"></span><br>
+
+            immagine <img  id="ImmagineAttore8">
+
+            Ruolo <span id="Nomecharacter8"></span><br>
+
+            Cast <span id="NomeAttore9"></span>
+
+            immagine <img  id="ImmagineAttore9">
+
+            Ruolo <span id="Nomecharacter9"></span><br>
+
+
           </ion-row>
           <ion-row class="row-border">
-            Durata
+            Durata <span id="durata"></span> minuti
           </ion-row>
           <ion-row class="row-border">
-            Trailer
+            Trailer <span id="Trailer"></span>
           </ion-row>
 
         </ion-grid>
