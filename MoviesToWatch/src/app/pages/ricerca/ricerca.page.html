@@ -42,7 +42,7 @@
               <td>
                 <input class="searchbar"type="text" id="search" placeholder="Cerca film">
               </td>
-              <td>
+              <td class="td_searchbutton">
                 <button class="input_button" type="button" onclick='getNomeFilm( document.getElementById("search").value);'>
                   <ion-icon class="search_icon" name="search" ></ion-icon>
                 </button>
@@ -59,20 +59,29 @@
                 <img  id="locandina" class="locandina-ricerca">
               </ion-thumbnail>
               <ion-label style="font-size: 22px; font-weight: bold">
-                <table style="width:100%">
+                <table class="table_infofilm" style="width:100%">
                   <tr>
-                    <td>
-                      Titolo: <span class="info_film" id="titolo"></span>
+                    <td class="td_titolo">
+                      Titolo:
+                    </td>
+                    <td class="td_titolo_result">
+                      <span id="titolo"></span>
                     </td>
                   </tr>
                   <tr>
-                    <td class="sottotitolo">
-                      Tipo di titolo : <span class="info_film" id="tTitolo"></span>
+                    <td class="td_info">
+                      Tipo di titolo :
+                    </td>
+                    <td class="td_info_result">
+                      <span id="tTitolo"></span>
                     </td>
                   </tr>
                   <tr>
-                    <td class="sottotitolo">
-                      Anno : <span class="info_film" id="anno"></span>
+                    <td class="td_info">
+                      Anno :
+                    </td>
+                    <td class="td_info_result">
+                      <span id="anno"></span>
                     </td>
                   </tr>
 

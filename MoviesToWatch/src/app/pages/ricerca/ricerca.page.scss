@@ -1,14 +1,20 @@
 ion-content{
+  --ion-background-color: #000000;
+
+  .td_searchbutton{
+      width: 58px;
+  }
 
   .searchbar{
     background: white;
     color: black;
     border-radius: 40px;
-    width: 95%;
+    width: 98%;
     padding: 12px 20px;
     margin: 8px 8px;
     box-sizing: border-box;
   }
+
   .searchbar::placeholder{
     background: white;
     color: black;
@@ -33,24 +39,14 @@ ion-content{
     background: #D10101;
   }
 
-
   ion-item-sliding{
-    margin-top: 10px;
+    //margin-top: 10px;
     --ion-background-color: #282828;
-
-
-    ion-label{
-      color: #fff;
-    }
   }
+
   ion-label{
     color: #fff;
     font-size: 17px;
-
-    td.sottotitolo {
-      padding-top: 25px;
-      font-size: 17px;
-    }
   }
 
   .locandina-ricerca{
@@ -61,9 +57,32 @@ ion-content{
     height: auto;
   }
 
-  .info_film{
+  .table_infofilm{
+      tr{
+        border-bottom: 1px solid #282828;
+      }
+  }
+
+  .td_titolo{
+    padding-bottom: 15px;
+  }
+  .td_titolo_result{
+    padding-bottom: 15px;
     color: #db0000;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 30px;
   }
+
+  .td_info{
+     font-size: 17px;
+     width: 30%;
+   }
+
+  .td_info_result{
+      color: #db0000;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+
 }

@@ -1,5 +1,5 @@
 
-  async function getNomeFilm(nome) {
+  async function getNomeFilm( nome) {
     indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
     nome.split(' ').join('%20')
     const response = await fetch(this.indirizzo + nome, {
