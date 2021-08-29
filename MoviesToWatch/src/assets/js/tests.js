@@ -48,33 +48,64 @@
     const UrlImmagineAttore=[];
     for(let i=0; i<10; i++) {
       name[i] = data['cast'][i]['name'];
-      document.getElementById('NomeAttore' + i).textContent = name[i];
       character[i] = data['cast'][i]['characters'][0];
-      document.getElementById('Nomecharacter' + i).textContent = character[i];
+      UrlImmagineAttore[i] = data['cast'][i]['image']['url'];
       console.log(data);
+      /*
+        document.getElementById('NomeAttore' + i).textContent = name[i];
+        document.getElementById('Nomecharacter' + i).textContent = character[i];
+      */
+
+
+      //creazione riga
+      var row= document.createElement("tr");
+      //creazione cella
+      var cell= document.createElement("td");
+      //riempimento cella
+      var cellImg = new Image(100,100);
+      //var cellImg= document.createElement("img");
+      cellImg.src=UrlImmagineAttore[i];
+      cellImg.style.borderRadius = "50%";
+      cell.appendChild(cellImg);
+      cell.style.borderRight = "1px solid #282828";
+      row.appendChild(cell);
+
+      var cell= document.createElement("td");
+      var cellText = document.createTextNode(name[i]);
+      cell.appendChild(cellText);
+      cell.style.borderRight = "1px solid #282828";
+      row.appendChild(cell);
+
+      var cell= document.createElement("td");
+      var cellText = document.createTextNode(character[i]);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      row.style.borderBottom = "1px solid #282828";
+      //append dell'intera riga nella tabella con id
+      document.getElementById("table_cast").appendChild(row);
 
     }
-    UrlImmagineAttore[0] = data['cast'][0]['image']['url'];
-    ImmagineAttore0.src=UrlImmagineAttore[0];
-    UrlImmagineAttore[1] = data['cast'][1]['image']['url'];
-    ImmagineAttore1.src=UrlImmagineAttore[1];
-    UrlImmagineAttore[2] = data['cast'][2]['image']['url'];
-    ImmagineAttore2.src=UrlImmagineAttore[2];
-    UrlImmagineAttore[3] = data['cast'][3]['image']['url'];
-    ImmagineAttore3.src=UrlImmagineAttore[3];
-    UrlImmagineAttore[4] = data['cast'][4]['image']['url'];
-    ImmagineAttore4.src=UrlImmagineAttore[4];
-    UrlImmagineAttore[5] = data['cast'][5]['image']['url'];
-    ImmagineAttore5.src=UrlImmagineAttore[5];
-    UrlImmagineAttore[6] = data['cast'][6]['image']['url'];
-    ImmagineAttore6.src=UrlImmagineAttore[6];
-    UrlImmagineAttore[7] = data['cast'][7]['image']['url'];
-    ImmagineAttore7.src=UrlImmagineAttore[7];
-    UrlImmagineAttore[8] = data['cast'][8]['image']['url'];
-    ImmagineAttore8.src=UrlImmagineAttore[8];
-    UrlImmagineAttore[9] = data['cast'][9]['image']['url'];
-    ImmagineAttore9.src=UrlImmagineAttore[9];
-
-
+    /*
+      UrlImmagineAttore[0] = data['cast'][0]['image']['url'];
+      ImmagineAttore0.src=UrlImmagineAttore[0];
+      UrlImmagineAttore[1] = data['cast'][1]['image']['url'];
+      ImmagineAttore1.src=UrlImmagineAttore[1];
+      UrlImmagineAttore[2] = data['cast'][2]['image']['url'];
+      ImmagineAttore2.src=UrlImmagineAttore[2];
+      UrlImmagineAttore[3] = data['cast'][3]['image']['url'];
+      ImmagineAttore3.src=UrlImmagineAttore[3];
+      UrlImmagineAttore[4] = data['cast'][4]['image']['url'];
+      ImmagineAttore4.src=UrlImmagineAttore[4];
+      UrlImmagineAttore[5] = data['cast'][5]['image']['url'];
+      ImmagineAttore5.src=UrlImmagineAttore[5];
+      UrlImmagineAttore[6] = data['cast'][6]['image']['url'];
+      ImmagineAttore6.src=UrlImmagineAttore[6];
+      UrlImmagineAttore[7] = data['cast'][7]['image']['url'];
+      ImmagineAttore7.src=UrlImmagineAttore[7];
+      UrlImmagineAttore[8] = data['cast'][8]['image']['url'];
+      ImmagineAttore8.src=UrlImmagineAttore[8];
+      UrlImmagineAttore[9] = data['cast'][9]['image']['url'];
+      ImmagineAttore9.src=UrlImmagineAttore[9];
+    */
 
   }

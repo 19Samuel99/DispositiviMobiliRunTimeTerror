@@ -1,6 +1,11 @@
 ion-content{
   --ion-background-color: #000000;
-
+  #img_attore2{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #ffca22;
+  }
   .locandina{
     border: 2px solid #282828;
     border-radius: 4px;
@@ -44,9 +49,27 @@ ion-content{
     border-radius: 50%;
   }
 */
+
   .img_attore{
     width: 200px;
     height: 200px;
     border-radius: 50%;
   }
+
+  .table_cast{
+    color: white;
+    text-align: center;
+    //border: 2px solid blue;
+
+     tr{
+       width: 100%;
+     }
+
+    td{
+      padding-left: 25px;
+      width: 100%;
+     // border: 2px solid rebeccapurple;
+    }
+  }
+
 }
