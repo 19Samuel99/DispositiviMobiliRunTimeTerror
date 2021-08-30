@@ -41,7 +41,10 @@ async function GetFullCredits() {
   document.getElementById('anno').textContent = year;
   const {url} = data['base']['image'];
   locandina.src = url;
-
+  let Direttore = data['crew']['director'][0]['name'];
+  document.getElementById('Regista').textContent = Direttore;
+  urlImmagineRegista = data['crew']['director'][0]['image']['url'];
+  ImmagineRegista.src=urlImmagineRegista;
   const name = [];
   const character = [];
   const UrlImmagineAttore = [];
@@ -145,8 +148,22 @@ async function GetFullCredits() {
     console.log(translation);
     const translatedText = translation['text'][0];
     document.getElementById('Descrizione').textContent = translatedText;
-    return translatedText
-  }// chiusura traduciPlot
+GetTrailer()
+  }
+async function GetTrailer(){
+  const response4 = await fetch("https://imdb8.p.rapidapi.com/title/get-videos?tconst=tt1853728&limit=1&region=IT", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "imdb8.p.rapidapi.com",
+      "x-rapidapi-key": "af622af5f0msh7c4f3576c3d19e1p1c9877jsna4822a599ad7"
+    }
+  })
+  const data = await response4.json();
+const idvideo = data['resource']['videos'][0]['id'];
+let srg = idvideo.substring(9, 21);
+  srg = 'www.imdb.com/video/imdb/' + srg + '/imdb/embed';
+  trailer.src=srg;
+}
 
 
 
