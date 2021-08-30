@@ -45,6 +45,7 @@ async function GetFullCredits() {
   const name = [];
   const character = [];
   const UrlImmagineAttore = [];
+  //inizio ciclo for
   for (let i = 0; i < 10; i++) {
     name[i] = data['cast'][i]['name'];
     character[i] = data['cast'][i]['characters'][0];
@@ -61,33 +62,37 @@ async function GetFullCredits() {
     //creazione cella
     var cell = document.createElement("td");
     //riempimento cella
-    var cellImg = new Image(100, 100);
-    //var cellImg= document.createElement("img");
+    //var cellImg = new Image(100, 100);
+    var cellImg= document.createElement("img");
     cellImg.src = UrlImmagineAttore[i];
-    cellImg.style.borderRadius = "50%";
+    cellImg.style.width = "20%";
+    cellImg.style.height = "auto";
+    cell.style.width="33%";
+    //cellImg.style.borderRadius = "50%";
     cell.appendChild(cellImg);
     cell.style.borderRight = "1px solid #282828";
     row.appendChild(cell);
 
     var cell = document.createElement("td");
     var cellText = document.createTextNode(name[i]);
+    cell.style.width="33%";
     cell.appendChild(cellText);
     cell.style.borderRight = "1px solid #282828";
     row.appendChild(cell);
 
     var cell = document.createElement("td");
     var cellText = document.createTextNode(character[i]);
+    cell.style.width="33%";
     cell.appendChild(cellText);
     row.appendChild(cell);
     row.style.borderBottom = "1px solid #282828";
     //append dell'intera riga nella tabella con id
     document.getElementById("table_cast").appendChild(row);
-  }
+  }//chiusura ciclo for
   RicercaRating();
-}
+}//chiusura GetFullCredits
 
-  async function RicercaRating()
-  {
+  async function RicercaRating(){
     indirizzo = 'https://imdb8.p.rapidapi.com/title/get-ratings?tconst=';
     const response2 = await fetch(this.indirizzo + 'tt1853728', {
       method: "GET",
@@ -102,7 +107,7 @@ async function GetFullCredits() {
     const {rating}=data;
     document.getElementById('Valutazione').textContent = rating;
     RicercaPlot();
-  }
+  }//RicercaRating
 
 
   async function RicercaPlot() {
@@ -119,7 +124,7 @@ async function GetFullCredits() {
     const {text} = data['plots'][0];
     console.log(text);
     traduciPlot(text);
-  }
+  } //chiusura RicercaPlot
 
 
   async function traduciPlot(text) {
@@ -141,29 +146,8 @@ async function GetFullCredits() {
     const translatedText = translation['text'][0];
     document.getElementById('Descrizione').textContent = translatedText;
     return translatedText
-  }
+  }// chiusura traduciPlot
 
-  /*
-    UrlImmagineAttore[0] = data['cast'][0]['image']['url'];
-    ImmagineAttore0.src=UrlImmagineAttore[0];
-    UrlImmagineAttore[1] = data['cast'][1]['image']['url'];
-    ImmagineAttore1.src=UrlImmagineAttore[1];
-    UrlImmagineAttore[2] = data['cast'][2]['image']['url'];
-    ImmagineAttore2.src=UrlImmagineAttore[2];
-    UrlImmagineAttore[3] = data['cast'][3]['image']['url'];
-    ImmagineAttore3.src=UrlImmagineAttore[3];
-    UrlImmagineAttore[4] = data['cast'][4]['image']['url'];
-    ImmagineAttore4.src=UrlImmagineAttore[4];
-    UrlImmagineAttore[5] = data['cast'][5]['image']['url'];
-    ImmagineAttore5.src=UrlImmagineAttore[5];
-    UrlImmagineAttore[6] = data['cast'][6]['image']['url'];
-    ImmagineAttore6.src=UrlImmagineAttore[6];
-    UrlImmagineAttore[7] = data['cast'][7]['image']['url'];
-    ImmagineAttore7.src=UrlImmagineAttore[7];
-    UrlImmagineAttore[8] = data['cast'][8]['image']['url'];
-    ImmagineAttore8.src=UrlImmagineAttore[8];
-    UrlImmagineAttore[9] = data['cast'][9]['image']['url'];
-    ImmagineAttore9.src=UrlImmagineAttore[9];
-  */
+
 
 
