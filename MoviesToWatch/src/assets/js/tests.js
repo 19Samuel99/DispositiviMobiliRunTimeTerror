@@ -167,6 +167,44 @@ async function GetTrailer(){
 
 }
 
+async function GetTopRated(){
+  const response = await fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-movies", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "imdb8.p.rapidapi.com",
+      "x-rapidapi-key": "af622af5f0msh7c4f3576c3d19e1p1c9877jsna4822a599ad7"
+    }
+  })
+  const data = await response.json();
+  const idFilm=[];
+  const ratingFilm=[];
+  for (let i = 0; i < 4; i++) {
+    idDaModificare= data[i]['id']
+    idDaModificare=idDaModificare.substring(6, 15)
+    idFilm[i] = idDaModificare;
+    console.log(idFilm[i]);
+    ratingFilm[i] = data[i]['chartRating']
+  }
+  GetFullCreditsTopRated(idFilm, ratingFilm);
 
+}
 
+async function GetFullCreditsTopRated(idFilm, ratingFilm) {
+  indirizzo = 'https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=';
+  for (let i = 0; i < 4; i++) {
+    const response = await fetch(this.indirizzo + idFilm[i], {
+      method: "GET",
+      headers: {
+        'x-rapidapi-key': '257bf8c403msh243c5dce7795224p139d76jsn721067b57113',
+        'x-rapidapi-host': 'imdb8.p.rapidapi.com'
+      }
+
+    })
+  const data = await response.json();
+  console.log(data);
+  const titolo = data['base']['title'];
+  const anno = data['base']['year']
+
+  }//chiusura for di riga 194
+}
 

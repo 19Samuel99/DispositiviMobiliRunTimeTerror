@@ -32,7 +32,9 @@
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": [],
+            "scripts": [
+              "assets/js/tests.js"
+            ],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,
