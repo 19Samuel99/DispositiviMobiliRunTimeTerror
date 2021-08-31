@@ -159,10 +159,12 @@ async function GetTrailer(){
     }
   })
   const data = await response4.json();
-const idvideo = data['resource']['videos'][0]['id'];
-let srg = idvideo.substring(9, 21);
-  srg = 'www.imdb.com/video/imdb/' + srg + '/imdb/embed';
-  trailer.src=srg;
+  const idvideo = data['resource']['videos'][0]['id'];
+  let srg = idvideo.substring(9, 21);
+  let video_src = 'https://www.imdb.com/video/imdb/' + srg + '/imdb/embed';
+  console.log(video_src);
+  document.getElementById("trailer").src = video_src;
+
 }
 
 
