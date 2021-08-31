@@ -21,4 +21,5 @@ describe('TopratedPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

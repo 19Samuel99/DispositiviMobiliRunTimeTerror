@@ -166,7 +166,26 @@ async function GetTrailer(){
   document.getElementById("trailer").src = video_src;
 
 }
+async function GetTopRated(){
+  const response = await fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-movies", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "imdb8.p.rapidapi.com",
+      "x-rapidapi-key": "af622af5f0msh7c4f3576c3d19e1p1c9877jsna4822a599ad7"
+    }
+  })
+  const data = await response.json();
+  const idFilm=[];
+  const ratingFilm=[];
+  for (let i = 0; i < 250; i++) {
+    idDaModificare= data[i]['id']
+    idDaModificare=idDaModificare.substring(6, 15)
+    idFilm[i] = idDaModificare;
+    console.log(idFilm[i]);
+    ratingFilm[i] = data[i]['chartRating']
+  }
 
+}
 
 
 
