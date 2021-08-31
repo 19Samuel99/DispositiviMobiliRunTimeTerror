@@ -205,6 +205,6 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
   const titolo = data['base']['title'];
   const anno = data['base']['year']
 
-  };
+  }//chiusura for di riga 194
 }
 
