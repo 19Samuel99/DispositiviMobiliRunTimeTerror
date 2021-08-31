@@ -2,10 +2,9 @@
 
 </ion-header>
 
+
 <ion-content>
-
   <div class="background-pic">
-
     <div class="background-filter">
 
       <ion-card>
@@ -14,26 +13,40 @@
           <ion-card-title>Registrati a MoviesToWatch</ion-card-title>
         </ion-card-header>
 
-        <ion-card-content>
+        <form [formGroup]="ValidationFormUSer" (submit)="registerUser(ValidationFormUSer.value)">
+          <ion-card-content>
 
-          <ion-item>
-            <ion-input placeholder="Email"></ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-input name="email" type="text" placeholder="Email" formControlName="email">
+                <ion-icon name="mail-outline" ></ion-icon>
+              </ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.email">
+              <div class="error_message" *ngIf="ValidationFormUSer.get('email').hasError(validation.type) && (ValidationFormUSer.get('email').dirty || ValidationFormUSer.get('email').touched)">
+                {{validation.message}}
+              </div>
+            </ng-container>
 
-          <ion-item>
-            <ion-input placeholder="Password"></ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="************" formControlName="password">
+                <ion-icon name="lock-closed" ></ion-icon>
+              </ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.password">
+              <div class="error_message" *ngIf="ValidationFormUSer.get('password').hasError(validation.type) && (ValidationFormUSer.get('password').dirty || ValidationFormUSer.get('password').touched)">
+                {{validation.message}}
+              </div>
+            </ng-container>
 
-          <div class="bottom-section">
-            <ion-button>Registrati</ion-button>
-          </div>
+            <div class="sign-btn-wrap">
+              <ion-button  shape="round" type="submit"  fill="solid" class="sign-btn" [disabled]="!ValidationFormUSer.valid">Sign Up</ion-button>
+            </div>
 
-        </ion-card-content>
+          </ion-card-content>
+        </form>
 
       </ion-card>
 
     </div>
-
   </div>
-
 </ion-content>
