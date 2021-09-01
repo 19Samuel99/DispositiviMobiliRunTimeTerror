@@ -8,14 +8,13 @@ import 'firebase/app';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router : Router){}
+  constructor(private router: Router){}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Promise( (resolve, reject)=>{
       firebase.auth().onAuthStateChanged((user: firebase.User)=>{
-        if(user){ //se è una variabile
-
+        if(user){   //se è una variabile quindi se esiste
           resolve(true);
         }else{
           resolve(false);
