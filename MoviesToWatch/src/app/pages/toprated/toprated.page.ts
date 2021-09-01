@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+// eslint-disable-next-line @typescript-eslint/naming-convention
 declare function GetTopRated(): any;
 @Component({
   selector: 'app-toprated',
@@ -11,7 +12,7 @@ export class TopratedPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    GetTopRated();
+    //GetTopRated();
   }
   linkHome(){
     this.router.navigate(['/home']);

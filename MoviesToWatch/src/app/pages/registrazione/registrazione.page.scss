@@ -3,100 +3,93 @@ ion-content{
   font-family: "Montserrat", sans-serif;
 }
 
-.bg-color{
-  background: #E1EAF9;
+.background-pic{
+  height: 100vh;
+  width: 100%;
+  background: url("https://observer.com/wp-content/uploads/sites/2/2021/05/summer-movies-2021-new-e1620919489437.jpg?quality=80");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-ion-header{
-  position: absolute;
-}
-
-ion-toolbar{
-  --ion-background-color:transparent;
-  --opacity:0;
+.background-filter{
+  height: 100%;
+  width: 100%;
+  background: rgba(219,0,0, 0.3);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 ion-card{
-  --ion-background-color:transparent;
-  box-shadow: none !important;
-  background-color: transparent !important;
-}
-
-ion-card-title{
-  margin-top: 50px !important;
-  font-size: 25px;
-  color: #53565A;
-  font-weight: 600;
+  background: #000000;
+  box-shadow: none;
   text-align: center;
+  margin-top: 130px;
 
+  ion-card-title{
+    color: #db0000;
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
-ion-card-subtitle{
-  text-align: center;
-  padding-top: 15px !important;
-  font-size: 13px;
-  color: #888C91;
-  font-weight: 400;
-  text-transform: none;
-  padding: 0 30px;
-}
+ion-card-content {
+  margin-top: 10px;
 
-ion-card-content{
-  padding-top: 30px;
-}
-ion-item{
-  color:#74787E;
-  --border-color:#D4D7DB;
+  .wrapform {
+    margin-top: 10px;
+  }
 
-  --highlight-color-focused:#215AB7;
-  --padding-start:0;
-  --inner-padding-end:0;
-  --highlight-color-invalid: #215AB7;
-  --highlight-color-valid: #215AB7;
+  .error_message {
+    font-size: 15px;
+    color: red;
+    margin-bottom: 15px;
+  }
 
-  font-size: 13px;
-  ion-input{
-    color:#74787E;
-    font-size: 13px;
-    ion-icon{
-      padding-right: 6px;
-      font-size: 18px;
+  ion-item {
+    --ion-item-background: trasparent;
+    --border-width: 0;
+    --inner-border-width: 0;
+    --highlight-color-focus: none;
+    margin-bottom: 15px;
+
+    ion-input {
+      color: #fff;
+      height: 50px;
+      width: 100px;
+      border-radius: 10px 10px 10px 10px;
+      border: 2px solid #fff;
+      font-size: 14px;
+      --padding-start: 10px;
     }
   }
 
-  ion-input:hover{
-    color:#215AB7;
-
+  .sign-btn-wrap {
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
   }
-}
-.sign-btn-wrap{
-  text-align: center;
-  padding-top: 45px;
-  .sign-btn{
-    --ion-primary-color:#215AB7;
-    --background:#215AB7;
-    --background-activated:#E1EAF9;
-    --background-focused:#E1EAF9;
-    --background-hover:#647B9D;
-    color:#F4F6FA;
-    background-color: #215AB7;
-    border-radius: 25px;
 
+  /* .facebookbtn{
+     margin-top: 15px;
+     text-align: center;
+     --background: #282828;
+   }
+
+   .googlebtn{
+     margin-top: 15px;
+     text-align: center;
+     --background: #282828;
+   }*/
+
+  ion-icon {
+    color: white;
   }
-}
 
-.text-tag{
-  margin-top: 35px;
-  text-align: center;
-  span{
-    font-size: 13px;
-    font-weight: normal;
-    color:#334862;
+  ion-button {
+    height: 40px;
+    width: 140px;
+    align-items: center;
+    --background: #db0000;
   }
-}
-
-.error_message{
-  font-size: 6px;
-  font-weight:200;
-  color: #913e07;
 }
