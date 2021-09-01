@@ -1,20 +1,13 @@
 ion-content{
-  --ion-background-color: #ffffff;
+  color: white;
   font-family: "Montserrat", sans-serif;
-}
-
-.background-pic{
-  height: 100vh;
-  width: 100%;
-  background: url("https://observer.com/wp-content/uploads/sites/2/2021/05/summer-movies-2021-new-e1620919489437.jpg?quality=80");
-  background-repeat: no-repeat;
-  background-size: cover;
+  --background: black url('https://i.pinimg.com/564x/71/c5/ff/71c5ff5dcaa75f69d1b62109402c153a.jpg') repeat center center / contain;
 }
 
 .background-filter{
-  height: 100%;
-  width: 100%;
-  background: rgba(219,0,0, 0.3);
+  //height: 100%;
+  //width: 100%;
+  //background: rgba(219,0,0, 0.3);
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -22,14 +15,19 @@ ion-content{
 
 ion-card{
   background: #000000;
+  border: 5px solid #db0000;
+  border-radius: 10px;
   box-shadow: none;
   text-align: center;
   margin-top: 130px;
+  color: white;
+  padding: 50px 50px 20px 50px;
 
   ion-card-title{
-    color: #db0000;
-    font-size: 20px;
+    color: #fff;
+    font-size: 40px;
     font-weight: bold;
+    text-shadow: 2px 2px rgba(255,0,0,0.7);
   }
 }
 
@@ -70,18 +68,6 @@ ion-card-content {
     margin-bottom: 20px;
   }
 
-  /* .facebookbtn{
-     margin-top: 15px;
-     text-align: center;
-     --background: #282828;
-   }
-
-   .googlebtn{
-     margin-top: 15px;
-     text-align: center;
-     --background: #282828;
-   }*/
-
   ion-icon {
     color: white;
   }
@@ -92,4 +78,10 @@ ion-card-content {
     align-items: center;
     --background: #db0000;
   }
+  span{
+    margin-top: 20px;
+  }
+
+
 }
+
