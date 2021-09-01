@@ -155,7 +155,7 @@ async function GetTrailer(){
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "af622af5f0msh7c4f3576c3d19e1p1c9877jsna4822a599ad7"
+      "x-rapidapi-key": "187756bb25msh2f84f141c42ff45p17a255jsn7b3b652923f2"
     }
   })
   const data = await response4.json();
@@ -172,7 +172,7 @@ async function GetTopRated(){
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "af622af5f0msh7c4f3576c3d19e1p1c9877jsna4822a599ad7"
+      "x-rapidapi-key": "187756bb25msh2f84f141c42ff45p17a255jsn7b3b652923f2"
     }
   })
   const data = await response.json();
@@ -186,7 +186,6 @@ async function GetTopRated(){
     ratingFilm[i] = data[i]['chartRating']
   }
   GetFullCreditsTopRated(idFilm, ratingFilm);
-
 }
 
 async function GetFullCreditsTopRated(idFilm, ratingFilm) {
