@@ -178,9 +178,9 @@ async function GetTopRated(){
   const data = await response.json();
   const idFilm=[];
   const ratingFilm=[];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 2; i++) {
     idDaModificare= data[i]['id']
-    idDaModificare=idDaModificare.substring(6, 15)
+    idDaModificare=idDaModificare.substring(7, 16)
     idFilm[i] = idDaModificare;
     console.log(idFilm[i]);
     ratingFilm[i] = data[i]['chartRating']
@@ -190,8 +190,13 @@ async function GetTopRated(){
 
 async function GetFullCreditsTopRated(idFilm, ratingFilm) {
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=';
-  for (let i = 0; i < 4; i++) {
-    const response = await fetch(this.indirizzo + idFilm[i], {
+  console.log(idFilm[0])
+  console.log(idFilm[1])
+  const IdImmagine = [];
+  const titolo = [];
+  const anno = [];
+  for (let i = 0; i < 2; i++) {
+    const response = await fetch("https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=" + idFilm[i], {
       method: "GET",
       headers: {
         'x-rapidapi-key': '257bf8c403msh243c5dce7795224p139d76jsn721067b57113',
@@ -201,8 +206,51 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     })
   const data = await response.json();
   console.log(data);
-  const titolo = data['base']['title'];
-  const anno = data['base']['year']
+   titolo[i] = data['base']['title'];
+   anno[i] = data['base']['year'];
+   IdImmagine[i] = data['base']['image']['url'];
+    console.log(titolo[i])
+    console.log(anno[i])
+    console.log(ratingFilm[i])
+    console.log(IdImmagine[i])
+
+    let ItemSliding = document.createElement("ion-item-slidingn")
+    let Item = document.createElement("ion-item")
+    let thumbnail = document.createElement("ion-thumbnail")
+    let img = document.createElement("ion-img")
+    let lable = document.createElement("ion-label")
+    let table = document.createElement("table")
+    let tr = document.createElement("tr")
+    let td = document.createElement("td")
+    img.src=IdImmagine[i];
+    thumbnail.appendChild(img)
+    Item.appendChild(thumbnail)
+
+    let trTitolo = document.createElement("tr")
+    let tdTitolo = document.createElement("td")
+    let tdTitolotext = document.createTextNode(titolo[i])
+    tdTitolo.appendChild(tdTitolotext)
+    trTitolo.appendChild(tdTitolo)
+    table.appendChild(trTitolo)
+
+    let trAnno = document.createElement("tr")
+    let tdAnno = document.createElement("td")
+    let tdAnnoText = document.createTextNode(anno[i])
+    tdAnno.appendChild(tdAnnoText)
+    trAnno.appendChild(tdAnno)
+    table.appendChild(trAnno)
+
+    let trRating = document.createElement("tr")
+    let tdRating = document.createElement("td")
+    let tdRatingFilm = document.createTextNode(ratingFilm[i])
+    tdRating.appendChild(tdRatingFilm)
+    trRating.appendChild(tdRating)
+    table.appendChild(trRating)
+
+    lable.appendChild(table)
+    Item.appendChild(lable)
+    ItemSliding.appendChild(Item)
+    document.getElementById("ListTopRated").appendChild(ItemSliding)
 
   }//chiusura for di riga 194
 }

@@ -12,7 +12,7 @@ export class TopratedPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    //GetTopRated();
+    GetTopRated();
   }
   linkHome(){
     this.router.navigate(['/home']);
