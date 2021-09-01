@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
     ],
     password:[
       {type:'required', message:'Inserisci la password'},
-      {type:'minlength', message:'La password deve essere almeno di 5 caratteri'}
+      {type:'minlength', message:'La password deve essere almeno di 6 caratteri'}
 
     ]
   };
@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
       ])),
       password: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(5)
+        Validators.minLength(6)
       ]))
     });
   }
