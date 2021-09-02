@@ -67,9 +67,8 @@ async function GetFullCredits() {
     //riempimento cella
     //var cellImg = new Image(100, 100);
     var cellImg= document.createElement("img");
+    cellImg.id= "img_attore2"
     cellImg.src = UrlImmagineAttore[i];
-    cellImg.style.width = "20%";
-    cellImg.style.height = "auto";
     cell.style.width="33%";
     //cellImg.style.borderRadius = "50%";
     cell.appendChild(cellImg);
@@ -178,7 +177,7 @@ async function GetTopRated(){
   const data = await response.json();
   const idFilm=[];
   const ratingFilm=[];
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 1; i++) {
     idDaModificare= data[i]['id']
     idDaModificare=idDaModificare.substring(7, 16)
     idFilm[i] = idDaModificare;
@@ -242,6 +241,7 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     //let trTitolo = document.createElement("tr")
     let tdTitolo = document.createElement("td")
     let tdTitolotext = document.createTextNode(titolo[i])
+    tdTitolotext.onclick= linkSchedainformativa()
     tdTitolo.appendChild(tdTitolotext)
     tdTitolo.style.width="65%";
     tdTitolo.style.paddingLeft= "20px"
