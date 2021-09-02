@@ -4,7 +4,7 @@ async function getNomeFilm( nome) {
   const response = await fetch(this.indirizzo + nome, {
     method: "GET",
     headers:{
-      'x-rapidapi-key': '257bf8c403msh243c5dce7795224p139d76jsn721067b57113',
+      'x-rapidapi-key': '187756bb25msh2f84f141c42ff45p17a255jsn7b3b652923f2',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
 
@@ -28,7 +28,7 @@ async function GetFullCredits() {
   const response1 = await fetch(this.indirizzo + 'tt1853728', {
     method: "GET",
     headers: {
-      'x-rapidapi-key': '257bf8c403msh243c5dce7795224p139d76jsn721067b57113',
+      'x-rapidapi-key': '187756bb25msh2f84f141c42ff45p17a255jsn7b3b652923f2',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
 
@@ -100,7 +100,7 @@ async function GetFullCredits() {
     const response2 = await fetch(this.indirizzo + 'tt1853728', {
       method: "GET",
       headers:{
-        'x-rapidapi-key': '257bf8c403msh243c5dce7795224p139d76jsn721067b57113',
+        'x-rapidapi-key': '187756bb25msh2f84f141c42ff45p17a255jsn7b3b652923f2',
         'x-rapidapi-host': 'imdb8.p.rapidapi.com'
       }
 
@@ -118,7 +118,7 @@ async function GetFullCredits() {
     const response = await fetch(this.indirizzo + 'tt1853728', {
       method: "GET",
       headers: {
-        'x-rapidapi-key': '257bf8c403msh243c5dce7795224p139d76jsn721067b57113',
+        'x-rapidapi-key': '187756bb25msh2f84f141c42ff45p17a255jsn7b3b652923f2',
         'x-rapidapi-host': 'imdb8.p.rapidapi.com'
       }
 
@@ -195,11 +195,11 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
   const IdImmagine = [];
   const titolo = [];
   const anno = [];
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 1; i++) {
     const response = await fetch("https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=" + idFilm[i], {
       method: "GET",
       headers: {
-        'x-rapidapi-key': '257bf8c403msh243c5dce7795224p139d76jsn721067b57113',
+        'x-rapidapi-key': '187756bb25msh2f84f141c42ff45p17a255jsn7b3b652923f2',
         'x-rapidapi-host': 'imdb8.p.rapidapi.com'
       }
 
@@ -218,35 +218,85 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     let Item = document.createElement("ion-item")
     let thumbnail = document.createElement("ion-thumbnail")
     let img = document.createElement("ion-img")
-    let lable = document.createElement("ion-label")
-    let table = document.createElement("table")
-    let tr = document.createElement("tr")
-    let td = document.createElement("td")
     img.src=IdImmagine[i];
+    img.style.width = "70%";
+    img.style.height = "auto";
     thumbnail.appendChild(img)
     Item.appendChild(thumbnail)
 
-    let trTitolo = document.createElement("tr")
+    let lable = document.createElement("ion-label")
+    let table = document.createElement("table")
+    let trUnica = document.createElement("tr")
+
+    //let trRanking = document.createElement("tr")
+    let tdRanking = document.createElement("td")
+    let tdRankingtext = document.createTextNode(i+1)
+    tdRanking.appendChild(tdRankingtext)
+    tdRanking.style.width="5%";
+    tdRanking.style.textAlign= "center"
+    tdRanking.style.borderRight = "3px solid green";
+    trUnica.appendChild(tdRanking)
+    //trRanking.appendChild(tdRanking)
+    //table.appendChild(trTitolo)
+
+    //let trTitolo = document.createElement("tr")
     let tdTitolo = document.createElement("td")
     let tdTitolotext = document.createTextNode(titolo[i])
     tdTitolo.appendChild(tdTitolotext)
-    trTitolo.appendChild(tdTitolo)
-    table.appendChild(trTitolo)
+    tdTitolo.style.width="65%";
+    tdTitolo.style.paddingLeft= "20px"
+    tdTitolo.style.textAlign= "left";
+    tdTitolo.style.borderRight = "3px solid green";
+    trUnica.appendChild(tdTitolo)
+    //trTitolo.appendChild(tdTitolo)
+    //table.appendChild(trTitolo)
 
-    let trAnno = document.createElement("tr")
+    //let trAnno = document.createElement("tr")
     let tdAnno = document.createElement("td")
     let tdAnnoText = document.createTextNode(anno[i])
     tdAnno.appendChild(tdAnnoText)
-    trAnno.appendChild(tdAnno)
-    table.appendChild(trAnno)
+    tdAnno.style.width="25%";
+    tdAnno.style.textAlign= "center"
+    tdAnno.style.borderRight = "3px solid green";
+    trUnica.appendChild(tdAnno)
+    //trAnno.appendChild(tdAnno)
+    //table.appendChild(trAnno)
 
-    let trRating = document.createElement("tr")
+    //let trRating = document.createElement("tr")
     let tdRating = document.createElement("td")
+    let tableRating = document.createElement("table")
+    let trRatig = document.createElement("tr")
+    let tdStella  = document.createElement("td")
+    let imgStella = document.createElement("img")
+    imgStella.src ="\..\\..\\assets\\image\\star-icon.png"
+    imgStella.style.width = "33px";
+    //cellImg.style.height = "auto";
+    tdStella.appendChild(imgStella)
+    //tdStella.style.textAlign= "center"
+    trRatig.appendChild(tdStella)
+    let tdValoreRating  = document.createElement("td")
     let tdRatingFilm = document.createTextNode(ratingFilm[i])
-    tdRating.appendChild(tdRatingFilm)
-    trRating.appendChild(tdRating)
-    table.appendChild(trRating)
+    tdValoreRating.appendChild(tdRatingFilm)
+    //tdValoreRating.style.textAlign= "center"
+    trRatig.appendChild(tdValoreRating)
 
+    /*
+      let tdIMDBLogo  = document.createElement("td")
+      let imgIMDBlogo = document.createElement("img")
+      imgIMDBlogo.src ="\..\\..\\assets\\image\\imdbLogo.jpg"
+      tdIMDBLogo.appendChild(imgIMDBlogo)
+      trRatig.appendChild(tdIMDBLogo)
+    */
+    tableRating.appendChild(trRatig)
+    tdRating.appendChild(tableRating)
+    tdRating.style.width="25%";
+    tdRating.style.textAlign= "center"
+    tdRating.style.borderRight = "3px solid green";
+    trUnica.appendChild(tdRating)
+    //trRating.appendChild(tdRating)
+    //table.appendChild(trRating)
+
+    table.appendChild(trUnica)
     lable.appendChild(table)
     Item.appendChild(lable)
     ItemSliding.appendChild(Item)
