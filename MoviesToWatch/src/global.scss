@@ -90,13 +90,81 @@
   }
 }
 
-ion-grid{
+//css for toprated page
+  #img_attore2{
+    width: 20%;
+    height: auto;
+    //border-radius: 50%;
+    //border: 3px solid #ffca22;
+  }
 
-}
+  #ItemSliding_toprated{
+    margin-top: 10px;
+    --ion-background-color: #282828;
+  }
 
-#img_attore2{
-  width: 20%;
-  height: auto;
-  //border-radius: 50%;
-  //border: 3px solid #ffca22;
-}
+  #thumbnail_toprated{
+    width: 150px;
+    height: 150px
+  }
+
+  #locandina_toprated{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: auto;
+    //border: 3px solid #ffca22;
+  }
+
+  #table_toprated{
+    width: 100%;
+  }
+
+  #trUnica_toprated{
+    width: 100%;
+  }
+
+  #tdRanking_toprated{
+    width: 5%;
+    text-align: center;
+    //border-right: 3px solid green;
+  }
+
+  #tdTitolo_toprated{
+    width: 65%;
+    padding-left: 20px;
+    text-align: left;
+    //border-right: 3px solid green;
+  }
+
+  #tdAnno_toprated{
+    width: 15%;
+    //padding-left: 20px;
+    text-align: center;
+    //border-right: 3px solid green;
+  }
+
+  #tableRating_toprated{ //tabella interna al tdRating
+    width: 100%;
+  }
+
+  #tdStella_toprated{
+    text-align: center;
+  }
+
+  #imgStella_toprated{
+    width: 15px;
+  }
+
+  #tdValoreRating_toprated{
+    width: 70%;
+    text-align: left;
+  }
+
+  #tdRating_toprated{
+    width: 15%;
+    //padding-left: 20px;
+    text-align: center;
+    //border-right: 3px solid green;
+  }

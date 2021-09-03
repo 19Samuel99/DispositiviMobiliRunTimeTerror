@@ -177,7 +177,7 @@ async function GetTopRated(){
   const data = await response.json();
   const idFilm=[];
   const ratingFilm=[];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 2; i++) {
     idDaModificare= data[i]['id']
     idDaModificare=idDaModificare.substring(7, 16)
     idFilm[i] = idDaModificare;
@@ -194,7 +194,7 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
   const IdImmagine = [];
   const titolo = [];
   const anno = [];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 2; i++) {
     const response = await fetch("https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=" + idFilm[i], {
       method: "GET",
       headers: {
@@ -213,27 +213,31 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     console.log(ratingFilm[i])
     console.log(IdImmagine[i])
 
-    let ItemSliding = document.createElement("ion-item-slidingn")
+    let ItemSliding = document.createElement("ion-item-sliding")
+    ItemSliding.src = "ItemSliding_toprated"
     let Item = document.createElement("ion-item")
     let thumbnail = document.createElement("ion-thumbnail")
-    let img = document.createElement("ion-img")
+    thumbnail.id="thumbnail_toprated"
+    let img = document.createElement("img")
     img.src=IdImmagine[i];
-    img.style.width = "70%";
-    img.style.height = "auto";
+    img.id= "locandina_toprated"
     thumbnail.appendChild(img)
     Item.appendChild(thumbnail)
 
     let lable = document.createElement("ion-label")
     let table = document.createElement("table")
+    table.id= "table_toprated"
     let trUnica = document.createElement("tr")
-
+    trUnica.id="trUnica_toprated"
     //let trRanking = document.createElement("tr")
     let tdRanking = document.createElement("td")
-    let tdRankingtext = document.createTextNode(i+1)
+    let tdRankingtext = document.createTextNode(i+1 +".")
     tdRanking.appendChild(tdRankingtext)
-    tdRanking.style.width="5%";
-    tdRanking.style.textAlign= "center"
-    tdRanking.style.borderRight = "3px solid green";
+    tdRanking.id="tdRanking_toprated"
+
+    //tdRanking.style.width="5%";
+    //tdRanking.style.textAlign= "center"
+    //tdRanking.style.borderRight = "3px solid green";
     trUnica.appendChild(tdRanking)
     //trRanking.appendChild(tdRanking)
     //table.appendChild(trTitolo)
@@ -241,12 +245,14 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     //let trTitolo = document.createElement("tr")
     let tdTitolo = document.createElement("td")
     let tdTitolotext = document.createTextNode(titolo[i])
-    tdTitolotext.onclick= linkSchedainformativa()
+    //tdTitolotext.onclick= linkSchedainformativa()
     tdTitolo.appendChild(tdTitolotext)
-    tdTitolo.style.width="65%";
-    tdTitolo.style.paddingLeft= "20px"
-    tdTitolo.style.textAlign= "left";
-    tdTitolo.style.borderRight = "3px solid green";
+    tdTitolo.id= "tdTitolo_toprated"
+
+    //tdTitolo.style.width="65%";
+    //tdTitolo.style.paddingLeft= "20px"
+    //tdTitolo.style.textAlign= "left";
+    //tdTitolo.style.borderRight = "3px solid green";
     trUnica.appendChild(tdTitolo)
     //trTitolo.appendChild(tdTitolo)
     //table.appendChild(trTitolo)
@@ -255,26 +261,33 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     let tdAnno = document.createElement("td")
     let tdAnnoText = document.createTextNode(anno[i])
     tdAnno.appendChild(tdAnnoText)
-    tdAnno.style.width="25%";
-    tdAnno.style.textAlign= "center"
-    tdAnno.style.borderRight = "3px solid green";
+    tdAnno.id= "tdAnno_toprated"
+
+    //tdAnno.style.width="25%";
+    //tdAnno.style.textAlign= "center"
+    //tdAnno.style.borderRight = "3px solid green";
     trUnica.appendChild(tdAnno)
     //trAnno.appendChild(tdAnno)
     //table.appendChild(trAnno)
 
     //let trRating = document.createElement("tr")
     let tdRating = document.createElement("td")
+    tdRating.id="tdRating_toprated"
     let tableRating = document.createElement("table")
+    tableRating.id="tableRating_toprated"
     let trRatig = document.createElement("tr")
     let tdStella  = document.createElement("td")
+    tdStella.id= "tdStella_toprated"
     let imgStella = document.createElement("img")
+    imgStella.id= "imgStella_toprated"
     imgStella.src ="\..\\..\\assets\\image\\star-icon.png"
-    imgStella.style.width = "33px";
+    //imgStella.style.width = "33px";
     //cellImg.style.height = "auto";
     tdStella.appendChild(imgStella)
     //tdStella.style.textAlign= "center"
     trRatig.appendChild(tdStella)
     let tdValoreRating  = document.createElement("td")
+    tdValoreRating.id="tdValoreRating_toprated"
     let tdRatingFilm = document.createTextNode(ratingFilm[i])
     tdValoreRating.appendChild(tdRatingFilm)
     //tdValoreRating.style.textAlign= "center"
@@ -289,9 +302,9 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     */
     tableRating.appendChild(trRatig)
     tdRating.appendChild(tableRating)
-    tdRating.style.width="25%";
-    tdRating.style.textAlign= "center"
-    tdRating.style.borderRight = "3px solid green";
+    //tdRating.style.width="25%";
+    //tdRating.style.textAlign= "center"
+    //tdRating.style.borderRight = "3px solid green";
     trUnica.appendChild(tdRating)
     //trRating.appendChild(tdRating)
     //table.appendChild(trRating)
