@@ -1,13 +1,5 @@
 ion-content{
   --ion-background-color: #000000;
-  /*
-      #img_attore2{
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        border: 3px solid #ffca22;
-      }
-  */
 
   .locandina{
     border: 2px solid #282828;
@@ -20,6 +12,32 @@ ion-content{
     height: auto;
   }
 
+  .table-info{
+    color: white;
+    width: 100%;
+
+    tr,td{
+      padding: 10px;
+    }
+  }
+
+  .td_info_head{
+    font-weight: bold;
+  }
+  .td_info_Titolo{
+    font-weight: bold;
+    font-size: 30px;
+  }
+  #titolo{
+    font-weight: bold;
+    color: #db0000;
+    font-size: 30px;
+  }
+  .tr_button{
+    width: 100%;
+    text-align: right;
+  }
+
  .add-buttons{
    position: relative;
    float: right;
@@ -29,6 +47,7 @@ ion-content{
    ion-icon{
      color: white;
    }
+
    .add-davedere, .add-visti{
      margin-top: 15px;
      text-align: center;
@@ -36,35 +55,28 @@ ion-content{
      border-radius: 5px;
    }
  }
-  .grid-info{
-    color: white;
-    .row-border{
-      padding: 15px 0px 15px 0px ;
-      border-bottom: 2px solid #282828;
-    }
+
+  .row-border{
+     padding: 15px 0px 15px 0px ;
+     border-bottom: 2px solid #282828;
   }
 
   .img_regista{
     width: 100px;
     height: auto;
+    padding-right: 50px;
   }
-/*
-  .div_circular_img_attore {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-*/
 
-  .img_attore{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+  #Regista{
+    text-align: center;
+  }
+  .iframe_trailer{
+    width: 560px;
+    height: 315px;
   }
 
   .table_cast{
+    width: 100%;
     color: white;
     text-align: center;
     //border: 2px solid blue;

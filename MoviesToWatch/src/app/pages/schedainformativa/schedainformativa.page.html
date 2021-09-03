@@ -33,77 +33,97 @@
       </ion-col>
 
       <ion-col size="6" size-sm="6">
-        <ion-grid class="grid-info">
-          <ion-row>
-            <img id="locandina" class="locandina" >
-          </ion-row>
-          <ion-row>
-            <button class="input_button" type="button" onclick='GetFullCredits();'>
-              <ion-icon class="search_icon" name="search" ></ion-icon>
-            </button>
-            <div class="add-buttons">
-              <ion-button fill="clear"  class="add-davedere">
-                <ion-icon name="add"></ion-icon>
-                <ion-icon name="time"></ion-icon>
+        <img id="locandina" class="locandina" >
+        <table class="table-info">
+          <tr class="tr_button">
+            <td>
+              <button class="input_button" type="button" onclick='GetFullCredits();'>
+                <ion-icon class="search_icon" name="search" ></ion-icon>
+              </button>
+            </td>
+            <td>
+              <div class="add-buttons">
+                <ion-button fill="clear"  class="add-davedere">
+                  <ion-icon name="add"></ion-icon>
+                  <ion-icon name="time"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear"  class="add-visti">
+                  <ion-icon name="add"></ion-icon>
+                  <ion-icon name="checkmark-done"></ion-icon>
+                </ion-button>
+              </div>
+            </td>
+          </tr>
+          <tr class="row-border">
+            <td class="td_info_Titolo">
+              Titolo
+            </td>
+            <td class="td_info_text">
+              <span id="titolo"></span>
+            </td>
+          </tr>
+          <tr class="row-border">
+            <td class="td_info_head">
+              Anno
+            </td>
+            <td class="td_info_text">
+              <span id="anno"></span>
+            </td>
+          </tr>
+          <tr class="row-border">
+            <td class="td_info_head">
+              Regista
+            </td>
+            <td class="td_info_text">
+              <span id="Regista"></span>
+            </td>
+          </tr>
+          <tr class="row-border">
+            <td class="td_info_head">
+              Rating
+            </td>
+            <td class="td_info_text">
+              <span id="Valutazione"></span>
+            </td>
+          </tr>
+          <tr class="row-border">
+            <td class="td_info_head">
+              Descrizione
+            </td>
+            <td class="td_info_text">
+              <span id="Descrizione"></span>
+            </td>
+          </tr>
+          <tr class="row-border">
+            <td class="td_info_head">
+              Durata
+            </td>
+            <td class="td_info_text">
+              <span id="durata"></span> minuti
+            </td>
+          </tr>
+          <tr class="row-border">
+            <td class="td_info_head">
+              Trailer
+            </td>
+            <td>
+              <iframe class="iframe_trailer" id="trailer"
+                      frameborder="0" allowfullscreen>
+              </iframe>
+            </td>
+          </tr>
+          <tr>
+            <td class="td_info_head">
+              Cast
+            </td>
+          </tr>
+        </table>
+        <div id="div_cast">
+          <table id="table_cast" class="table_cast">
+                <!--tabella popolata attraverso il file tests.js-->
+          </table>
+        </div>
 
-              </ion-button>
-              <ion-button fill="clear"  class="add-visti">
-                <ion-icon name="add"></ion-icon>
-                <ion-icon name="checkmark-done"></ion-icon>
-              </ion-button>
-            </div>
-          </ion-row>
-          <ion-row class="row-border">
-            Titolo <span id="titolo"></span>
-          </ion-row>
-          <ion-row class="row-border">
-            Anno <span id="anno"></span>
-          </ion-row>
-          <ion-row class="row-border">
-            Regista
-            <img id="ImmagineRegista" class="img_regista">
-            <span id="Regista"></span>
-          </ion-row>
-          <ion-row class="row-border">
-            Rating <span id="Valutazione"></span>
-          </ion-row>
-          <ion-row class="row-border">
-            Descrizione <span id="Descrizione"></span>
-          </ion-row>
-          <ion-row class="row-border">
-            Durata <span id="durata"></span> minuti
-          </ion-row>
-          <ion-row class="row-border">
-            Trailer
-            <iframe width="560" height="315"
-                       id="trailer" frameborder="0"
-                       allowfullscreen>
-            </iframe>
-
-
-          </ion-row>
-          <ion-row class="row-border">
-            Cast
-            <div id="div_cast">
-              <table id="table_cast" style="width:100%" class="table_cast">
-                <!-- prima riga con intestazione dei campi
-                  <tr>
-                    <td>
-                      Foto
-                    </td>
-                    <td>
-                      Attore
-                    </td>
-                    <td>
-                      Ruolo
-                    </td>
-                  </tr>
-                -->
-              </table>
-            </div>
-          </ion-row>
-
-        </ion-grid>
       </ion-col>
 
       <ion-col size="3" size-sm="3">

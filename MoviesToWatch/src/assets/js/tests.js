@@ -44,7 +44,8 @@ async function GetFullCredits() {
   let Direttore = data['crew']['director'][0]['name'];
   document.getElementById('Regista').textContent = Direttore;
   urlImmagineRegista = data['crew']['director'][0]['image']['url'];
-  ImmagineRegista.src=urlImmagineRegista;
+  //ImmagineRegista.src=urlImmagineRegista;
+
   const name = [];
   const character = [];
   const UrlImmagineAttore = [];
@@ -54,18 +55,11 @@ async function GetFullCredits() {
     character[i] = data['cast'][i]['characters'][0];
     UrlImmagineAttore[i] = data['cast'][i]['image']['url'];
 
-    /*
-      document.getElementById('NomeAttore' + i).textContent = name[i];
-      document.getElementById('Nomecharacter' + i).textContent = character[i];
-    */
-
-
     //creazione riga
     var row = document.createElement("tr");
     //creazione cella
     var cell = document.createElement("td");
     //riempimento cella
-    //var cellImg = new Image(100, 100);
     var cellImg= document.createElement("img");
     cellImg.id= "img_attore2"
     cellImg.src = UrlImmagineAttore[i];
@@ -229,48 +223,25 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     table.id= "table_toprated"
     let trUnica = document.createElement("tr")
     trUnica.id="trUnica_toprated"
-    //let trRanking = document.createElement("tr")
     let tdRanking = document.createElement("td")
     let tdRankingtext = document.createTextNode(i+1 +".")
     tdRanking.appendChild(tdRankingtext)
     tdRanking.id="tdRanking_toprated"
-
-    //tdRanking.style.width="5%";
-    //tdRanking.style.textAlign= "center"
-    //tdRanking.style.borderRight = "3px solid green";
     trUnica.appendChild(tdRanking)
-    //trRanking.appendChild(tdRanking)
-    //table.appendChild(trTitolo)
 
-    //let trTitolo = document.createElement("tr")
     let tdTitolo = document.createElement("td")
     let tdTitolotext = document.createTextNode(titolo[i])
     //tdTitolotext.onclick= linkSchedainformativa()
     tdTitolo.appendChild(tdTitolotext)
     tdTitolo.id= "tdTitolo_toprated"
-
-    //tdTitolo.style.width="65%";
-    //tdTitolo.style.paddingLeft= "20px"
-    //tdTitolo.style.textAlign= "left";
-    //tdTitolo.style.borderRight = "3px solid green";
     trUnica.appendChild(tdTitolo)
-    //trTitolo.appendChild(tdTitolo)
-    //table.appendChild(trTitolo)
 
-    //let trAnno = document.createElement("tr")
     let tdAnno = document.createElement("td")
     let tdAnnoText = document.createTextNode(anno[i])
     tdAnno.appendChild(tdAnnoText)
     tdAnno.id= "tdAnno_toprated"
-
-    //tdAnno.style.width="25%";
-    //tdAnno.style.textAlign= "center"
-    //tdAnno.style.borderRight = "3px solid green";
     trUnica.appendChild(tdAnno)
-    //trAnno.appendChild(tdAnno)
-    //table.appendChild(trAnno)
 
-    //let trRating = document.createElement("tr")
     let tdRating = document.createElement("td")
     tdRating.id="tdRating_toprated"
     let tableRating = document.createElement("table")
@@ -281,16 +252,12 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     let imgStella = document.createElement("img")
     imgStella.id= "imgStella_toprated"
     imgStella.src ="\..\\..\\assets\\image\\star-icon.png"
-    //imgStella.style.width = "33px";
-    //cellImg.style.height = "auto";
     tdStella.appendChild(imgStella)
-    //tdStella.style.textAlign= "center"
     trRatig.appendChild(tdStella)
     let tdValoreRating  = document.createElement("td")
     tdValoreRating.id="tdValoreRating_toprated"
     let tdRatingFilm = document.createTextNode(ratingFilm[i])
     tdValoreRating.appendChild(tdRatingFilm)
-    //tdValoreRating.style.textAlign= "center"
     trRatig.appendChild(tdValoreRating)
 
     /*
@@ -302,19 +269,13 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     */
     tableRating.appendChild(trRatig)
     tdRating.appendChild(tableRating)
-    //tdRating.style.width="25%";
-    //tdRating.style.textAlign= "center"
-    //tdRating.style.borderRight = "3px solid green";
     trUnica.appendChild(tdRating)
-    //trRating.appendChild(tdRating)
-    //table.appendChild(trRating)
-
     table.appendChild(trUnica)
     lable.appendChild(table)
     Item.appendChild(lable)
     ItemSliding.appendChild(Item)
     document.getElementById("ListTopRated").appendChild(ItemSliding)
 
-  }//chiusura for di riga 194
+  }//chiusura for
 }
 
