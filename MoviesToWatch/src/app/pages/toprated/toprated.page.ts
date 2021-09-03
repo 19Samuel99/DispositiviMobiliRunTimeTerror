@@ -9,7 +9,7 @@ declare function GetTopRated(): any;
 })
 export class TopratedPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {  }
 
   ngOnInit() {
     GetTopRated();
@@ -35,5 +35,6 @@ export class TopratedPage implements OnInit {
   }
   linkSchedainformativa(){
     this.router.navigate(['/schedainformativa']);
+
   }
 }

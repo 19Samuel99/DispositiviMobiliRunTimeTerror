@@ -181,6 +181,10 @@ async function GetTopRated(){
   GetFullCreditsTopRated(idFilm, ratingFilm);
 }
 
+function linkSchedainformativa(idFilm) {
+  location.href = '/schedainformativa' + idFilm;
+}
+
 async function GetFullCreditsTopRated(idFilm, ratingFilm) {
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=';
   console.log(idFilm[0])
@@ -231,9 +235,14 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
 
     let tdTitolo = document.createElement("td")
     let tdTitolotext = document.createTextNode(titolo[i])
-    //tdTitolotext.onclick= linkSchedainformativa()
     tdTitolo.appendChild(tdTitolotext)
     tdTitolo.id= "tdTitolo_toprated"
+    tdTitolo.value= "Click"
+    tdTitolo.addEventListener("click", (e) => linkSchedainformativa(idFilm[i]))
+    //tdTitolo.style.width="65%";
+    //tdTitolo.style.paddingLeft= "20px"
+    //tdTitolo.style.textAlign= "left";
+    //tdTitolo.style.borderRight = "3px solid green";
     trUnica.appendChild(tdTitolo)
 
     let tdAnno = document.createElement("td")
