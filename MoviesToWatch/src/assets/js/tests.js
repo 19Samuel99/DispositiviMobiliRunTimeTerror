@@ -177,7 +177,7 @@ async function GetTopRated(){
   const data = await response.json();
   const idFilm=[];
   const ratingFilm=[];
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 1; i++) {
     idDaModificare= data[i]['id']
     idDaModificare=idDaModificare.substring(7, 16)
     idFilm[i] = idDaModificare;
@@ -194,7 +194,7 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
   const IdImmagine = [];
   const titolo = [];
   const anno = [];
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 1; i++) {
     const response = await fetch("https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=" + idFilm[i], {
       method: "GET",
       headers: {
