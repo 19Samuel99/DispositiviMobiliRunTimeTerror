@@ -33,8 +33,8 @@ export class TopratedPage implements OnInit {
   linkRicerca(){
     this.router.navigate(['/ricerca']);
   }
-  linkSchedainformativa(){
-    this.router.navigate(['/schedainformativa']);
+  linkSchedainformativa(idFilm){
+    this.router.navigate(['/schedainformativa',idFilm]);
 
   }
 }
