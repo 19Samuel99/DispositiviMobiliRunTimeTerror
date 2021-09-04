@@ -5,6 +5,7 @@ import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
 import {TestService} from '../../services/test.service';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -50,34 +51,36 @@ export class LoginPage implements OnInit {
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   LoginUser(value){
-    console.log('Am logged in');
     try{
       this.authservice.loginFireauth(value).then( resp =>{
         console.log(resp);
-        this.router.navigate(['home']);
+        // this.router.navigate(['areautente']);
         if(resp.user){
           this.authservice.setUser({
-            username : resp.user.displayName,
+            email: resp.user.email,
             uid: resp.user.uid
           });
-
-          const userProfile = this.firestore.collection('profile').doc(resp.user.uid);
-
+          const userProfile = this.firestore.collection('Utenti').doc(resp.user.uid);
+          console.log(userProfile);
           userProfile.get().subscribe( result=>{
             if(result.exists){
-              this.nav.navigateForward(['home']);
+              console.log('esiste');
+              if (firebase.auth().currentUser !== null)
+                {console.log('user id: ' + firebase.auth().currentUser.uid);}
+              this.nav.navigateForward(['areautente']);
             }else{
-              this.firestore.doc(`profile/${this.authservice.getUID()}`).set({
+              console.log('non esiste');
+              this.firestore.doc(`Utenti/${this.authservice.getUID()}`).set({
                 name: resp.user.displayName,
                 email: resp.user.email
               });
-              this.nav.navigateForward(['uploadimage']);
+              this.nav.navigateForward(['areautente']);
             }
           });
         }
       });
     }catch(err){
-      console.log(err);
+      console.log(err); //email o password errate
     }
   }
 }

@@ -12,7 +12,7 @@ export  interface UserPro{
   providedIn: 'root'
 })
 export class AuthService {
-  private user: UserPro;
+  private user: { uid: any; email: any };
 
   constructor(public auth: AngularFireAuth) { }
 
@@ -25,7 +25,7 @@ export class AuthService {
     });
   }
 
-  setUser(user: UserPro){
+  setUser(user: { uid: any; email: any }){
     return this.user = user;
   }
 
