@@ -4,7 +4,7 @@ async function getNomeFilm( nome) {
   const response = await fetch(this.indirizzo + nome, {
     method: "GET",
     headers:{
-      'x-rapidapi-key': 'f49ccd9ba0msh6625224d24a637cp1c66ffjsne6d5ec895a86',
+      'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
 
@@ -28,7 +28,7 @@ async function GetFullCredits() {
   const response1 = await fetch(this.indirizzo + 'tt1853728', {
     method: "GET",
     headers: {
-      'x-rapidapi-key': 'f49ccd9ba0msh6625224d24a637cp1c66ffjsne6d5ec895a86',
+      'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
 
@@ -93,7 +93,7 @@ async function GetFullCredits() {
     const response2 = await fetch(this.indirizzo + 'tt1853728', {
       method: "GET",
       headers:{
-        'x-rapidapi-key': 'f49ccd9ba0msh6625224d24a637cp1c66ffjsne6d5ec895a86',
+        'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
         'x-rapidapi-host': 'imdb8.p.rapidapi.com'
       }
 
@@ -111,7 +111,7 @@ async function GetFullCredits() {
     const response = await fetch(this.indirizzo + 'tt1853728', {
       method: "GET",
       headers: {
-        'x-rapidapi-key': 'f49ccd9ba0msh6625224d24a637cp1c66ffjsne6d5ec895a86',
+        'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
         'x-rapidapi-host': 'imdb8.p.rapidapi.com'
       }
 
@@ -134,7 +134,7 @@ async function GetFullCredits() {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "just-translated.p.rapidapi.com",
-        "x-rapidapi-key": "f49ccd9ba0msh6625224d24a637cp1c66ffjsne6d5ec895a86" /*https://rapidapi.com/lebedev.str/api/just-translated/*/
+        "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25" /*https://rapidapi.com/lebedev.str/api/just-translated/*/
       }
     })
     const translation = await response3.json();
@@ -148,7 +148,7 @@ async function GetTrailer(){
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "f49ccd9ba0msh6625224d24a637cp1c66ffjsne6d5ec895a86"
+      "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25"
     }
   })
   const data = await response4.json();
@@ -165,7 +165,7 @@ async function GetTopRated(){
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "f49ccd9ba0msh6625224d24a637cp1c66ffjsne6d5ec895a86"
+      "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25"
     }
   })
   const data = await response.json();
@@ -196,7 +196,7 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     const response = await fetch("https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=" + idFilm[i], {
       method: "GET",
       headers: {
-        'x-rapidapi-key': 'f49ccd9ba0msh6625224d24a637cp1c66ffjsne6d5ec895a86',
+        'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
         'x-rapidapi-host': 'imdb8.p.rapidapi.com'
       }
 
