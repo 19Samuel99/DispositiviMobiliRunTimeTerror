@@ -85,9 +85,31 @@ async function GetFullCredits() {
     //append dell'intera riga nella tabella con id
     document.getElementById("table_cast").appendChild(row);
   }//chiusura ciclo for
+  GetGeneresByID();
   RicercaRating();
-}//chiusura GetFullCredits
 
+}//chiusura GetFullCredits
+async function GetGeneresByID(){
+  indirizzo = 'https://imdb8.p.rapidapi.com/title/get-genres?tconst=';
+  const response = await fetch(this.indirizzo + 'tt1853728', {
+    method: "GET",
+    headers:{
+      'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
+      'x-rapidapi-host': 'imdb8.p.rapidapi.com'
+    }
+
+  });
+  const data = await response.json();
+   let NumeroGeneri = data.length;
+   console.log(data.length)
+  const genres = [];
+   let newText
+  for (let i=0; i < NumeroGeneri ; i++){
+    newText = document.createTextNode(data[i] +" ")
+    document.getElementById('Generi').append(newText)
+  }
+
+}
   async function RicercaRating(){
     indirizzo = 'https://imdb8.p.rapidapi.com/title/get-ratings?tconst=';
     const response2 = await fetch(this.indirizzo + 'tt1853728', {
@@ -119,7 +141,7 @@ async function GetFullCredits() {
     const data = await response.json();
     const {text} = data['plots'][0];
     console.log(text);
-    traduciPlot(text);
+    //traduciPlot(text);                                      Quando Rifunziona l'api lo rimettiamo
   } //chiusura RicercaPlot
 
 
@@ -180,6 +202,7 @@ async function GetTopRated(){
   }
   GetFullCreditsTopRated(idFilm, ratingFilm);
 }
+
 
 function linkSchedainformativa(idFilm) {
   location.href = '/schedainformativa' + idFilm;
