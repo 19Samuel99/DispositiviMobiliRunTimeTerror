@@ -1,4 +1,5 @@
 async function getNomeFilm( nome) {
+  document.getElementById('risultato').innerHTML = ""
   indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
   nome.split(' ').join('%20')
   const response = await fetch(this.indirizzo + nome, {
@@ -10,17 +11,89 @@ async function getNomeFilm( nome) {
 
   });
 
-  //per tenere l'item del risultato nella pagina ricerca hidden fino a quando non si effettua una ricerca
-  document.getElementById("risultato").hidden = false;
 
   const data = await response.json();
+let titolo = [];
+let titleType = [];
+let anno = [];
+let immagine = [];
+let attori = [];
+let idDaModificare = []
+let idmodificato
+  let annocorrente= new Date()
 
-  const {title, titleType, year} = data['results'][0];
-  document.getElementById('titolo').textContent = title;
+  console.log(data)
+  console.log(data['results'].length)
+
+for (let i=0 ; i < data['results'].length ; i++){
+  if(data['results'][i]['disambiguation'] != null){continue}
+  idDaModificare [i] = data['results'][i]['id']
+  idmodificato=idDaModificare[i].substring(1, 6)
+  console.log(idmodificato)
+  if (idmodificato !== 'title') {continue}
+    titleType [i] = data['results'][i]['titleType']
+  if(titleType[i] !== 'movie')  {continue}
+    titolo [i] = data['results'][i]['title']
+    anno [i] = data['results'][i]['year']
+  if(anno[i] > annocorrente.getFullYear()){continue}
+  if(data['results'][i]['image'] == null){continue}
+    immagine [i] = data['results'][i]['image']['url']
+    for (let j = 0; j < 2; j++) {
+      attori [j] = data['results'][i]['principals'][j]['name']
+    }
+    let ItemSliding = document.createElement("ion-item-sliding")
+    ItemSliding.src = "ItemSliding_toprated"
+    let Item = document.createElement("ion-item")
+    let thumbnail = document.createElement("ion-thumbnail")
+    thumbnail.id = "thumbnail_toprated"
+    let img = document.createElement("img")
+    img.src = immagine[i];
+    img.id = "locandina_toprated"
+    thumbnail.appendChild(img)
+    Item.appendChild(thumbnail)
+
+    let lable = document.createElement("ion-label")
+    let table = document.createElement("table")
+    table.id = "table_toprated"
+    let trUnica = document.createElement("tr")
+    trUnica.id = "trUnica_toprated"
+
+    let tdTitolo = document.createElement("td")
+    let tdTitolotext = document.createTextNode(titolo[i])
+    tdTitolo.appendChild(tdTitolotext)
+    tdTitolo.id = "tdTitolo_toprated"
+    tdTitolo.value = "Click"
+    trUnica.appendChild(tdTitolo)
+
+    let tdAnno = document.createElement("td")
+    let tdAnnoText = document.createTextNode(anno[i])
+    tdAnno.appendChild(tdAnnoText)
+    tdAnno.id = "tdAnno_toprated"
+    trUnica.appendChild(tdAnno)
+
+    let tdRating = document.createElement("td")
+    let tdattore0 = document.createTextNode(attori[0])
+    let tdattore1 = document.createTextNode(attori[1])
+    tdRating.appendChild(tdattore0)
+    tdRating.appendChild(tdattore1)
+    tdRating.id = "tdRating_toprated"
+
+
+    trUnica.appendChild(tdRating)
+    table.appendChild(trUnica)
+    lable.appendChild(table)
+    Item.appendChild(lable)
+    ItemSliding.appendChild(Item)
+    document.getElementById("risultato").appendChild(ItemSliding)
+  }
+  /* document.getElementById('titolo').textContent = title;
   document.getElementById('tTitolo').textContent = titleType;
   document.getElementById('anno').textContent = year;
   const {url} = data['results'][0]['image'];
   locandina.src=url
+*/
+
+
 }
 
 async function GetFullCredits() {
@@ -261,11 +334,6 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     tdTitolo.appendChild(tdTitolotext)
     tdTitolo.id= "tdTitolo_toprated"
     tdTitolo.value= "Click"
-    tdTitolo.addEventListener("click", (e) => linkSchedainformativa(idFilm[i]))
-    //tdTitolo.style.width="65%";
-    //tdTitolo.style.paddingLeft= "20px"
-    //tdTitolo.style.textAlign= "left";
-    //tdTitolo.style.borderRight = "3px solid green";
     trUnica.appendChild(tdTitolo)
 
     let tdAnno = document.createElement("td")
