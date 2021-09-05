@@ -90,14 +90,14 @@
   }
 }
 
-//css for toprated page
+
   #img_attore2{
     width: 20%;
     height: auto;
     //border-radius: 50%;
     //border: 3px solid #ffca22;
   }
-
+//css for toprated page
   #ItemSliding_toprated{
     margin-top: 10px;
     --ion-background-color: #282828;
@@ -167,4 +167,53 @@
     //padding-left: 20px;
     text-align: center;
     //border-right: 3px solid green;
+  }
+
+//css for ricerca page
+  #ItemSliding_ricerca{
+    //margin-top: 10px;
+    --ion-background-color: #282828;
+  }
+
+  #thumbnail_ricerca{
+    width: 150px;
+    height: 150px;
+  }
+
+  #locandina_ricerca{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: auto;
+  }
+
+  #lable_ricerca{
+    color: #ffffff;
+    font-size: 17px;
+    padding-left: 20px;
+  }
+
+  #table_ricerca{
+    width: 100%;
+    tr,td{
+      padding-bottom: 10px;
+    }
+  }
+
+  #trTitolo_ricerca{
+    //border-bottom: 3px solid green;
+    //padding-bottom: 15px;
+    //color: #db0000;
+    font-weight: bold;
+    font-size: 22px;
+
+  }
+
+  #ItemOpzione_ricerca{
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    background-color: #db0000
+
   }

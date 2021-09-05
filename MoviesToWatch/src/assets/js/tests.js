@@ -11,87 +11,104 @@ async function getNomeFilm( nome) {
 
   });
 
+  document.getElementById("risultato").hidden = false;
 
   const data = await response.json();
-let titolo = [];
-let titleType = [];
-let anno = [];
-let immagine = [];
-let attori = [];
-let idDaModificare = []
-let idmodificato
+  let titolo = [];
+  let titleType = [];
+  let anno = [];
+  let immagine = [];
+  let attori = [];
+  let idDaModificare = []
+  let idmodificato
   let annocorrente= new Date()
 
   console.log(data)
   console.log(data['results'].length)
 
-for (let i=0 ; i < data['results'].length ; i++){
-  if(data['results'][i]['disambiguation'] != null){continue}
-  idDaModificare [i] = data['results'][i]['id']
-  idmodificato=idDaModificare[i].substring(1, 6)
-  console.log(idmodificato)
-  if (idmodificato !== 'title') {continue}
+  for (let i=0 ; i < data['results'].length ; i++){
+    if(data['results'][i]['disambiguation'] != null){continue}
+    idDaModificare [i] = data['results'][i]['id']
+    idmodificato=idDaModificare[i].substring(1, 6)
+    console.log(idmodificato)
+    if (idmodificato !== 'title') {continue}
     titleType [i] = data['results'][i]['titleType']
-  if(titleType[i] !== 'movie')  {continue}
+    if(titleType[i] !== 'movie')  {continue}
     titolo [i] = data['results'][i]['title']
     anno [i] = data['results'][i]['year']
-  if(anno[i] > annocorrente.getFullYear()){continue}
-  if(data['results'][i]['image'] == null){continue}
+    if(anno[i] > annocorrente.getFullYear()){continue}
+    if(data['results'][i]['image'] == null){continue}
     immagine [i] = data['results'][i]['image']['url']
     for (let j = 0; j < 2; j++) {
-      attori [j] = data['results'][i]['principals'][j]['name']
+        attori [j] = data['results'][i]['principals'][j]['name']
     }
     let ItemSliding = document.createElement("ion-item-sliding")
-    ItemSliding.src = "ItemSliding_toprated"
+    ItemSliding.src = "ItemSliding_ricerca"
     let Item = document.createElement("ion-item")
     let thumbnail = document.createElement("ion-thumbnail")
-    thumbnail.id = "thumbnail_toprated"
+    thumbnail.id = "thumbnail_ricerca"
     let img = document.createElement("img")
     img.src = immagine[i];
-    img.id = "locandina_toprated"
+    img.id = "locandina_ricerca"
     thumbnail.appendChild(img)
     Item.appendChild(thumbnail)
 
     let lable = document.createElement("ion-label")
+    lable.id = "lable_ricerca"
     let table = document.createElement("table")
-    table.id = "table_toprated"
-    let trUnica = document.createElement("tr")
-    trUnica.id = "trUnica_toprated"
+    table.id = "table_ricerca"
+    //let trUnica = document.createElement("tr")
 
+    let trTitolo = document.createElement("tr")
+    trTitolo.id = "trTitolo_ricerca"
     let tdTitolo = document.createElement("td")
     let tdTitolotext = document.createTextNode(titolo[i])
     tdTitolo.appendChild(tdTitolotext)
-    tdTitolo.id = "tdTitolo_toprated"
+    tdTitolo.id = "tdTitolo_ricerca"
     tdTitolo.value = "Click"
-    trUnica.appendChild(tdTitolo)
+    trTitolo.appendChild(tdTitolo)
+    table.appendChild(trTitolo)
 
+    let trAnno = document.createElement("tr")
     let tdAnno = document.createElement("td")
     let tdAnnoText = document.createTextNode(anno[i])
     tdAnno.appendChild(tdAnnoText)
-    tdAnno.id = "tdAnno_toprated"
-    trUnica.appendChild(tdAnno)
+    tdAnno.id = "tdAnno_ricerca"
+    trAnno.appendChild(tdAnno)
+    table.appendChild(trAnno)
 
-    let tdRating = document.createElement("td")
-    let tdattore0 = document.createTextNode(attori[0])
+    let trAttori = document.createElement("tr")
+    let tdAttori = document.createElement("td")
+    let tdattore0 = document.createTextNode(attori[0] + "  ")
     let tdattore1 = document.createTextNode(attori[1])
-    tdRating.appendChild(tdattore0)
-    tdRating.appendChild(tdattore1)
-    tdRating.id = "tdRating_toprated"
+    tdAttori.appendChild(tdattore0)
+    tdAttori.appendChild(tdattore1)
+    tdAttori.id = "tdRating_ricerca"
+    trAttori.appendChild(tdAttori)
+    table.appendChild(trAttori)
 
-
-    trUnica.appendChild(tdRating)
-    table.appendChild(trUnica)
+    //trUnica.appendChild(tdRating)
+    //table.appendChild(trUnica)
     lable.appendChild(table)
     Item.appendChild(lable)
     ItemSliding.appendChild(Item)
+
+    let ItemOptions = document.createElement("ion-item-options")
+    ItemOptions.id = "ItemOptions_ricerca"
+    let ItemOpzione = document.createElement("ion-item-option")
+    ItemOpzione.id = "ItemOpzione_ricerca"
+    let IconTime = document.createElement("ion-icon")
+    IconTime.name = "time"
+    ItemOpzione.appendChild(IconTime)
+    let ItemOpzioneText = document.createTextNode("Aggiungi a Film da Vedere")
+    ItemOpzione.appendChild(ItemOpzioneText)
+    ItemOptions.appendChild(ItemOpzione)
+    ItemSliding.appendChild(ItemOptions)
+
+
     document.getElementById("risultato").appendChild(ItemSliding)
   }
-  /* document.getElementById('titolo').textContent = title;
-  document.getElementById('tTitolo').textContent = titleType;
-  document.getElementById('anno').textContent = year;
-  const {url} = data['results'][0]['image'];
-  locandina.src=url
-*/
+
 
 
 }
