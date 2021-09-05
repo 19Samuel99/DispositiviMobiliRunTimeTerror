@@ -28,31 +28,38 @@ const routes: Routes = [
   },
   {
     path: 'questionario',
-    loadChildren: () => import('./pages/questionario/questionario.module').then( m => m.QuestionarioPageModule)
+    loadChildren: () => import('./pages/questionario/questionario.module').then( m => m.QuestionarioPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'toprated',
-    loadChildren: () => import('./pages/toprated/toprated.module').then( m => m.TopratedPageModule)
+    loadChildren: () => import('./pages/toprated/toprated.module').then( m => m.TopratedPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'davedere',
-    loadChildren: () => import('./pages/davedere/davedere.module').then( m => m.DavederePageModule)
+    loadChildren: () => import('./pages/davedere/davedere.module').then( m => m.DavederePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'giavisti',
-    loadChildren: () => import('./pages/giavisti/giavisti.module').then( m => m.GiavistiPageModule)
+    loadChildren: () => import('./pages/giavisti/giavisti.module').then( m => m.GiavistiPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'areautente',
-    loadChildren: () => import('./pages/areautente/areautente.module').then( m => m.AreautentePageModule)
+    loadChildren: () => import('./pages/areautente/areautente.module').then( m => m.AreautentePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'ricerca',
-    loadChildren: () => import('./pages/ricerca/ricerca.module').then( m => m.RicercaPageModule)
+    loadChildren: () => import('./pages/ricerca/ricerca.module').then( m => m.RicercaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'schedainformativa',
-    loadChildren: () => import('./pages/schedainformativa/schedainformativa.module').then( m => m.SchedainformativaPageModule)
+    loadChildren: () => import('./pages/schedainformativa/schedainformativa.module').then( m => m.SchedainformativaPageModule),
+    canActivate: [AuthGuard]
   },
 
 ];
