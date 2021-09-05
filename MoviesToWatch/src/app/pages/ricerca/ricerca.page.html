@@ -40,10 +40,11 @@
           <table class="search_table"style="width:100%">
             <tr>
               <td>
-                <input class="searchbar"type="text" id="search" placeholder="Cerca film">
+                <input class="searchbar"type="text" id="search" placeholder="Cerca titolo film">
               </td>
               <td class="td_searchbutton">
-                <button class="input_button" type="button" onclick='getNomeFilm( document.getElementById("search").value);'>
+                <button class="input_button"  id="in_btn_ricerca" type="button"
+                        onclick='getNomeFilm( document.getElementById("search").value);'>
                   <ion-icon class="search_icon" name="search" ></ion-icon>
                 </button>
               </td>
@@ -52,7 +53,8 @@
         </form>
 
 
-        <ion-list id="risultato" show-delete="false" can-swipe="true" >
+        <ion-list id="risultato" show-delete="false" can-swipe="true" hidden>
+        <!--
           <ion-item-sliding>
             <ion-item (click)="linkSchedainformativa()">
               <ion-thumbnail slot="start" style="width: 150px; height: 150px">
@@ -95,6 +97,7 @@
               </ion-item-option>
             </ion-item-options>
           </ion-item-sliding>
+         -->
         </ion-list>
 
 
