@@ -22,6 +22,7 @@ async function getNomeFilm( nome) {
   let idDaModificare = []
   let idmodificato
   let annocorrente= new Date()
+  let flag = 0
 
   console.log(data)
   console.log(data['results'].length)
@@ -39,8 +40,10 @@ async function getNomeFilm( nome) {
     if(anno[i] > annocorrente.getFullYear()){continue}
     if(data['results'][i]['image'] == null){continue}
     immagine [i] = data['results'][i]['image']['url']
-    for (let j = 0; j < 2; j++) {
-        attori [j] = data['results'][i]['principals'][j]['name']
+    for (let j = 0; j < 3; j++) {
+      if( data['results'][i]['principals'][j] == null){continue}
+      attori [j] = data['results'][i]['principals'][j]['name']
+      flag = j+1
     }
     let ItemSliding = document.createElement("ion-item-sliding")
     ItemSliding.src = "ItemSliding_ricerca"
@@ -79,10 +82,18 @@ async function getNomeFilm( nome) {
 
     let trAttori = document.createElement("tr")
     let tdAttori = document.createElement("td")
-    let tdattore0 = document.createTextNode(attori[0] + "  ")
-    let tdattore1 = document.createTextNode(attori[1])
-    tdAttori.appendChild(tdattore0)
-    tdAttori.appendChild(tdattore1)
+    if (flag >= 1){
+      let tdattore0 = document.createTextNode(attori[0])
+      tdAttori.appendChild(tdattore0)
+    }
+    if (flag >= 2){
+      let tdattore1 = document.createTextNode(", " + attori[1] )
+      tdAttori.appendChild(tdattore1)
+    }
+    if (flag === 3){
+      let tdattore2 = document.createTextNode(", " + attori[2])
+      tdAttori.appendChild(tdattore2)
+    }
     tdAttori.id = "tdRating_ricerca"
     trAttori.appendChild(tdAttori)
     table.appendChild(trAttori)
