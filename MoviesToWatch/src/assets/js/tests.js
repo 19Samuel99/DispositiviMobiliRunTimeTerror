@@ -28,7 +28,7 @@ async function getNomeFilm( nome) {
   console.log(data['results'].length)
 
   for (let i=0 ; i < data['results'].length ; i++){
-    if(data['results'][i]['disambiguation'] != null){continue}
+    //if(data['results'][i]['disambiguation'] != null){continue}
     idDaModificare [i] = data['results'][i]['id']
     idmodificato=idDaModificare[i].substring(1, 6)
     console.log(idmodificato)
