@@ -28,16 +28,16 @@ ion-content{
     }
 
   }
-
+/*
   ion-select{
     color: white;
   }
-  /* Set the placeholder color and opacity */
+  //* Set the placeholder color and opacity /  RICORCA DI CHIUDER IL COMMENTO SE USATO
   ion-select::part(placeholder) {
     color: white;
     opacity: 0.6;
   }
-  /* Set the icon color and opacity */
+  /* Set the icon color and opacity /          RICORCA DI CHIUDER IL COMMENTO SE USATO
   ion-select::part(icon) {
     color: #db0000;
     opacity: 1;
@@ -61,4 +61,77 @@ ion-content{
   .bottone_consiglio:hover{
     --background: #D10101;
   }
+*/
 }
+
+//css per l'uso del div con la domanda
+  .table_questionario{
+    width: 100%;
+    height: 100%;
+    tr{
+      width: 100%;
+    }
+  }
+
+  .div_questionario{
+    margin: auto;
+    width: 65%;
+    height: 500px;
+    background: #282828;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .div_domanda{
+    position: absolute;
+    top: 40%;
+    border: 5px solid #FFFF00;
+    //justify-content: center;
+    margin: auto;
+    width: 65%;
+    text-align: center;
+    //height: 100%;
+    color: white;
+    font-size: 30px;
+  }
+
+  .question-actions_actions{
+    display: flex;
+    margin: auto;
+    width: 65%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .td_bottoni{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    //margin-left: 10px;
+  }
+
+  #btn_answer_yes, #btn_answer_no, #btn_answer_skip {
+    border-radius: 15px;
+    margin: 10px 10px 5px ;
+    background: #282828;
+    text-align: center;
+    padding: 15px;
+  }
+  #btn_answer_yes, #btn_answer_no{
+    font-size: 30px;
+    font-weight: bold;
+    width: 85px;
+    height: 60px;
+  }
+
+  #btn_answer_no{
+
+  }
+  #btn_answer_skip{
+     font-size: 20px;
+   }
+  #btn_answer_yes{
+    color: #db0000;
+  }

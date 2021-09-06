@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'splashscreen',
@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: 'questionario',
     loadChildren: () => import('./pages/questionario/questionario.module').then( m => m.QuestionarioPageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'toprated',
@@ -54,12 +54,12 @@ const routes: Routes = [
   {
     path: 'ricerca',
     loadChildren: () => import('./pages/ricerca/ricerca.module').then( m => m.RicercaPageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'schedainformativa',
     loadChildren: () => import('./pages/schedainformativa/schedainformativa.module').then( m => m.SchedainformativaPageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
 
 ];
