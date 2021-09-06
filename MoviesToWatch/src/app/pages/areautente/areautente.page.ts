@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import firebase from 'firebase';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-areautente',
@@ -34,5 +36,11 @@ export class AreautentePage implements OnInit {
 
   linkLogin(){
     this.router.navigate(['/login']);
+  }
+  getEmail(){
+    if (firebase.auth().currentUser !== null){
+      const email = firebase.auth().currentUser.email;
+      document.getElementById('emailtd').innerHTML = email;
+    }
   }
 }

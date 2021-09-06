@@ -50,7 +50,8 @@ export class RegistrazionePage implements OnInit {
         console.log(response);
         if(response.user){
           response.user.updateProfile({
-            displayName: value.email
+            displayName: value.email,
+            email: value.email
           });
           this.loading.dismiss();
           this.router.navigate(['login']);
