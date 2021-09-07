@@ -18,6 +18,7 @@ export class AuthGuard implements CanActivate {
           resolve(true);
         }});}
         catch(error){
+          alert('Devi essere loggato per usare queste funzioni, premi ok per continuare')
           console.log('sei stato reindirizzato perchè non avevi i permessi')
           this.router.navigate(['login']);
          }
