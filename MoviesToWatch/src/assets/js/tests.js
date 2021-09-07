@@ -4,7 +4,7 @@ async function getNomeFilm( nome) {
   nome.split(' ').join('%20')
   const response = await fetch(this.indirizzo + nome, {
     method: "GET",
-    headers:{
+    headers: {
       'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
@@ -21,29 +21,40 @@ async function getNomeFilm( nome) {
   let attori = [];
   let idDaModificare = []
   let idmodificato
-  let annocorrente= new Date()
+  let annocorrente = new Date()
   let flag = 0
-
+  let idPerClick = []
   console.log(data)
   console.log(data['results'].length)
 
-  for (let i=0 ; i < data['results'].length ; i++){
+  for (let i = 0; i < data['results'].length; i++) {
     //if(data['results'][i]['disambiguation'] != null){continue}
     idDaModificare [i] = data['results'][i]['id']
-    idmodificato=idDaModificare[i].substring(1, 6)
+    idmodificato = idDaModificare[i].substring(1, 6)
+    idPerClick[i] = idDaModificare[i].substring(7, 16)
     console.log(idmodificato)
-    if (idmodificato !== 'title') {continue}
+    if (idmodificato !== 'title') {
+      continue
+    }
     titleType [i] = data['results'][i]['titleType']
-    if(titleType[i] !== 'movie')  {continue}
+    if (titleType[i] !== 'movie') {
+      continue
+    }
     titolo [i] = data['results'][i]['title']
     anno [i] = data['results'][i]['year']
-    if(anno[i] > annocorrente.getFullYear()){continue}
-    if(data['results'][i]['image'] == null){continue}
+    if (anno[i] > annocorrente.getFullYear()) {
+      continue
+    }
+    if (data['results'][i]['image'] == null) {
+      continue
+    }
     immagine [i] = data['results'][i]['image']['url']
     for (let j = 0; j < 3; j++) {
-      if( data['results'][i]['principals'][j] == null){continue}
+      if (data['results'][i]['principals'][j] == null) {
+        continue
+      }
       attori [j] = data['results'][i]['principals'][j]['name']
-      flag = j+1
+      flag = j + 1
     }
     let ItemSliding = document.createElement("ion-item-sliding")
     ItemSliding.src = "ItemSliding_ricerca"
@@ -67,8 +78,8 @@ async function getNomeFilm( nome) {
     let tdTitolo = document.createElement("td")
     let tdTitolotext = document.createTextNode(titolo[i])
     tdTitolo.appendChild(tdTitolotext)
-    tdTitolo.id = "tdTitolo_ricerca"
-    tdTitolo.value = "Click"
+    tdTitolo.id = "tdTitolo_ricerca" + idPerClick[i]
+
     trTitolo.appendChild(tdTitolo)
     table.appendChild(trTitolo)
 
@@ -82,15 +93,15 @@ async function getNomeFilm( nome) {
 
     let trAttori = document.createElement("tr")
     let tdAttori = document.createElement("td")
-    if (flag >= 1){
+    if (flag >= 1) {
       let tdattore0 = document.createTextNode(attori[0])
       tdAttori.appendChild(tdattore0)
     }
-    if (flag >= 2){
-      let tdattore1 = document.createTextNode(", " + attori[1] )
+    if (flag >= 2) {
+      let tdattore1 = document.createTextNode(", " + attori[1])
       tdAttori.appendChild(tdattore1)
     }
-    if (flag === 3){
+    if (flag === 3) {
       let tdattore2 = document.createTextNode(", " + attori[2])
       tdAttori.appendChild(tdattore2)
     }
@@ -118,11 +129,18 @@ async function getNomeFilm( nome) {
 
 
     document.getElementById("risultato").appendChild(ItemSliding)
+
+    document.getElementById('tdTitolo_ricerca' + idPerClick[i]).onclick = function assegnaID(elementid) {
+      window.location.href = "http://localhost:8100/schedainformativa/"    //+ id del film da prendere nel id in html
+    }
+
   }
 
 
-
 }
+
+
+
 
 async function GetFullCredits() {
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=';

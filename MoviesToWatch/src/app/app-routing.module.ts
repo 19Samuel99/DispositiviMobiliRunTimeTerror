@@ -57,7 +57,7 @@ const routes: Routes = [
     //canActivate: [AuthGuard]
   },
   {
-    path: 'schedainformativa',
+    path: 'schedainformativa/:idFilm',
     loadChildren: () => import('./pages/schedainformativa/schedainformativa.module').then( m => m.SchedainformativaPageModule),
     //canActivate: [AuthGuard]
   },

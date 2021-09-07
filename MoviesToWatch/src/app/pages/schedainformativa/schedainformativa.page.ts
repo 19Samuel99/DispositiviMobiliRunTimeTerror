@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-schedainformativa',
   templateUrl: './schedainformativa.page.html',
@@ -8,9 +8,13 @@ import {Router} from "@angular/router";
 })
 export class SchedainformativaPage implements OnInit {
 
-  constructor(private router: Router) { }
+  idFilm = null;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
+    this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
   }
   linkHome(){
     this.router.navigate(['/home']);
