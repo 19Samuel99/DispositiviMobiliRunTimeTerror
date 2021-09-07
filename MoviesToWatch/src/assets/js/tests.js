@@ -132,14 +132,12 @@ async function GetFullCredits() {
       'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
-
   });
   const data = await response1.json();
   console.log(data);
-  const {runningTimeInMinutes, title, year,} = data['base'];
-  document.getElementById('titolo').textContent = title;
-  document.getElementById('durata').textContent = runningTimeInMinutes;
-  document.getElementById('anno').textContent = year;
+  document.getElementById('titolo').textContent = data['base']['title'];
+  document.getElementById('durata').textContent = data['base']['runningTimeInMinutes'];
+  document.getElementById('anno').textContent = data['base']['year'];
   const {url} = data['base']['image'];
   locandina.src = url;
   let Direttore = data['crew']['director'][0]['name'];
@@ -197,19 +195,14 @@ async function GetGeneresByID(){
       'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
-
   });
   const data = await response.json();
-   let NumeroGeneri = data.length;
-   console.log(data.length)
-  const genres = [];
    let newText
-  for (let i=0; i < NumeroGeneri ; i++){
+  for (let i=0; i < data.length ; i++){
     newText = document.createTextNode(data[i] +" ")
     document.getElementById('Generi').append(newText)
-  }
-  RicercaPloteTrailereRating();
-}
+  }RicercaPloteTrailereRating();}
+
 
 async function RicercaPloteTrailereRating(){
   indirizzo = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/';
@@ -222,15 +215,11 @@ async function RicercaPloteTrailereRating(){
 
   });
   const data = await response.json();
-  let text = data['plot'];
-  let rating = data['rating']
-  let srg = data['trailer']['id']
-  console.log(text);
-  document.getElementById('Valutazione').textContent = rating;
-  let video_src = 'https://www.imdb.com/video/imdb/' + srg + '/imdb/embed';
+  document.getElementById('Valutazione').textContent = data['rating'];
+  let video_src = 'https://www.imdb.com/video/imdb/' + data['trailer']['id'] + '/imdb/embed';
   console.log(video_src);
   document.getElementById("trailer").src = video_src;
-  traduciPlot(text);
+  traduciPlot(data['plot']);
 }
 
 
@@ -250,14 +239,13 @@ async function RicercaPloteTrailereRating(){
     })
     const translation = await response3.json();
     console.log(translation);
-    const translatedText = translation['text'][0];
-    document.getElementById('Descrizione').textContent = translatedText;
+    document.getElementById('Descrizione').textContent = translation['text'][0];
   }
 
 
 
 
-async function GetTopRated(){
+async function GetTopRated() {
   const response = await fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-movies", {
     "method": "GET",
     "headers": {
@@ -266,118 +254,117 @@ async function GetTopRated(){
     }
   })
   const data = await response.json();
-  const idFilm=[];
+  const idFilm = [];
   for (let i = 0; i < data.length; i++) {
-    idDaModificare= data[i]['id']
-    idDaModificare=idDaModificare.substring(7, 16)
+    idDaModificare = data[i]['id']
+    idDaModificare = idDaModificare.substring(7, 16)
     idFilm[i] = idDaModificare;
     console.log(idFilm[i]);
   }
   GetFullCreditsTopRated(idFilm);
 }
 
+  function linkSchedainformativa(idFilm) {
+    location.href = '/schedainformativa' + idFilm;
+  }
 
-function linkSchedainformativa(idFilm) {
-  location.href = '/schedainformativa' + idFilm;
-}
+  async function GetFullCreditsTopRated(idFilm) {
+    indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
+    const IdImmagine = [];
+    const titolo = [];
+    const anno = [];
+    const rating = [];
+    for (let i = 0; i < idFilm.length; i++) {
+      const response = await fetch(indirizzo + idFilm[i], {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+          "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+        }
 
-async function GetFullCreditsTopRated(idFilm) {
-  indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
-  const IdImmagine = [];
-  const titolo = [];
-  const anno = [];
-  const rating = [];
-  for (let i = 0; i < idFilm.length; i++) {
-    const response = await fetch(indirizzo + idFilm[i], {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
-      }
+      })
+      const data = await response.json();
+      console.log(data);
+      titolo[i] = data['title'];
+      anno[i] = data['year'];
+      IdImmagine[i] = data['poster'];
+      rating[i] = data['rating'];
+      console.log(titolo[i])
+      console.log(anno[i])
+      console.log(rating[i])
+      console.log(IdImmagine[i])
 
-    })
-  const data = await response.json();
-  console.log(data);
-   titolo[i] = data['title'];
-   anno[i] = data['year'];
-   IdImmagine[i] = data['poster'];
-   rating[i]= data['rating'];
-    console.log(titolo[i])
-    console.log(anno[i])
-    console.log(rating[i])
-    console.log(IdImmagine[i])
+      let ItemSliding = document.createElement("ion-item-sliding")
+      ItemSliding.src = "ItemSliding_toprated"
+      let Item = document.createElement("ion-item")
+      let thumbnail = document.createElement("ion-thumbnail")
+      thumbnail.id = "thumbnail_toprated"
+      let img = document.createElement("img")
+      img.src = IdImmagine[i];
+      img.id = "locandina_toprated"
+      thumbnail.appendChild(img)
+      Item.appendChild(thumbnail)
 
-    let ItemSliding = document.createElement("ion-item-sliding")
-    ItemSliding.src = "ItemSliding_toprated"
-    let Item = document.createElement("ion-item")
-    let thumbnail = document.createElement("ion-thumbnail")
-    thumbnail.id="thumbnail_toprated"
-    let img = document.createElement("img")
-    img.src=IdImmagine[i];
-    img.id= "locandina_toprated"
-    thumbnail.appendChild(img)
-    Item.appendChild(thumbnail)
+      let lable = document.createElement("ion-label")
+      let table = document.createElement("table")
+      table.id = "table_toprated"
+      let trUnica = document.createElement("tr")
+      trUnica.id = "trUnica_toprated"
+      let tdRanking = document.createElement("td")
+      let tdRankingtext = document.createTextNode(i + 1 + ".")
+      tdRanking.appendChild(tdRankingtext)
+      tdRanking.id = "tdRanking_toprated"
+      trUnica.appendChild(tdRanking)
 
-    let lable = document.createElement("ion-label")
-    let table = document.createElement("table")
-    table.id= "table_toprated"
-    let trUnica = document.createElement("tr")
-    trUnica.id="trUnica_toprated"
-    let tdRanking = document.createElement("td")
-    let tdRankingtext = document.createTextNode(i+1 +".")
-    tdRanking.appendChild(tdRankingtext)
-    tdRanking.id="tdRanking_toprated"
-    trUnica.appendChild(tdRanking)
+      let tdTitolo = document.createElement("td")
+      let tdTitolotext = document.createTextNode(titolo[i])
+      tdTitolo.appendChild(tdTitolotext)
+      tdTitolo.id = "tdTitolo_toprated"
+      tdTitolo.value = "Click"
+      trUnica.appendChild(tdTitolo)
 
-    let tdTitolo = document.createElement("td")
-    let tdTitolotext = document.createTextNode(titolo[i])
-    tdTitolo.appendChild(tdTitolotext)
-    tdTitolo.id= "tdTitolo_toprated"
-    tdTitolo.value= "Click"
-    trUnica.appendChild(tdTitolo)
+      let tdAnno = document.createElement("td")
+      let tdAnnoText = document.createTextNode(anno[i])
+      tdAnno.appendChild(tdAnnoText)
+      tdAnno.id = "tdAnno_toprated"
+      trUnica.appendChild(tdAnno)
 
-    let tdAnno = document.createElement("td")
-    let tdAnnoText = document.createTextNode(anno[i])
-    tdAnno.appendChild(tdAnnoText)
-    tdAnno.id= "tdAnno_toprated"
-    trUnica.appendChild(tdAnno)
+      let tdRating = document.createElement("td")
+      tdRating.id = "tdRating_toprated"
+      let tableRating = document.createElement("table")
+      tableRating.id = "tableRating_toprated"
+      let trRatig = document.createElement("tr")
+      let tdStella = document.createElement("td")
+      tdStella.id = "tdStella_toprated"
+      let imgStella = document.createElement("img")
+      imgStella.id = "imgStella_toprated"
+      imgStella.src = "\..\\..\\assets\\image\\star-icon.png"
+      tdStella.appendChild(imgStella)
+      trRatig.appendChild(tdStella)
+      let tdValoreRating = document.createElement("td")
+      tdValoreRating.id = "tdValoreRating_toprated"
+      let tdRatingFilm = document.createTextNode(rating[i])
+      tdValoreRating.appendChild(tdRatingFilm)
+      trRatig.appendChild(tdValoreRating)
 
-    let tdRating = document.createElement("td")
-    tdRating.id="tdRating_toprated"
-    let tableRating = document.createElement("table")
-    tableRating.id="tableRating_toprated"
-    let trRatig = document.createElement("tr")
-    let tdStella  = document.createElement("td")
-    tdStella.id= "tdStella_toprated"
-    let imgStella = document.createElement("img")
-    imgStella.id= "imgStella_toprated"
-    imgStella.src ="\..\\..\\assets\\image\\star-icon.png"
-    tdStella.appendChild(imgStella)
-    trRatig.appendChild(tdStella)
-    let tdValoreRating  = document.createElement("td")
-    tdValoreRating.id="tdValoreRating_toprated"
-    let tdRatingFilm = document.createTextNode(rating[i])
-    tdValoreRating.appendChild(tdRatingFilm)
-    trRatig.appendChild(tdValoreRating)
+      /*
+        let tdIMDBLogo  = document.createElement("td")
+        let imgIMDBlogo = document.createElement("img")
+        imgIMDBlogo.src ="\..\\..\\assets\\image\\imdbLogo.jpg"
+        tdIMDBLogo.appendChild(imgIMDBlogo)
+        trRatig.appendChild(tdIMDBLogo)
+      */
+      tableRating.appendChild(trRatig)
+      tdRating.appendChild(tableRating)
+      trUnica.appendChild(tdRating)
+      table.appendChild(trUnica)
+      lable.appendChild(table)
+      Item.appendChild(lable)
+      ItemSliding.appendChild(Item)
+      document.getElementById("ListTopRated").appendChild(ItemSliding)
 
-    /*
-      let tdIMDBLogo  = document.createElement("td")
-      let imgIMDBlogo = document.createElement("img")
-      imgIMDBlogo.src ="\..\\..\\assets\\image\\imdbLogo.jpg"
-      tdIMDBLogo.appendChild(imgIMDBlogo)
-      trRatig.appendChild(tdIMDBLogo)
-    */
-    tableRating.appendChild(trRatig)
-    tdRating.appendChild(tableRating)
-    trUnica.appendChild(tdRating)
-    table.appendChild(trUnica)
-    lable.appendChild(table)
-    Item.appendChild(lable)
-    ItemSliding.appendChild(Item)
-    document.getElementById("ListTopRated").appendChild(ItemSliding)
-
-  }//chiusura for
-}
+    }//chiusura for
+  }
 
 
 /*async function RicercaRating(){
