@@ -293,15 +293,13 @@ async function GetTopRated(){
   })
   const data = await response.json();
   const idFilm=[];
-  const ratingFilm=[];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < data.length; i++) {
     idDaModificare= data[i]['id']
     idDaModificare=idDaModificare.substring(7, 16)
     idFilm[i] = idDaModificare;
     console.log(idFilm[i]);
-    ratingFilm[i] = data[i]['chartRating']
   }
-  GetFullCreditsTopRated(idFilm, ratingFilm);
+  GetFullCreditsTopRated(idFilm);
 }
 
 
@@ -309,30 +307,30 @@ function linkSchedainformativa(idFilm) {
   location.href = '/schedainformativa' + idFilm;
 }
 
-async function GetFullCreditsTopRated(idFilm, ratingFilm) {
-  indirizzo = 'https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=';
-  console.log(idFilm[0])
-  console.log(idFilm[1])
+async function GetFullCreditsTopRated(idFilm) {
+  indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
   const IdImmagine = [];
   const titolo = [];
   const anno = [];
-  for (let i = 0; i < 1; i++) {
-    const response = await fetch("https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=" + idFilm[i], {
-      method: "GET",
-      headers: {
-        'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
-        'x-rapidapi-host': 'imdb8.p.rapidapi.com'
+  const rating = [];
+  for (let i = 0; i < idFilm.length; i++) {
+    const response = await fetch(indirizzo + idFilm[i], {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
       }
 
     })
   const data = await response.json();
   console.log(data);
-   titolo[i] = data['base']['title'];
-   anno[i] = data['base']['year'];
-   IdImmagine[i] = data['base']['image']['url'];
+   titolo[i] = data['title'];
+   anno[i] = data['year'];
+   IdImmagine[i] = data['poster'];
+   rating[i]= data['rating'];
     console.log(titolo[i])
     console.log(anno[i])
-    console.log(ratingFilm[i])
+    console.log(rating[i])
     console.log(IdImmagine[i])
 
     let ItemSliding = document.createElement("ion-item-sliding")
@@ -384,7 +382,7 @@ async function GetFullCreditsTopRated(idFilm, ratingFilm) {
     trRatig.appendChild(tdStella)
     let tdValoreRating  = document.createElement("td")
     tdValoreRating.id="tdValoreRating_toprated"
-    let tdRatingFilm = document.createTextNode(ratingFilm[i])
+    let tdRatingFilm = document.createTextNode(rating[i])
     tdValoreRating.appendChild(tdRatingFilm)
     trRatig.appendChild(tdValoreRating)
 

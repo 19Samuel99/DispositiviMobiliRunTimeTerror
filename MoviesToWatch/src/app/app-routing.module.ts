@@ -34,7 +34,7 @@ const routes: Routes = [
   {
     path: 'toprated',
     loadChildren: () => import('./pages/toprated/toprated.module').then( m => m.TopratedPageModule),
-    canActivate: [AuthGuard]
+   // canActivate: [AuthGuard]
   },
   {
     path: 'davedere',
