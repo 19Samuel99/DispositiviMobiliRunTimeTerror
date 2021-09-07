@@ -187,7 +187,7 @@ async function GetFullCredits() {
     document.getElementById("table_cast").appendChild(row);
   }//chiusura ciclo for
   GetGeneresByID();
-  RicercaRating();
+  //RicercaRating();
 
 }//chiusura GetFullCredits
 async function GetGeneresByID(){
@@ -209,8 +209,33 @@ async function GetGeneresByID(){
     newText = document.createTextNode(data[i] +" ")
     document.getElementById('Generi').append(newText)
   }
-
+  RicercaPloteTrailereRating();
 }
+
+async function RicercaPloteTrailereRating(){
+  indirizzo = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/';
+  const response = await fetch(indirizzo + 'tt1853728', {
+    method: "GET",
+    headers: {
+      'x-rapidapi-key': '6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03',
+      'x-rapidapi-host': 'imdb-internet-movie-database-unofficial.p.rapidapi.com'
+    }
+
+  });
+  const data = await response.json();
+  let text = data['plot'];
+  let rating = data['rating']
+  let trailer = data['trailer']['link']
+  console.log(text);
+  document.getElementById('Valutazione').textContent = rating;
+  let srg = trailer.substring(34);
+  let video_src = 'https://www.imdb.com/video/imdb/' + srg + '/imdb/embed';
+  console.log(video_src);
+  document.getElementById("trailer").src = video_src;
+  traduciPlot(text);
+}
+
+
   async function RicercaRating(){
     indirizzo = 'https://imdb8.p.rapidapi.com/title/get-ratings?tconst=';
     const response2 = await fetch(this.indirizzo + 'tt1853728', {
@@ -225,8 +250,12 @@ async function GetGeneresByID(){
 
     const {rating}=data;
     document.getElementById('Valutazione').textContent = rating;
+
     RicercaPlot();
   }//RicercaRating
+
+
+
 
 
   async function RicercaPlot() {
@@ -242,6 +271,7 @@ async function GetGeneresByID(){
     const data = await response.json();
     const {text} = data['plots'][0];
     console.log(text);
+
     traduciPlot(text);
   } //chiusura RicercaPlot
 
@@ -264,7 +294,7 @@ async function GetGeneresByID(){
     console.log(translation);
     const translatedText = translation['text'][0];
     document.getElementById('Descrizione').textContent = translatedText;
-GetTrailer()
+//GetTrailer()
   }
 async function GetTrailer(){
   const response4 = await fetch("https://imdb8.p.rapidapi.com/title/get-videos?tconst=tt1853728&limit=1&region=IT", {
@@ -282,6 +312,9 @@ async function GetTrailer(){
   document.getElementById("trailer").src = video_src;
 
 }
+
+
+
 
 async function GetTopRated(){
   const response = await fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-movies", {
