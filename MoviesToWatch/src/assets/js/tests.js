@@ -242,7 +242,7 @@ async function GetGeneresByID(){
     const data = await response.json();
     const {text} = data['plots'][0];
     console.log(text);
-    //traduciPlot(text);                                      Quando Rifunziona l'api lo rimettiamo
+    traduciPlot(text);
   } //chiusura RicercaPlot
 
 
