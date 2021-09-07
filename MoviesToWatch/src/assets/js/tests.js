@@ -224,10 +224,9 @@ async function RicercaPloteTrailereRating(){
   const data = await response.json();
   let text = data['plot'];
   let rating = data['rating']
-  let trailer = data['trailer']['link']
+  let srg = data['trailer']['id']
   console.log(text);
   document.getElementById('Valutazione').textContent = rating;
-  let srg = trailer.substring(33);
   let video_src = 'https://www.imdb.com/video/imdb/' + srg + '/imdb/embed';
   console.log(video_src);
   document.getElementById("trailer").src = video_src;
