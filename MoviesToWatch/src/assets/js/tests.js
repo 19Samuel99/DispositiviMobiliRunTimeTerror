@@ -187,7 +187,6 @@ async function GetFullCredits() {
     document.getElementById("table_cast").appendChild(row);
   }//chiusura ciclo for
   GetGeneresByID();
-  //RicercaRating();
 
 }//chiusura GetFullCredits
 async function GetGeneresByID(){
@@ -228,52 +227,12 @@ async function RicercaPloteTrailereRating(){
   let trailer = data['trailer']['link']
   console.log(text);
   document.getElementById('Valutazione').textContent = rating;
-  let srg = trailer.substring(34);
+  let srg = trailer.substring(33);
   let video_src = 'https://www.imdb.com/video/imdb/' + srg + '/imdb/embed';
   console.log(video_src);
   document.getElementById("trailer").src = video_src;
   traduciPlot(text);
 }
-
-
-  async function RicercaRating(){
-    indirizzo = 'https://imdb8.p.rapidapi.com/title/get-ratings?tconst=';
-    const response2 = await fetch(this.indirizzo + 'tt1853728', {
-      method: "GET",
-      headers:{
-        'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
-        'x-rapidapi-host': 'imdb8.p.rapidapi.com'
-      }
-
-    });
-    const data = await response2.json();
-
-    const {rating}=data;
-    document.getElementById('Valutazione').textContent = rating;
-
-    RicercaPlot();
-  }//RicercaRating
-
-
-
-
-
-  async function RicercaPlot() {
-    indirizzo = 'https://imdb8.p.rapidapi.com/title/get-plots?tconst=';
-    const response = await fetch(this.indirizzo + 'tt1853728', {
-      method: "GET",
-      headers: {
-        'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
-        'x-rapidapi-host': 'imdb8.p.rapidapi.com'
-      }
-
-    });
-    const data = await response.json();
-    const {text} = data['plots'][0];
-    console.log(text);
-
-    traduciPlot(text);
-  } //chiusura RicercaPlot
 
 
   async function traduciPlot(text) {
@@ -294,24 +253,7 @@ async function RicercaPloteTrailereRating(){
     console.log(translation);
     const translatedText = translation['text'][0];
     document.getElementById('Descrizione').textContent = translatedText;
-//GetTrailer()
   }
-async function GetTrailer(){
-  const response4 = await fetch("https://imdb8.p.rapidapi.com/title/get-videos?tconst=tt1853728&limit=1&region=IT", {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25"
-    }
-  })
-  const data = await response4.json();
-  const idvideo = data['resource']['videos'][0]['id'];
-  let srg = idvideo.substring(9, 21);
-  let video_src = 'https://www.imdb.com/video/imdb/' + srg + '/imdb/embed';
-  console.log(video_src);
-  document.getElementById("trailer").src = video_src;
-
-}
 
 
 
@@ -438,3 +380,60 @@ async function GetFullCreditsTopRated(idFilm) {
   }//chiusura for
 }
 
+
+/*async function RicercaRating(){
+indirizzo = 'https://imdb8.p.rapidapi.com/title/get-ratings?tconst=';
+const response2 = await fetch(this.indirizzo + 'tt1853728', {
+  method: "GET",
+  headers:{
+    'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
+    'x-rapidapi-host': 'imdb8.p.rapidapi.com'
+  }
+
+});
+const data = await response2.json();
+
+const {rating}=data;
+document.getElementById('Valutazione').textContent = rating;
+
+RicercaPlot();
+}//RicercaRating
+
+
+
+
+
+async function RicercaPlot() {
+indirizzo = 'https://imdb8.p.rapidapi.com/title/get-plots?tconst=';
+const response = await fetch(this.indirizzo + 'tt1853728', {
+  method: "GET",
+  headers: {
+    'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
+    'x-rapidapi-host': 'imdb8.p.rapidapi.com'
+  }
+
+});
+const data = await response.json();
+const {text} = data['plots'][0];
+console.log(text);
+
+traduciPlot(text);
+} //chiusura RicercaPlot
+
+async function GetTrailer(){
+const response4 = await fetch("https://imdb8.p.rapidapi.com/title/get-videos?tconst=tt1853728&limit=1&region=IT", {
+  "method": "GET",
+  "headers": {
+    "x-rapidapi-host": "imdb8.p.rapidapi.com",
+    "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25"
+  }
+})
+const data = await response4.json();
+const idvideo = data['resource']['videos'][0]['id'];
+let srg = idvideo.substring(9, 21);
+let video_src = 'https://www.imdb.com/video/imdb/' + srg + '/imdb/embed';
+console.log(video_src);
+document.getElementById("trailer").src = video_src;
+
+}
+*/
