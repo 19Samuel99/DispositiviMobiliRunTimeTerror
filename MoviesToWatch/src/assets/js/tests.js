@@ -131,9 +131,7 @@ async function getNomeFilm( nome) {
 }
 
 
-async function GetFullCredits() {
-  var idFilm = window.location.pathname
-  idFilm = idFilm.substring(idFilm.length - 9)
+async function GetFullCredits(idFilm) {
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=';
   const response1 = await fetch(this.indirizzo + idFilm, {
     method: "GET",
@@ -298,12 +296,15 @@ async function GetTopRated() {
       tdRanking.id = "tdRanking_toprated"
       trUnica.appendChild(tdRanking)
 
+      let aTitolo = document.createElement("a")
+      aTitolo.id = "aTitolo"
       let tdTitolo = document.createElement("td")
       let tdTitolotext = document.createTextNode(titolo[i])
       tdTitolo.appendChild(tdTitolotext)
       tdTitolo.id = "tdTitolo_toprated"
-      tdTitolo.value = "Click"
-      trUnica.appendChild(tdTitolo)
+      aTitolo.href ="http://localhost:8100/schedainformativa/" + idFilm[i]
+      aTitolo.appendChild(tdTitolo)
+      trUnica.appendChild(aTitolo)
 
       let tdAnno = document.createElement("td")
       let tdAnnoText = document.createTextNode(anno[i])
