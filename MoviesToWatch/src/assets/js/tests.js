@@ -31,7 +31,7 @@ async function getNomeFilm( nome) {
     //if(data['results'][i]['disambiguation'] != null){continue}
     idDaModificare [i] = data['results'][i]['id']
     idmodificato = idDaModificare[i].substring(1, 6)
-    idPerClick[i] = idDaModificare[i].substring(7, 16)
+    idPerClick[i] = idDaModificare[i].substring(7)
     console.log(idmodificato)
     if (idmodificato !== 'title') {
       continue
@@ -148,16 +148,31 @@ async function GetFullCredits(idFilm) {
   const {url} = data['base']['image'];
   locandina.src = url;
   document.getElementById('Regista').textContent = data['crew']['director'][0]['name'];
-
+  GetGeneresByID(idFilm);
   const name = [];
   const character = [];
   const UrlImmagineAttore = [];
-  //inizio ciclo for
-  for (let i = 0; i < 10; i++) {
+  let a
+  if(data['cast'].length > 10){
+    a = 10
+  }
+  else{
+    a= data['cast'].length
+  }
+  for (let i = 0; i < a; i++) {
     name[i] = data['cast'][i]['name'];
-    character[i] = data['cast'][i]['characters'][0];
-    UrlImmagineAttore[i] = data['cast'][i]['image']['url'];
-
+    if(data['cast'][i]['characters'] != null) {
+      character[i] = data['cast'][i]['characters'][0];
+    }
+    else{
+      character[i] = "Non definito"
+    }
+    if(data['cast'][i]['image'] != null) {
+      UrlImmagineAttore[i] = data['cast'][i]['image']['url'];
+    }
+    else {
+      UrlImmagineAttore[i].src= "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
+    }
     //creazione riga
     var row = document.createElement("tr");
     //creazione cella
@@ -188,7 +203,7 @@ async function GetFullCredits(idFilm) {
     //append dell'intera riga nella tabella con id
     document.getElementById("table_cast").appendChild(row);
   }//chiusura ciclo for
-  GetGeneresByID(idFilm);
+
 }//chiusura GetFullCredits
 
 async function GetGeneresByID(idFilm){
@@ -222,9 +237,14 @@ async function RicercaPloteTrailereRating(idFilm){
   });
   const data = await response.json();
   document.getElementById('Valutazione').textContent = data['rating'];
-  let video_src = 'https://www.imdb.com/video/imdb/' + data['trailer']['id'] + '/imdb/embed';
-  console.log(video_src);
-  document.getElementById("trailer").src = video_src;
+  if(data['trailer']['id'] !== "") {
+    let video_src = 'https://www.imdb.com/video/imdb/' + data['trailer']['id'] + '/imdb/embed';
+    console.log(video_src);
+    document.getElementById("trailer").src = video_src;
+  }
+  else{
+    document.getElementById("trailer").src = "\..\\..\\assets\\image\\video-placeholder.jpg"
+  }
   document.getElementById('Descrizione').textContent = data['plot'];
 }
 
