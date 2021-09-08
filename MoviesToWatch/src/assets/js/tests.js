@@ -132,8 +132,10 @@ async function getNomeFilm( nome) {
 
 
 async function GetFullCredits() {
+  var idFilm = window.location.pathname
+  idFilm = idFilm.substring(idFilm.length - 9)
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=';
-  const response1 = await fetch(this.indirizzo + 'tt1853728', {
+  const response1 = await fetch(this.indirizzo + idFilm, {
     method: "GET",
     headers: {
       'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
@@ -147,10 +149,7 @@ async function GetFullCredits() {
   document.getElementById('anno').textContent = data['base']['year'];
   const {url} = data['base']['image'];
   locandina.src = url;
-  let Direttore = data['crew']['director'][0]['name'];
-  document.getElementById('Regista').textContent = Direttore;
-  urlImmagineRegista = data['crew']['director'][0]['image']['url'];
-  //ImmagineRegista.src=urlImmagineRegista;
+  document.getElementById('Regista').textContent = data['crew']['director'][0]['name'];
 
   const name = [];
   const character = [];
@@ -191,12 +190,12 @@ async function GetFullCredits() {
     //append dell'intera riga nella tabella con id
     document.getElementById("table_cast").appendChild(row);
   }//chiusura ciclo for
-  GetGeneresByID();
+  GetGeneresByID(idFilm);
 }//chiusura GetFullCredits
 
-async function GetGeneresByID(){
+async function GetGeneresByID(idFilm){
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-genres?tconst=';
-  const response = await fetch(this.indirizzo + 'tt1853728', {
+  const response = await fetch(this.indirizzo + idFilm, {
     method: "GET",
     headers:{
       'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
@@ -209,13 +208,13 @@ async function GetGeneresByID(){
     newText = document.createTextNode(data[i] +" ")
     document.getElementById('Generi').append(newText)
   }
-  RicercaPloteTrailereRating();
+  RicercaPloteTrailereRating(idFilm);
 }
 
 
-async function RicercaPloteTrailereRating(){
+async function RicercaPloteTrailereRating(idFilm){
   indirizzo = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/';
-  const response = await fetch(indirizzo + 'tt1853728', {
+  const response = await fetch(indirizzo + idFilm, {
     method: "GET",
     headers: {
       'x-rapidapi-key': '6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03',
@@ -228,30 +227,8 @@ async function RicercaPloteTrailereRating(){
   let video_src = 'https://www.imdb.com/video/imdb/' + data['trailer']['id'] + '/imdb/embed';
   console.log(video_src);
   document.getElementById("trailer").src = video_src;
-  traduciPlot(data['plot']);
+  document.getElementById('Descrizione').textContent = data['plot'];
 }
-
-
-  async function traduciPlot(text) {
-    console.log(text);
-    text.split(' ').join('%20');
-    text.split(',').join('%2C');
-    text.split('?').join('%3F');
-    text.split(':').join('%3A');
-
-    const response3 = await fetch("https://just-translated.p.rapidapi.com/?lang=it&text=" + text, {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "just-translated.p.rapidapi.com",
-        "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25" /*https://rapidapi.com/lebedev.str/api/just-translated/*/
-      }
-    })
-    const translation = await response3.json();
-    console.log(translation);
-    document.getElementById('Descrizione').textContent = translation['text'][0];
-  }
-
-
 
 
 async function GetTopRated() {
@@ -272,10 +249,6 @@ async function GetTopRated() {
   }
   GetFullCreditsTopRated(idFilm);
 }
-
-  function linkSchedainformativa(idFilm) {
-    location.href = '/schedainformativa' + idFilm;
-  }
 
   async function GetFullCreditsTopRated(idFilm) {
     indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
@@ -376,59 +349,24 @@ async function GetTopRated() {
   }
 
 
-/*async function RicercaRating(){
-indirizzo = 'https://imdb8.p.rapidapi.com/title/get-ratings?tconst=';
-const response2 = await fetch(this.indirizzo + 'tt1853728', {
-  method: "GET",
-  headers:{
-    'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
-    'x-rapidapi-host': 'imdb8.p.rapidapi.com'
-  }
+  /*
+async function traduciPlot(text) {
 
-});
-const data = await response2.json();
+  console.log(text);
+  text.split(' ').join('%20');
+  text.split(',').join('%2C');
+  text.split('?').join('%3F');
+  text.split(':').join('%3A');
 
-const {rating}=data;
-document.getElementById('Valutazione').textContent = rating;
-
-RicercaPlot();
-}//RicercaRating
-
-
-
-
-
-async function RicercaPlot() {
-indirizzo = 'https://imdb8.p.rapidapi.com/title/get-plots?tconst=';
-const response = await fetch(this.indirizzo + 'tt1853728', {
-  method: "GET",
-  headers: {
-    'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
-    'x-rapidapi-host': 'imdb8.p.rapidapi.com'
-  }
-
-});
-const data = await response.json();
-const {text} = data['plots'][0];
-console.log(text);
-
-traduciPlot(text);
-} //chiusura RicercaPlot
-
-async function GetTrailer(){
-const response4 = await fetch("https://imdb8.p.rapidapi.com/title/get-videos?tconst=tt1853728&limit=1&region=IT", {
-  "method": "GET",
-  "headers": {
-    "x-rapidapi-host": "imdb8.p.rapidapi.com",
-    "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25"
-  }
-})
-const data = await response4.json();
-const idvideo = data['resource']['videos'][0]['id'];
-let srg = idvideo.substring(9, 21);
-let video_src = 'https://www.imdb.com/video/imdb/' + srg + '/imdb/embed';
-console.log(video_src);
-document.getElementById("trailer").src = video_src;
-
+  const response3 = await fetch("https://just-translated.p.rapidapi.com/?lang=it&text=" + text, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "just-translated.p.rapidapi.com",
+      "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25" https://rapidapi.com/lebedev.str/api/just-translated/
+    }
+  })
+  const translation = await response3.json();
+  console.log(translation);
+  document.getElementById('Descrizione').textContent = translation['text'][0];
 }
 */

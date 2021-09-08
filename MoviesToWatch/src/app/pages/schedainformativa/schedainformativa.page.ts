@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+
+declare function GetFullCredits(): any;
+
 @Component({
   selector: 'app-schedainformativa',
   templateUrl: './schedainformativa.page.html',
@@ -15,6 +18,7 @@ export class SchedainformativaPage implements OnInit {
 
   ngOnInit() {
     this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
+    GetFullCredits()
   }
   linkHome(){
     this.router.navigate(['/home']);
