@@ -81,20 +81,35 @@ ion-content{
     border-radius: 15px;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
 
   .div_domanda{
     position: absolute;
-    top: 40%;
-    border: 5px solid #FFFF00;
+    top: 35%;
+    //border: 5px solid #FFFF00;
     //justify-content: center;
-    margin: auto;
-    width: 65%;
+    //padding: 10px;
+    margin: auto 2% auto 2%;
+    width: 61%;
     text-align: center;
     //height: 100%;
     color: white;
-    font-size: 30px;
+    font-size: 2.5rem;
+    align-items: center;
+    justify-content: center;
   }
+
+  #btn_start{
+    border-radius: 15px;
+    margin: 10px 10px 5px ;
+    background: #db0000;
+    color: #ffffff;
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 15px;
+  }
+
 
   .question-actions_actions{
     display: flex;
