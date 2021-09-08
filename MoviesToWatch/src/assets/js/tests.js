@@ -71,16 +71,18 @@ async function getNomeFilm( nome) {
     lable.id = "lable_ricerca"
     let table = document.createElement("table")
     table.id = "table_ricerca"
-    //let trUnica = document.createElement("tr")
 
     let trTitolo = document.createElement("tr")
     trTitolo.id = "trTitolo_ricerca"
+    let aTitolo = document.createElement("a")
+    aTitolo.id = "aTitolo"
     let tdTitolo = document.createElement("td")
     let tdTitolotext = document.createTextNode(titolo[i])
     tdTitolo.appendChild(tdTitolotext)
-    tdTitolo.id = "tdTitolo_ricerca" + idPerClick[i]
-
-    trTitolo.appendChild(tdTitolo)
+    tdTitolo.id = "tdTitolo_ricerca"
+    aTitolo.href ="http://localhost:8100/schedainformativa/" + idPerClick[i]
+    aTitolo.appendChild(tdTitolo)
+    trTitolo.appendChild(aTitolo)
     table.appendChild(trTitolo)
 
     let trAnno = document.createElement("tr")
@@ -108,9 +110,6 @@ async function getNomeFilm( nome) {
     tdAttori.id = "tdRating_ricerca"
     trAttori.appendChild(tdAttori)
     table.appendChild(trAttori)
-
-    //trUnica.appendChild(tdRating)
-    //table.appendChild(trUnica)
     lable.appendChild(table)
     Item.appendChild(lable)
     ItemSliding.appendChild(Item)
@@ -127,19 +126,9 @@ async function getNomeFilm( nome) {
     ItemOptions.appendChild(ItemOpzione)
     ItemSliding.appendChild(ItemOptions)
 
-
     document.getElementById("risultato").appendChild(ItemSliding)
-
-    document.getElementById('tdTitolo_ricerca' + idPerClick[i]).onclick = function assegnaID(elementid) {
-      window.location.href = "http://localhost:8100/schedainformativa/"    //+ id del film da prendere nel id in html
-    }
-
   }
-
-
 }
-
-
 
 
 async function GetFullCredits() {
@@ -203,8 +192,8 @@ async function GetFullCredits() {
     document.getElementById("table_cast").appendChild(row);
   }//chiusura ciclo for
   GetGeneresByID();
-
 }//chiusura GetFullCredits
+
 async function GetGeneresByID(){
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-genres?tconst=';
   const response = await fetch(this.indirizzo + 'tt1853728', {
@@ -219,7 +208,9 @@ async function GetGeneresByID(){
   for (let i=0; i < data.length ; i++){
     newText = document.createTextNode(data[i] +" ")
     document.getElementById('Generi').append(newText)
-  }RicercaPloteTrailereRating();}
+  }
+  RicercaPloteTrailereRating();
+}
 
 
 async function RicercaPloteTrailereRating(){
