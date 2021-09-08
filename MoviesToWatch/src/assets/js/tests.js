@@ -179,7 +179,7 @@ async function GetFullCredits(idFilm) {
     var cell = document.createElement("td");
     //riempimento cella
     var cellImg= document.createElement("img");
-    cellImg.id= "img_attore2"
+    cellImg.id= "img_attore"
     cellImg.src = UrlImmagineAttore[i];
     cell.style.width="33%";
     //cellImg.style.borderRadius = "50%";

@@ -90,8 +90,27 @@
   }
 }
 
+  a:link {
+    color: #ffffff;
+    text-decoration: none;
+  }
 
-  #img_attore2{
+  a:visited {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #db0000;
+    text-decoration: underline;
+  }
+
+  a:active {
+    color: #db0000;
+    text-decoration: underline;
+  }
+
+  #img_attore{ // scheda informativa
     width: 20%;
     height: auto;
     //border-radius: 50%;

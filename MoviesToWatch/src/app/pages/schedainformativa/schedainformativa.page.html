@@ -34,21 +34,20 @@
 
       <ion-col size="6" size-sm="6">
         <img id="locandina" class="locandina" >
+
+        <div class="add-buttons">
+          <ion-button fill="clear"  class="add-davedere">
+            <ion-icon name="add"></ion-icon>
+            <ion-icon name="time"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear"  class="add-visti">
+            <ion-icon name="add"></ion-icon>
+            <ion-icon name="checkmark-done"></ion-icon>
+          </ion-button>
+        </div>
+
         <table class="table-info">
-          <tr class="tr_button">
-            <td>
-              <div class="add-buttons">
-                <ion-button fill="clear"  class="add-davedere">
-                  <ion-icon name="add"></ion-icon>
-                  <ion-icon name="time"></ion-icon>
-                </ion-button>
-                <ion-button fill="clear"  class="add-visti">
-                  <ion-icon name="add"></ion-icon>
-                  <ion-icon name="checkmark-done"></ion-icon>
-                </ion-button>
-              </div>
-            </td>
-          </tr>
+          <!-- <tr class="tr_button"></tr>-->
           <tr class="row-border">
             <td class="td_info_Titolo">
               Titolo
@@ -111,7 +110,7 @@
             </td>
             <td>
               <iframe class="iframe_trailer" id="trailer"
-                      frameborder="0" allowfullscreen>
+                      frameborder="0" allowfullscreen controls="controls" autoplay="false">
               </iframe>
             </td>
           </tr>
