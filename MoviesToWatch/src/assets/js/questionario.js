@@ -1,11 +1,11 @@
-domande_array  = [
+domandeGenere  = [
   ["Action" , "Fatti travolgere dall&apos;azione"],
   ["Adventure" , "Pronto per vivere una nuova avventura&quest;"],
   ["Animation" , "Film d&apos;animazione&quest;"],
   ["Biography" , " Ti senti inspirato per una biografia&quest;"],
   ["Comedy" , "Giornata triste&quest; Guarda una commedia"],
   ["Crime" , "Ti piace risolvere crimini&quest;"],
-  ["Documentary" , "Un po&apos; di informazione non fa mai male. Un documentario&quest;"],
+  ["Documentary" , "Un po&apos; di informazione. Un documentario&quest;"],
   ["Drama" , "Dramma&quest; Io amo il dramma"],
   ["Family" , " Giornata in famiglia&quest;"],
   ["Fantasy" , "Nel mood per un fantasy&quest;"],
@@ -20,13 +20,16 @@ domande_array  = [
   ["Sport" , "Film sportivo&quest;"],
   ["Thriller" , "Cosa ne dici di un Thriller"],
   ["War" , "Film di guerra&quest;"],
-  ["Western" , "Un viaggio nel vecchio West&quest;"],
-  ["2020", "2020"],
-  ["2021", "2021"],
-  ["2000", "2000"],
-  ["2005", "2005"],
-  ["1999", "1999"],
-  ["1990", "90'"],
+  ["Western" , "Un viaggio nel vecchio West&quest;"]
+]
+
+domandeVarie = [
+  ["Anno","2020", "2020"],
+  ["Anno", "2021", "2021"],
+  ["Anno", "2000", "2000"],
+  ["Anno", "2005", "2005"],
+  ["Anno", "1999", "1999"],
+  ["Anno", "1990", "90'"],
 ]
 //top rated
 //popolar movies
@@ -49,14 +52,16 @@ function randomUniqueNum(range, outputCount) { // funzione per generare in manie
   return result;
 }
 
-let result
+let result = [];
+let array = [];
 function QuestionarioStart(){
-  let range = domande_array.length;
-  let outputCount = domande_array.length;
-
+  let range = domandeGenere.length;
+  let outputCount = domandeGenere.length;
   result = randomUniqueNum(range, outputCount)
-  console.log(result)
-  document.getElementById("div_domanda").innerHTML = "Questionario Iniziato";
+  array = domandeGenere;
+  console.log(array);
+  //console.log(result)
+  //document.getElementById("div_domanda").innerHTML = "Questionario Iniziato";
   GenerateDomanda()
 }
 
@@ -65,30 +70,39 @@ let i = -1;
 let risposte = [];
 function GenerateDomanda(){
   i++;
-  if(i >= domande_array.length){
+  if(i >= array.length){
     console.log("domande finite");
     document.getElementById("div_domanda").innerHTML = "Domande finite";
     document.getElementById("question-actions_actions").hidden = true;
     return;
   }
   document.getElementById("question-actions_actions").hidden = false;
-  console.log(domande_array);
+  console.log(array);
   console.log(result);
   console.log("i:" + i);
   console.log(result[i]);
-  document.getElementById("div_domanda").innerHTML = domande_array[result[i]][1];
-  risposte[i] = domande_array[result[i]];
+  document.getElementById("div_domanda").innerHTML = array[result[i]][1];
+  risposte[i] = array[result[i]];
   console.log(risposte[i][0]);
 }
 
 let risposteSi = [];
 let countSi = 0;
+let arrayFetch = []
 function ClickSi(){
   console.log("hai premuto si");
   risposteSi[countSi] = risposte[i][0];
   console.log(risposteSi);
   countSi++;
+
+  if(countSi == 2){
+    let range = domandeVarie.length;
+    let outputCount = domandeVarie.length;
+    result = randomUniqueNum(range, outputCount)
+    array = domandeVarie;
+  }
   GenerateDomanda()
+
 }
 
 let risposteNo = [];
