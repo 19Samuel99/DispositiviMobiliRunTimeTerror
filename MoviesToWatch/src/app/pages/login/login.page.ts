@@ -4,7 +4,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
-import {TestService} from '../../services/test.service';
 import firebase from 'firebase';
 
 @Component({
@@ -29,7 +28,7 @@ export class LoginPage implements OnInit {
   validationFormUser: FormGroup;
   data: any;
   constructor(private router: Router, public formbuilder: FormBuilder, public authservice: AuthService,
-              private firestore: AngularFirestore, private nav: NavController, public testservice: TestService) { }
+              private firestore: AngularFirestore, private nav: NavController) { }
 
   ngOnInit() {
     this.validationFormUser = this.formbuilder.group({
