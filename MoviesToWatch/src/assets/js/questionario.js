@@ -95,6 +95,9 @@ function ClickSi(){
   console.log(risposteSi);
   countSi++;
 
+  let genere = risposte[i][0]
+  GetPopularMoviesByGenre(genere)
+
   if(countSi == 2){
     let range = domandeVarie.length;
     let outputCount = domandeVarie.length;
@@ -125,4 +128,64 @@ function ClickSkip(){
   GenerateDomanda()
 }
 
+async function GetPopularMoviesByGenre(genere){
+  const response = await fetch("https://imdb8.p.rapidapi.com/title/get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2F" + genere , {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "imdb8.p.rapidapi.com",
+      "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+    }
+  })
+  const data = await response.json();
+  console.log(data)
+  const idFilm = [];
+  let idDaModificare
+  for (let i = 0; i < data.length; i++) {
+    idDaModificare = data[i]
+    idDaModificare = idDaModificare.substring(7, (idDaModificare.length - 1) )
+    idFilm[i] = idDaModificare;
+    console.log(idFilm[i]);
+  }
+  FilmData(idFilm)
+}
 
+
+async function FilmData(idFilm) {
+  indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
+  const IdImmagine = [];
+  const titolo = [];
+  const anno = [];
+  const rating = [];
+  const lunghezza = [];
+  let arrayFilm = [];
+  for (let i = 0; i < idFilm.length; i++) {
+    const response = await fetch(indirizzo + idFilm[i], {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+      }
+
+    })
+    const data = await response.json();
+    console.log(data);
+    if(true) {
+      titolo[i] = data['title'];
+    }
+    anno[i] = data['year'];
+    IdImmagine[i] = data['poster'];
+    rating[i] = data['rating'];
+    lunghezza[i] = data['length']
+
+    arrayFilm = [
+      [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ]
+    ]
+
+
+  }
+  console.log(arrayFilm)
+}
+//cast
+//anno
+//lunghezza
+//rating
