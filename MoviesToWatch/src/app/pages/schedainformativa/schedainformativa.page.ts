@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 declare function GetFullCredits(idFilm): any;
+// eslint-disable-next-line @typescript-eslint/naming-convention
+declare function updateArrayDaVedere(idFilm): any;
 
 @Component({
   selector: 'app-schedainformativa',
@@ -41,6 +43,9 @@ export class SchedainformativaPage implements OnInit {
     this.router.navigate(['/ricerca']);
   }
   addDaVedere(){
-    this.router.navigate(['/davedere']);
+    //this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    //updateArrayDaVedere(idFilm);
+    this.router.navigate(['/ricerca']);
   }
 }

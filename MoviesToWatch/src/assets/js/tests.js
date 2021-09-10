@@ -1,4 +1,4 @@
-import firebase from "firebase";
+//import firebase from "firebase";
 
 async function getNomeFilm( nome) {
   document.getElementById('risultato').innerHTML = ""
@@ -7,11 +7,11 @@ async function getNomeFilm( nome) {
   const response = await fetch(this.indirizzo + nome, {
     method: "GET",
     headers: {
-      'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
+      'x-rapidapi-key': '0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
 
-  });
+    });
 
   document.getElementById("risultato").hidden = false;
 
@@ -125,6 +125,7 @@ async function getNomeFilm( nome) {
     ItemOpzione.appendChild(IconTime)
     let ItemOpzioneText = document.createTextNode("Aggiungi a Film da Vedere")
     ItemOpzione.appendChild(ItemOpzioneText)
+    //ItemOpzione.click(updateArrayDaVedere(idPerClick[i]))
     ItemOptions.appendChild(ItemOpzione)
     ItemSliding.appendChild(ItemOptions)
 
@@ -138,7 +139,7 @@ async function GetFullCredits(idFilm) {
   const response1 = await fetch(this.indirizzo + idFilm, {
     method: "GET",
     headers: {
-      'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
+      'x-rapidapi-key': '0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
   });
@@ -213,7 +214,7 @@ async function GetGeneresByID(idFilm){
   const response = await fetch(this.indirizzo + idFilm, {
     method: "GET",
     headers:{
-      'x-rapidapi-key': '5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25',
+      'x-rapidapi-key': '0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
   });
@@ -256,7 +257,7 @@ async function GetTopRated() {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25"
+      "x-rapidapi-key": "0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e"
     }
   })
   const data = await response.json();
@@ -385,7 +386,7 @@ async function traduciPlot(text) {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "just-translated.p.rapidapi.com",
-      "x-rapidapi-key": "5b03057532msh710fb8c58bfec33p168690jsn356d6c9b7c25" https://rapidapi.com/lebedev.str/api/just-translated/
+      "x-rapidapi-key": "0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e" https://rapidapi.com/lebedev.str/api/just-translated/
     }
   })
   const translation = await response3.json();
@@ -395,8 +396,4 @@ async function traduciPlot(text) {
 */
 
 
-async function updateArrayDaVedere(idFilm) {
-  await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).update({
-    davedere: idFilm
-  });
-}
+
