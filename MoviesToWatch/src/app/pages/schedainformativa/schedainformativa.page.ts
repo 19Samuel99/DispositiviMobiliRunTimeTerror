@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 declare function GetFullCredits(idFilm): any;
 
 @Component({
@@ -18,7 +19,7 @@ export class SchedainformativaPage implements OnInit {
 
   ngOnInit() {
     this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
-    GetFullCredits(this.idFilm)
+    GetFullCredits(this.idFilm);
   }
   linkHome(){
     this.router.navigate(['/home']);
