@@ -1,3 +1,5 @@
+import firebase from "firebase";
+
 async function getNomeFilm( nome) {
   document.getElementById('risultato').innerHTML = ""
   indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
@@ -391,3 +393,10 @@ async function traduciPlot(text) {
   document.getElementById('Descrizione').textContent = translation['text'][0];
 }
 */
+
+
+async function updateArrayDaVedere(idFilm) {
+  await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).update({
+    davedere: idFilm
+  });
+}

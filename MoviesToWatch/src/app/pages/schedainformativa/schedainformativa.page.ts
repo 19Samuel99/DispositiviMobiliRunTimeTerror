@@ -40,4 +40,7 @@ export class SchedainformativaPage implements OnInit {
   linkRicerca(){
     this.router.navigate(['/ricerca']);
   }
+  addDaVedere(){
+    this.router.navigate(['/davedere']);
+  }
 }

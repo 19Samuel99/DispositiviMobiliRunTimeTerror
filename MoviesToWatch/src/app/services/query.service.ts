@@ -18,7 +18,7 @@ export class QueryService {
   }
   async updateArrayDaVedere(idFilm) {
     await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).update({
-      davedere: []
+      davedere: [idFilm]
     });
   }
 }
