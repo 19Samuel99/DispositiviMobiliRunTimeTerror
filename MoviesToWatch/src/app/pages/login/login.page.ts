@@ -71,7 +71,9 @@ export class LoginPage implements OnInit {
               console.log('non esiste');
               this.firestore.doc(`Utenti/${this.authservice.getUID()}`).set({
                 name: resp.user.displayName,
-                email: resp.user.email
+                email: resp.user.email,
+                giavisti: [],
+                davedere: []
               });
               this.nav.navigateForward(['areautente']);
             }
