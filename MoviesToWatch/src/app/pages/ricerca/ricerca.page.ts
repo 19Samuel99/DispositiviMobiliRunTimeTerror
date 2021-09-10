@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {TestService} from '../../services/test.service';
 
 @Component({
   selector: 'app-ricerca',
@@ -11,7 +10,7 @@ export class RicercaPage implements OnInit {
 
   myInput = '';
 
-  constructor(private router: Router, public testservice: TestService,) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
