@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import firebase from 'firebase/app';
+import 'firebase/app';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 declare function GetFullCredits(idFilm): any;
-// eslint-disable-next-line @typescript-eslint/naming-convention
-declare function updateArrayDaVedere(idFilm): any;
 
 @Component({
   selector: 'app-schedainformativa',
@@ -15,7 +17,9 @@ declare function updateArrayDaVedere(idFilm): any;
 export class SchedainformativaPage implements OnInit {
 
   idFilm = null;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute , private firestore: AngularFirestore,
+  public auth: AngularFireAuth) {
 
   }
 
@@ -23,29 +27,38 @@ export class SchedainformativaPage implements OnInit {
     this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
     GetFullCredits(this.idFilm);
   }
-  linkHome(){
+
+  linkHome() {
     this.router.navigate(['/home']);
   }
 
-  linkFilmvisti(){
+  linkFilmvisti() {
     this.router.navigate(['/giavisti']);
   }
 
-  linkFilmdavedere(){
+  linkFilmdavedere() {
     this.router.navigate(['/davedere']);
   }
 
-  linkAreautente(){
+  linkAreautente() {
     this.router.navigate(['/areautente']);
   }
 
-  linkRicerca(){
+  linkRicerca() {
     this.router.navigate(['/ricerca']);
   }
-  addDaVedere(){
-    //this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    //updateArrayDaVedere(idFilm);
-    this.router.navigate(['/ricerca']);
+
+  async addDaVedere() {
+    this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
+    await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).update({
+      davedere: firebase.firestore.FieldValue.arrayUnion( this.idFilm )
+    });
   }
+  async addGiaVisti() {
+    this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
+    await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).update({
+      giavisti: firebase.firestore.FieldValue.arrayUnion( this.idFilm )
+    });
+  }
+
 }

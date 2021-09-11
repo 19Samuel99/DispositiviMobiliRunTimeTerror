@@ -116,19 +116,6 @@ async function getNomeFilm( nome) {
     Item.appendChild(lable)
     ItemSliding.appendChild(Item)
 
-    let ItemOptions = document.createElement("ion-item-options")
-    ItemOptions.id = "ItemOptions_ricerca"
-    let ItemOpzione = document.createElement("ion-item-option")
-    ItemOpzione.id = "ItemOpzione_ricerca"
-    let IconTime = document.createElement("ion-icon")
-    IconTime.name = "time"
-    ItemOpzione.appendChild(IconTime)
-    let ItemOpzioneText = document.createTextNode("Aggiungi a Film da Vedere")
-    ItemOpzione.appendChild(ItemOpzioneText)
-    //ItemOpzione.click(updateArrayDaVedere(idPerClick[i]))
-    ItemOptions.appendChild(ItemOpzione)
-    ItemSliding.appendChild(ItemOptions)
-
     document.getElementById("risultato").appendChild(ItemSliding)
   }
 }
