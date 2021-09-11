@@ -159,7 +159,7 @@ async function GetFullCredits(idFilm) {
       UrlImmagineAttore[i] = data['cast'][i]['image']['url'];
     }
     else {
-      UrlImmagineAttore[i].src= "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
+      UrlImmagineAttore[i] = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
     }
     //creazione riga
     var row = document.createElement("tr");
