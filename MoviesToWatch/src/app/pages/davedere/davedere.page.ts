@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import 'firebase/app';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
+declare function creaFilmDaVedere(idFilm): any;
 @Component({
   selector: 'app-davedere',
   templateUrl: './davedere.page.html',
@@ -16,7 +17,7 @@ export class DavederePage implements OnInit {
               public auth: AngularFireAuth) { }
 
   ngOnInit() {
-    this.controllaDaVedere()
+    this.controllaDaVedere();
   }
   linkHome(){
     this.router.navigate(['/home']);
@@ -40,22 +41,23 @@ export class DavederePage implements OnInit {
   linkSchedainformativa(){
     this.router.navigate(['/schedainformativa']);
   }
-   async controllaDaVedere() {
-let arraiDiID = []
-     const promise = this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).get()
-     promise.toPromise().then(snapshot =>{
-       const data = snapshot.data()
-       console.log(data)
-       for(let i = 0; i< data['davedere'].length; i++){
-         arraiDiID[i] = data['davedere'][i]
-       console.log(arraiDiID[i])
-         console.log(arraiDiID)
-     }
-       console.log('questo è array fuori dal ciclo', arraiDiID)
+  async controllaDaVedere() {
+      const arraiDiID = [];
+      const promise = this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).get();
+      promise.toPromise().then(snapshot =>{
+        const data = snapshot.data();
+        console.log(data);
+        for(let i = 0; i< data['davedere'].length; i++){
+          arraiDiID[i] = data['davedere'][i];
+          console.log(arraiDiID[i]);
+          console.log(arraiDiID);
+        }
+        console.log('questo è array fuori dal ciclo', arraiDiID);
+        creaFilmDaVedere(arraiDiID);
 
-     })
+     });
 
-       }
+  }
 
 }
   //return await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).get().subscribe(snapshot=> console.log('document data:' , snapshot.data()))

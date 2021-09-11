@@ -1,5 +1,3 @@
-//import firebase from "firebase";
-
 async function getNomeFilm( nome) {
   document.getElementById('risultato').innerHTML = ""
   indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
@@ -360,7 +358,7 @@ async function GetTopRated() {
   }
 
 
-  /*
+  /* TRADUCE IL PLOT
 async function traduciPlot(text) {
 
   console.log(text);
@@ -382,5 +380,165 @@ async function traduciPlot(text) {
 }
 */
 
+async function creaFilmGiaVisti(idFilm) {
+  const immagine = [];
+  const titolo = [];
+  const anno = [];
+  const rating = [];
+  const attori = [];
+  console.log(idFilm);
+  indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
+  for (let i = 0; i < idFilm.length; i++) {
+    const response = await fetch(indirizzo + idFilm[i], {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+      }
+    })
+    const data = await response.json();
+    console.log(data);
 
+    titolo[i] = data['title'];
+    anno[i] = data['year'];
+    immagine[i] = data['poster'];
+    rating[i] = data['rating'];
+    attori[i] = data['cast'][i]['actor'];
+
+    let ItemSliding = document.createElement("ion-item-sliding")
+    ItemSliding.src = "ItemSliding_film"
+    let Item = document.createElement("ion-item")
+    let thumbnail = document.createElement("ion-thumbnail")
+    thumbnail.id = "thumbnail_film"
+    let img = document.createElement("img")
+    img.src = immagine[i];
+    img.id = "locandina_film"
+    thumbnail.appendChild(img)
+    Item.appendChild(thumbnail)
+
+    let lable = document.createElement("ion-label")
+    lable.id = "lable_film"
+    let table = document.createElement("table")
+    table.id = "table_film"
+
+    let trTitolo = document.createElement("tr")
+    trTitolo.id = "trTitolo_film"
+    let aTitolo = document.createElement("a")
+    aTitolo.id = "aTitolo"
+    let tdTitolo = document.createElement("td")
+    let tdTitolotext = document.createTextNode(titolo[i])
+    tdTitolo.appendChild(tdTitolotext)
+    tdTitolo.id = "tdTitolo_film"
+    aTitolo.href = "http://localhost:8100/schedainformativa/" + idFilm[i]
+    aTitolo.appendChild(tdTitolo)
+    trTitolo.appendChild(aTitolo)
+    table.appendChild(trTitolo)
+
+    let trAnno = document.createElement("tr")
+    let tdAnno = document.createElement("td")
+    let tdAnnoText = document.createTextNode(anno[i])
+    tdAnno.appendChild(tdAnnoText)
+    tdAnno.id = "tdAnno_film"
+    trAnno.appendChild(tdAnno)
+    table.appendChild(trAnno)
+
+    let trAttori = document.createElement("tr")
+    let tdAttori = document.createElement("td")
+    let tdattore0 = document.createTextNode(attori[0])
+    tdAttori.appendChild(tdattore0)
+    let tdattore1 = document.createTextNode(", " + attori[1])
+    tdAttori.appendChild(tdattore1)
+    let tdattore2 = document.createTextNode(", " + attori[2])
+    tdAttori.appendChild(tdattore2)
+    tdAttori.id = "tdRating_film"
+    trAttori.appendChild(tdAttori)
+    table.appendChild(trAttori)
+    lable.appendChild(table)
+    Item.appendChild(lable)
+    ItemSliding.appendChild(Item)
+
+    document.getElementById("lista_filmGiaVisti").appendChild(ItemSliding);
+  }
+}
+
+async function creaFilmDaVedere(idFilm) {
+  const immagine = [];
+  const titolo = [];
+  const anno = [];
+  const rating = [];
+  const attori = [];
+  console.log(idFilm);
+  indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
+  for (let i = 0; i < idFilm.length; i++) {
+    const response = await fetch(indirizzo + idFilm[i], {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+      }
+    })
+    const data = await response.json();
+    console.log(data);
+
+    titolo[i] = data['title'];
+    anno[i] = data['year'];
+    immagine[i] = data['poster'];
+    rating[i] = data['rating'];
+    attori[i] = data['cast'][i]['actor'];
+
+    let ItemSliding = document.createElement("ion-item-sliding")
+    ItemSliding.src = "ItemSliding_film"
+    let Item = document.createElement("ion-item")
+    let thumbnail = document.createElement("ion-thumbnail")
+    thumbnail.id = "thumbnail_film"
+    let img = document.createElement("img")
+    img.src = immagine[i];
+    img.id = "locandina_film"
+    thumbnail.appendChild(img)
+    Item.appendChild(thumbnail)
+
+    let lable = document.createElement("ion-label")
+    lable.id = "lable_film"
+    let table = document.createElement("table")
+    table.id = "table_film"
+
+    let trTitolo = document.createElement("tr")
+    trTitolo.id = "trTitolo_film"
+    let aTitolo = document.createElement("a")
+    aTitolo.id = "aTitolo"
+    let tdTitolo = document.createElement("td")
+    let tdTitolotext = document.createTextNode(titolo[i])
+    tdTitolo.appendChild(tdTitolotext)
+    tdTitolo.id = "tdTitolo_film"
+    aTitolo.href = "http://localhost:8100/schedainformativa/" + idFilm[i]
+    aTitolo.appendChild(tdTitolo)
+    trTitolo.appendChild(aTitolo)
+    table.appendChild(trTitolo)
+
+    let trAnno = document.createElement("tr")
+    let tdAnno = document.createElement("td")
+    let tdAnnoText = document.createTextNode(anno[i])
+    tdAnno.appendChild(tdAnnoText)
+    tdAnno.id = "tdAnno_film"
+    trAnno.appendChild(tdAnno)
+    table.appendChild(trAnno)
+
+    let trAttori = document.createElement("tr")
+    let tdAttori = document.createElement("td")
+    let tdattore0 = document.createTextNode(attori[0])
+    tdAttori.appendChild(tdattore0)
+    let tdattore1 = document.createTextNode(", " + attori[1])
+    tdAttori.appendChild(tdattore1)
+    let tdattore2 = document.createTextNode(", " + attori[2])
+    tdAttori.appendChild(tdattore2)
+    tdAttori.id = "tdRating_film"
+    trAttori.appendChild(tdAttori)
+    table.appendChild(trAttori)
+    lable.appendChild(table)
+    Item.appendChild(lable)
+    ItemSliding.appendChild(Item)
+
+    document.getElementById("lista_filmDaVedere").appendChild(ItemSliding);
+  }
+}
 

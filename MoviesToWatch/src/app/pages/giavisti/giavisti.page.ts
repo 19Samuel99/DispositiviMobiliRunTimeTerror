@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import 'firebase/app';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
+declare function creaFilmGiaVisti(idFilm): any;
 @Component({
   selector: 'app-giavisti',
   templateUrl: './giavisti.page.html',
@@ -16,7 +17,7 @@ export class GiavistiPage implements OnInit {
               public auth: AngularFireAuth) { }
 
   ngOnInit() {
-    this.controllaGiaVisti()
+    this.controllaGiaVisti();
   }
   linkHome(){
     this.router.navigate(['/home']);
@@ -41,19 +42,19 @@ export class GiavistiPage implements OnInit {
     this.router.navigate(['/schedainformativa']);
   }
   async controllaGiaVisti() {
-    let arraiDiID = []
+    let arraiDiID = [];
     const promise = this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).get()
     promise.toPromise().then(snapshot =>{
-      const data = snapshot.data()
-      console.log(data)
+      const data = snapshot.data();
+      console.log(data);
       for(let i = 0; i< data['giavisti'].length; i++){
-        arraiDiID[i] = data['giavisti'][i]
-        console.log(arraiDiID[i])
-        console.log(arraiDiID)
+        arraiDiID[i] = data['giavisti'][i];
+        console.log(arraiDiID[i]);
+        console.log(arraiDiID);
       }
       console.log('questo è array fuori dal ciclo', arraiDiID)
-
-    })
+      creaFilmGiaVisti(arraiDiID);
+    });
 
   }
 }
