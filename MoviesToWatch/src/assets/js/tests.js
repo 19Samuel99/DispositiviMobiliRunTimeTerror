@@ -403,7 +403,9 @@ async function creaFilmGiaVisti(idFilm) {
     anno[i] = data['year'];
     immagine[i] = data['poster'];
     rating[i] = data['rating'];
-    attori[i] = data['cast'][i]['actor'];
+    for (let j = 0; j< 3 ; j++){
+      attori[j] = data['cast'][j]['actor'];
+    }
 
     let ItemSliding = document.createElement("ion-item-sliding")
     ItemSliding.src = "ItemSliding_film"
@@ -484,7 +486,9 @@ async function creaFilmDaVedere(idFilm) {
     anno[i] = data['year'];
     immagine[i] = data['poster'];
     rating[i] = data['rating'];
-    attori[i] = data['cast'][i]['actor'];
+    for (let j = 0; j< 3 ; j++){
+      attori[j] = data['cast'][j]['actor'];
+    }
 
     let ItemSliding = document.createElement("ion-item-sliding")
     ItemSliding.src = "ItemSliding_film"
