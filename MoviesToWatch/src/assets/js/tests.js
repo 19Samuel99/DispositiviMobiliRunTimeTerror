@@ -1,3 +1,8 @@
+function delay(){
+  setTimeout(function(){
+   window.location.href='http://localhost:8100/login/'
+},300);}
+
 async function getNomeFilm( nome) {
   document.getElementById('risultato').innerHTML = ""
   indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
