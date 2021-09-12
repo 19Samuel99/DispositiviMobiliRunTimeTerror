@@ -92,21 +92,20 @@ function GenerateDomanda(){
 
 let risposteSi = [];
 let countSi = 0;
-let arrayFetch = []
 function ClickSi(){
   console.log("hai premuto si");
   risposteSi[countSi] = risposte[i][1];
-  console.log(risposteSi);
-  countSi++;
+  console.log('questo è il consol log di rispostesi', risposteSi[countSi]);
 
-  let tipo = risposte[i][0];
-  let varieta = risposteSi;
-
-  if( tipo = "Genere"){
-    GetPopularMoviesByGenre(varieta)
+  if( risposte[i][0] === "Genere"){
+    GetPopularMoviesByGenre(risposteSi[countSi])
+  }
+  if( risposte[i][0] === "Anno"){
+    filterByAnno(risposteSi[countSi])
   }
 
-  if(countSi == 2){
+  countSi++;
+  if(countSi === 2){
     let range = domandeVarie.length;
     let outputCount = domandeVarie.length;
     result = randomUniqueNum(range, outputCount)
@@ -167,7 +166,7 @@ async function FilmData(idFilm) {
   const anno = [];
   const rating = [];
   const lunghezza = [];
-  for (let i = 0; i < idFilm.length; i++) {
+  for (let i = 60; i < idFilm.length; i++) {
     const response = await fetch(indirizzo + idFilm[i], {
       "method": "GET",
       "headers": {
@@ -178,7 +177,7 @@ async function FilmData(idFilm) {
     })
     const data = await response.json();
     console.log(data);
-    if(data['title'] == "") {
+    if(data['title'] === "") {
       continue;
     }
     titolo[i] = data['title'];
@@ -194,6 +193,26 @@ async function FilmData(idFilm) {
 
   }
   console.log(arrayFilm)
+  console.log('arrayFilm[0]',arrayFilm[0])
+  console.log('arrayFilm[0][0][0]',arrayFilm[0][0][0])
+  console.log('arrayFilm[0][2][0]',arrayFilm[0][0][2])
+}
+
+
+function filterByAnno(Anno){
+  const lunghezzaArray = arrayFilm.length
+  for(let i=0; i< lunghezzaArray; i++){
+if( (arrayFilm[i][0][2]>= Anno)  && (arrayFilm[i][0][2]<= (Anno + 10))){
+
+}
+else{
+  console.log('consollog di array film',arrayFilm)
+  console.log('consollog di array film i[0]',arrayFilm[i][0])
+  arrayFilm[i].splice(0, 1)
+  console.log('consollog di array film di i[0]',arrayFilm[i][0])
+}
+  }console.log('consollog di array film ',arrayFilm)
+
 }
 //cast
 //anno

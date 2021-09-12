@@ -389,7 +389,6 @@ async function creaFilmGiaVisti(idFilm) {
   const immagine = [];
   const titolo = [];
   const anno = [];
-  const rating = [];
   const attori = [];
   console.log(idFilm);
   indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
@@ -407,7 +406,6 @@ async function creaFilmGiaVisti(idFilm) {
     titolo[i] = data['title'];
     anno[i] = data['year'];
     immagine[i] = data['poster'];
-    rating[i] = data['rating'];
     for (let j = 0; j< 3 ; j++){
       attori[j] = data['cast'][j]['actor'];
     }
@@ -472,7 +470,6 @@ async function creaFilmDaVedere(idFilm) {
   const immagine = [];
   const titolo = [];
   const anno = [];
-  const rating = [];
   const attori = [];
   console.log(idFilm);
   indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
@@ -490,7 +487,6 @@ async function creaFilmDaVedere(idFilm) {
     titolo[i] = data['title'];
     anno[i] = data['year'];
     immagine[i] = data['poster'];
-    rating[i] = data['rating'];
     for (let j = 0; j< 3 ; j++){
       attori[j] = data['cast'][j]['actor'];
     }
