@@ -386,6 +386,16 @@ async function traduciPlot(text) {
 */
 
 async function creaFilmGiaVisti(idFilm) {
+  if(!idFilm.length){
+    document.getElementById("giavisti_non_presente").hidden = false;
+    document.getElementById("lista_filmGiaVisti").hidden = true;
+    return;
+  }
+  else {
+    document.getElementById("giavisti_non_presente").hidden = true;
+    document.getElementById("lista_filmGiaVisti").hidden = false;
+  }
+
   const immagine = [];
   const titolo = [];
   const anno = [];
@@ -467,6 +477,15 @@ async function creaFilmGiaVisti(idFilm) {
 }
 
 async function creaFilmDaVedere(idFilm) {
+  if(!idFilm.length){
+    document.getElementById("davedere_non_presente").hidden = false;
+    document.getElementById("lista_filmDaVedere").hidden = true;
+    return;
+  }
+  else {
+    document.getElementById("davedere_non_presente").hidden = true;
+    document.getElementById("lista_filmDaVedere").hidden = false;
+  }
   const immagine = [];
   const titolo = [];
   const anno = [];
