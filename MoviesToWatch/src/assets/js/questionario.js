@@ -157,7 +157,7 @@ async function GetPopularMoviesByGenre(genere){
   }
   FilmData(idFilm)
 }
-
+let j = 0
 let arrayFilm = [];
 async function FilmData(idFilm) {
   indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
@@ -166,7 +166,8 @@ async function FilmData(idFilm) {
   const anno = [];
   const rating = [];
   const lunghezza = [];
-  for (let i = 60; i < idFilm.length; i++) {
+
+  for (let i = 20; i < 35 /*idFilm.length*/; i++) {
     const response = await fetch(indirizzo + idFilm[i], {
       "method": "GET",
       "headers": {
@@ -186,31 +187,47 @@ async function FilmData(idFilm) {
     rating[i] = data['rating'];
     lunghezza[i] = data['length']
 
-    arrayFilm.push( [
+    arrayFilm[j] =
       [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ]
-    ]);
+    ;
 
-
+j++
   }
   console.log(arrayFilm)
-  console.log('arrayFilm[0]',arrayFilm[0])
-  console.log('arrayFilm[0][0][0]',arrayFilm[0][0][0])
-  console.log('arrayFilm[0][2][0]',arrayFilm[0][0][2])
 }
-
-
+/*   arrayfilm[5]    arrayfilm[6]    arrayfilm[7]   arrayfilm[8]   */
 function filterByAnno(Anno){
-  const lunghezzaArray = arrayFilm.length
-  for(let i=0; i< lunghezzaArray; i++){
-if( (arrayFilm[i][0][2]>= Anno)  && (arrayFilm[i][0][2]<= (Anno + 10))){
-
+  var integer = parseInt(Anno, 10);
+  const annopiudieci= integer + 10
+  console.log('il tuo anno è', integer ,'anno più 10', annopiudieci)
+  for(let i=0; i< arrayFilm.length;){
+if( (arrayFilm[i][2]>= integer)  && (arrayFilm[i][2]<= annopiudieci)){
+  i++
 }
 else{
-  console.log('consollog di array film',arrayFilm)
-  console.log('consollog di array film i[0]',arrayFilm[i][0])
-  arrayFilm[i].splice(0, 1)
-  console.log('consollog di array film di i[0]',arrayFilm[i][0])
+  console.log('consollog di array film i',arrayFilm[i])
+  arrayFilm.splice(i, 1)
+  console.log('consollog di array film di i',arrayFilm[i])
+
 }
+  }console.log('consollog di array film ',arrayFilm)
+
+}
+
+function filterByAnnoNo(Anno){
+  var integer = parseInt(Anno, 10);
+  const annopiudieci= integer + 10
+  console.log('il tuo anno è', integer ,'anno più 10', annopiudieci)
+  for(let i=0; i< arrayFilm.length;){
+    if( (arrayFilm[i][2]<= integer)  && (arrayFilm[i][2]>= annopiudieci)){
+      i++
+    }
+    else{
+      console.log('consollog di array film i',arrayFilm[i])
+      arrayFilm.splice(i, 1)
+      console.log('consollog di array film di i',arrayFilm[i])
+
+    }
   }console.log('consollog di array film ',arrayFilm)
 
 }
