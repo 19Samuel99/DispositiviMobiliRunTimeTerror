@@ -1,26 +1,26 @@
 domandeGenere  = [
-  ["Genere", "Action" , "Fatti travolgere dall&apos;azione"],
-  ["Genere", "Adventure" , "Pronto per vivere una nuova avventura&quest;"],
-  ["Genere", "Animation" , "Film d&apos;animazione&quest;"],
-  ["Genere", "Biography" , " Ti senti inspirato per una biografia&quest;"],
-  ["Genere", "Comedy" , "Giornata triste&quest; Guarda una commedia"],
-  ["Genere", "Crime" , "Ti piace risolvere crimini&quest;"],
-  ["Genere", "Documentary" , "Un po&apos; di informazione. Un documentario&quest;"],
-  ["Genere", "Drama" , "Dramma&quest; Io amo il dramma"],
-  ["Genere", "Family" , " Giornata in famiglia&quest;"],
-  ["Genere", "Fantasy" , "Nel mood per un fantasy&quest;"],
-  ["Genere", "FilmNoir" , "Che ne dici di un Noir&quest;"],
-  ["Genere", "History" , "Voglia di storia&quest;"],
-  ["Genere", "Horror" , "Qualcosa di spaventoso&quest;"],
-  ["Genere", "Music" , "Un po&apos; di musica&quest;"],
-  ["Genere", "Musical" , "Guarda un musical"],
-  ["Genere", "Mystery" , "Risolviamo un mistero"],
-  ["Genere", "Romance" , "Il romanticismo &egrave; nell&apos;aria "],
-  ["Genere", "SciFi" , "Entra nel mondo dei film di fantascienza."],
-  ["Genere", "Sport" , "Film sportivo&quest;"],
-  ["Genere", "Thriller" , "Cosa ne dici di un Thriller"],
-  ["Genere", "War" , "Film di guerra&quest;"],
-  ["Genere", "Western" , "Un viaggio nel vecchio West&quest;"]
+  ["Genere", "action" , "Fatti travolgere dall&apos;azione"],
+  ["Genere", "adventure" , "Pronto per vivere una nuova avventura&quest;"],
+  ["Genere", "animation" , "Film d&apos;animazione&quest;"],
+  ["Genere", "biography" , " Ti senti inspirato per una biografia&quest;"],
+  ["Genere", "comedy" , "Giornata triste&quest; Guarda una commedia"],
+  ["Genere", "crime" , "Ti piace risolvere crimini&quest;"],
+  ["Genere", "documentary" , "Un po&apos; di informazione. Un documentario&quest;"],
+  ["Genere", "drama" , "Dramma&quest; Io amo il dramma"],
+  ["Genere", "family" , " Giornata in famiglia&quest;"],
+  ["Genere", "fantasy" , "Nel mood per un fantasy&quest;"],
+  ["Genere", "film_noir" , "Che ne dici di un Noir&quest;"],
+  ["Genere", "history" , "Voglia di storia&quest;"],
+  ["Genere", "horror" , "Qualcosa di spaventoso&quest;"],
+  ["Genere", "music" , "Un po&apos; di musica&quest;"],
+  ["Genere", "musical" , "Guarda un musical"],
+  ["Genere", "mystery" , "Risolviamo un mistero"],
+  ["Genere", "romance" , "Il romanticismo &egrave; nell&apos;aria "],
+  ["Genere", "sci_fi" , "Entra nel mondo dei film di fantascienza."],
+  ["Genere", "sport" , "Film sportivo&quest;"],
+  ["Genere", "thriller" , "Cosa ne dici di un Thriller"],
+  ["Genere", "war" , "Film di guerra&quest;"],
+  ["Genere", "western" , "Un viaggio nel vecchio West&quest;"]
 ]
 
 domandeVarie = [
@@ -77,13 +77,17 @@ function GenerateDomanda(){
     return;
   }
   document.getElementById("question-actions_actions").hidden = false;
-  console.log(array);
+ /* console.log(array);
   console.log(result);
   console.log("i:" + i);
-  console.log(result[i]);
+  console.log(result[i]);*/
   document.getElementById("div_domanda").innerHTML = array[result[i]][2];
   risposte[i] = array[result[i]];
-  console.log(risposte[i][0]);
+
+  console.log('risposte[i][0]',risposte[i][0]);
+  console.log('risposte[i]',risposte[i])
+  console.log('risposte',risposte)
+  console.log('result[i]',result[i])
 }
 
 let risposteSi = [];
@@ -155,7 +159,7 @@ async function GetPopularMoviesByGenre(genere){
   FilmData(idFilm)
 }
 
-
+let arrayFilm = [];
 async function FilmData(idFilm) {
   indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
   const IdImmagine = [];
@@ -163,7 +167,6 @@ async function FilmData(idFilm) {
   const anno = [];
   const rating = [];
   const lunghezza = [];
-  let arrayFilm = [];
   for (let i = 0; i < idFilm.length; i++) {
     const response = await fetch(indirizzo + idFilm[i], {
       "method": "GET",
@@ -175,17 +178,14 @@ async function FilmData(idFilm) {
     })
     const data = await response.json();
     console.log(data);
-    if(true) {
-      titolo[i] = data['title'];
+    if(data['title'] == "") {
+      continue;
     }
+    titolo[i] = data['title'];
     anno[i] = data['year'];
     IdImmagine[i] = data['poster'];
     rating[i] = data['rating'];
     lunghezza[i] = data['length']
-
-    if( titolo[i] == ""){
-      continue;
-    }
 
     arrayFilm.push( [
       [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ]
