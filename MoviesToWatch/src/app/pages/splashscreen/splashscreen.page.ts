@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-declare function delay(): any;
+declare function delayScreen(): any;
 @Component({
   selector: 'app-splashscreen',
   templateUrl: './splashscreen.page.html',
@@ -11,7 +11,7 @@ export class SplashscreenPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    delay();
+    delayScreen();
   }
 
 }

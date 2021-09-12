@@ -1,4 +1,4 @@
-function delay(){
+function delayScreen(){
   setTimeout(function(){
    window.location.href='http://localhost:8100/login/'
 },300);}

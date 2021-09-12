@@ -1,30 +1,30 @@
 domandeGenere  = [
-  ["Action" , "Fatti travolgere dall&apos;azione"],
-  ["Adventure" , "Pronto per vivere una nuova avventura&quest;"],
-  ["Animation" , "Film d&apos;animazione&quest;"],
-  ["Biography" , " Ti senti inspirato per una biografia&quest;"],
-  ["Comedy" , "Giornata triste&quest; Guarda una commedia"],
-  ["Crime" , "Ti piace risolvere crimini&quest;"],
-  ["Documentary" , "Un po&apos; di informazione. Un documentario&quest;"],
-  ["Drama" , "Dramma&quest; Io amo il dramma"],
-  ["Family" , " Giornata in famiglia&quest;"],
-  ["Fantasy" , "Nel mood per un fantasy&quest;"],
-  ["FilmNoir" , "Che ne dici di un Noir&quest;"],
-  ["History" , "Voglia di storia&quest;"],
-  ["Horror" , "Qualcosa di spaventoso&quest;"],
-  ["Music" , "Un po&apos; di musica&quest;"],
-  ["Musical" , "Guarda un musical"],
-  ["Mystery" , "Risolviamo un mistero"],
-  ["Romance" , "Il romanticismo &egrave; nell&apos;aria "],
-  ["SciFi" , "Entra nel mondo dei film di fantascienza."],
-  ["Sport" , "Film sportivo&quest;"],
-  ["Thriller" , "Cosa ne dici di un Thriller"],
-  ["War" , "Film di guerra&quest;"],
-  ["Western" , "Un viaggio nel vecchio West&quest;"]
+  ["Genere", "Action" , "Fatti travolgere dall&apos;azione"],
+  ["Genere", "Adventure" , "Pronto per vivere una nuova avventura&quest;"],
+  ["Genere", "Animation" , "Film d&apos;animazione&quest;"],
+  ["Genere", "Biography" , " Ti senti inspirato per una biografia&quest;"],
+  ["Genere", "Comedy" , "Giornata triste&quest; Guarda una commedia"],
+  ["Genere", "Crime" , "Ti piace risolvere crimini&quest;"],
+  ["Genere", "Documentary" , "Un po&apos; di informazione. Un documentario&quest;"],
+  ["Genere", "Drama" , "Dramma&quest; Io amo il dramma"],
+  ["Genere", "Family" , " Giornata in famiglia&quest;"],
+  ["Genere", "Fantasy" , "Nel mood per un fantasy&quest;"],
+  ["Genere", "FilmNoir" , "Che ne dici di un Noir&quest;"],
+  ["Genere", "History" , "Voglia di storia&quest;"],
+  ["Genere", "Horror" , "Qualcosa di spaventoso&quest;"],
+  ["Genere", "Music" , "Un po&apos; di musica&quest;"],
+  ["Genere", "Musical" , "Guarda un musical"],
+  ["Genere", "Mystery" , "Risolviamo un mistero"],
+  ["Genere", "Romance" , "Il romanticismo &egrave; nell&apos;aria "],
+  ["Genere", "SciFi" , "Entra nel mondo dei film di fantascienza."],
+  ["Genere", "Sport" , "Film sportivo&quest;"],
+  ["Genere", "Thriller" , "Cosa ne dici di un Thriller"],
+  ["Genere", "War" , "Film di guerra&quest;"],
+  ["Genere", "Western" , "Un viaggio nel vecchio West&quest;"]
 ]
 
 domandeVarie = [
-  ["Anno","2020", "2020"],
+  ["Anno", "2020", "2020"],
   ["Anno", "2021", "2021"],
   ["Anno", "2000", "2000"],
   ["Anno", "2005", "2005"],
@@ -81,7 +81,7 @@ function GenerateDomanda(){
   console.log(result);
   console.log("i:" + i);
   console.log(result[i]);
-  document.getElementById("div_domanda").innerHTML = array[result[i]][1];
+  document.getElementById("div_domanda").innerHTML = array[result[i]][2];
   risposte[i] = array[result[i]];
   console.log(risposte[i][0]);
 }
@@ -91,12 +91,16 @@ let countSi = 0;
 let arrayFetch = []
 function ClickSi(){
   console.log("hai premuto si");
-  risposteSi[countSi] = risposte[i][0];
+  risposteSi[countSi] = risposte[i][1];
   console.log(risposteSi);
   countSi++;
 
-  let genere = risposte[i][0]
-  GetPopularMoviesByGenre(genere)
+  let tipo = risposte[i][0];
+  let varieta = risposteSi;
+
+  if( tipo = "Genere"){
+    GetPopularMoviesByGenre(varieta)
+  }
 
   if(countSi == 2){
     let range = domandeVarie.length;
@@ -104,6 +108,8 @@ function ClickSi(){
     result = randomUniqueNum(range, outputCount)
     array = domandeVarie;
   }
+
+
   GenerateDomanda()
 
 }
@@ -177,9 +183,13 @@ async function FilmData(idFilm) {
     rating[i] = data['rating'];
     lunghezza[i] = data['length']
 
-    arrayFilm = [
+    if( titolo[i] == ""){
+      continue;
+    }
+
+    arrayFilm.push( [
       [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ]
-    ]
+    ]);
 
 
   }
