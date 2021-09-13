@@ -57,8 +57,6 @@ domandeGenere  = [
   ["Attore","nm0000204", "Natalie Portman"],
   ["Attore","nm0000113", "Sandra Bullock"],
   ["Attore","nm2933757", "Gal Gadot"]
-
-
 ]
 
 domandeVarie = [
@@ -72,9 +70,8 @@ domandeVarie = [
   ["Durata", "2", "Hai tanto tempo a disposizione&quest;"]
 ]
 domandaRatingeDurata = [
-  ["Rating", "7", "Un film apprezzato dalla critica&quest;"]
+  ["Rating", "7", "Un film apprezzato dalla critica&quest;"],
   ["Durata", "2", "Hai tanto tempo a disposizione&quest;"]
-
 ]
 //top rated
 //popolar movies
@@ -115,7 +112,8 @@ let i = -1;
 let risposte = [];
 function GenerateDomanda(){
   i++;
-  if(i > array.length){
+  console.log("GenerateDomanda i:", i);
+  if(i >= array.length){
     console.log("domande finite");
     document.getElementById("div_domanda").innerHTML = "Domande finite";
     document.getElementById("question-actions_actions").hidden = true;
@@ -123,9 +121,11 @@ function GenerateDomanda(){
   }
   document.getElementById("question-actions_actions").hidden = false;
  /* console.log(array);
-  console.log(result);
   console.log("i:" + i);
-  console.log(result[i]);*/
+  ;*/
+  console.log("result", result);
+  console.log("result[i]", result[i]);
+  console.log("array", array);
   document.getElementById("div_domanda").innerHTML = array[result[i]][2];
   risposte[i] = array[result[i]];
 
@@ -133,8 +133,6 @@ function GenerateDomanda(){
   console.log('risposte[i]',risposte[i])
   console.log('risposte',risposte)
   console.log('result[i]',result[i])
-
-
 }
 
 let risposteSi = [];
@@ -145,7 +143,7 @@ async function ClickSi(){
   risposteSi[countSi] = risposte[i];
   console.log('questo è il consol log di rispostesi', risposteSi[countSi]);
 
-  if( risposteSi[countSi][0] === "Anno"){
+  if(risposteSi[countSi][0] === "Anno"){
     filterByAnno(risposteSi[countSi][1])
   }
   if(risposteSi[countSi][0] === "Rating"){
@@ -154,7 +152,7 @@ async function ClickSi(){
   if(risposteSi[countSi][0] === "Durata"){
     filterByDurataMaggiore()
   }
-  if( risposteSi[countSi][0] === "Genere"){
+  if(risposteSi[countSi][0] === "Genere"){
     await GetPopularMoviesByGenre(risposteSi[countSi][1])
     let range = domandeVarie.length;
     let outputCount = domandeVarie.length;
@@ -163,7 +161,7 @@ async function ClickSi(){
     i=-1
   }
   if(risposteSi[countSi][0] === "Attore"){
-   await getAllFilmography(risposteSi[countSi][1])
+    await getAllFilmography(risposteSi[countSi][1])
     let range = domandaRatingeDurata.length;
     let outputCount = domandaRatingeDurata.length;
     result = randomUniqueNum(range, outputCount)
@@ -171,13 +169,7 @@ async function ClickSi(){
     i=-1
   }
 
-
-
-
-
-
   GenerateDomanda()
-
 }
 
 let risposteNo = [];
@@ -421,7 +413,7 @@ function filterByDurataMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DAL
 
 function filterByDurataMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
   for(let i=0; i< arrayFilm.length;){
-    if( (parseint(arrayFilm[i][5], 10) === 1) ){
+    if( arrayFilm[i][5] === 1 ){
       console.log('consollog di array film i',arrayFilm[i])
       arrayFilm.splice(i, 1)
       console.log('consollog di array film di i',arrayFilm[i])
