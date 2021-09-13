@@ -20,7 +20,45 @@ domandeGenere  = [
   ["Genere", "sport" , "Film sportivo&quest;"],
   ["Genere", "thriller" , "Cosa ne dici di un Thriller"],
   ["Genere", "war" , "Film di guerra&quest;"],
-  ["Genere", "western" , "Un viaggio nel vecchio West&quest;"]
+  ["Genere", "western" , "Un viaggio nel vecchio West&quest;"],
+  ["Attore", "nm0000138" ,"Leonardo di caprio"],
+  ["Attore","nm6864189", "johnny deep"],
+  ["Attore","nm0000093", "brad pitt"],
+  ["Attore","nm0000168", "samuel l jackson"],
+  ["Attore","nm0000120" ,"Jim Carrey"],
+  ["Attore", "nm0000129", "Tom Cruise"],
+  ["Attore","nm0001618" ,"joaquin phoenix"],
+  ["Attore","nm0000288", "Christian Bale"],
+  ["Attore","nm0000323", "Michael Caine"],
+  ["Attore", "nm0000134", "Robert De Niro"],
+  ["Attore","nm0000226", "Will Smith"],
+  ["Attore","nm0000125", "Sean Connery"],
+  ["Attore","nm0000123" ,"George Clooney"],
+  ["Attore", "nm0425005", "Dwayne Johnson (the rock!)"],
+  ["Attore","nm0000199", "Al Pacino"],
+  ["Attore","nm0000246", "Bruce Willis"],
+  ["Attore","nm0000151" ,"Morgan Freeman"],
+  ["Attore","nm0000206" ,"Keanu Reeves"],
+  ["Attore","nm0000190" ,"Matthew McConaughey"],
+  ["Attore","nm0000142" ,"Clint Eastwood"],
+  ["Attore","nm0004874" ,"Vin Diesel"],
+
+  ["Attore","nm2225369", "Jennifer Lawrence"],
+  ["Attore","nm3053338", "Margot Robbie"],
+  ["Attore","nm0000658", "Meryl Streep"],
+  ["Attore","nm0000235", "Uma Thurman"],
+  ["Attore","nm0001401", "Angelina Jolie"],
+  ["Attore","nm0424060", "Scarlett Johansson"],
+  ["Attore","nm0000098", "Jennifer Aniston"],
+  ["Attore","nm0000173", "Nicole Kidman"],
+  ["Attore","nm0000234", "Charlize Theron"],
+  ["Attore","nm0000047", "Sophia Loren"],
+  ["Attore","nm0914612", "Emma Watson"],
+  ["Attore","nm0000204", "Natalie Portman"],
+  ["Attore","nm0000113", "Sandra Bullock"],
+  ["Attore","nm2933757", "Gal Gadot"]
+
+
 ]
 
 domandeVarie = [
@@ -100,12 +138,15 @@ function ClickSi(){
   if( risposte[i][0] === "Genere"){
     GetPopularMoviesByGenre(risposteSi[countSi])
   }
+  if(risposte[i][0] === "Attore"){
+    getAllFilmography(risposteSi[countSi])
+  }
   if( risposte[i][0] === "Anno"){
     filterByAnno(risposteSi[countSi])
   }
 
   countSi++;
-  if(countSi === 2){
+  if(countSi === 1){
     let range = domandeVarie.length;
     let outputCount = domandeVarie.length;
     result = randomUniqueNum(range, outputCount)
@@ -164,6 +205,31 @@ async function GetPopularMoviesByGenre(genere){
   FilmData(idFilm)
 }
 
+async function getAllFilmography(IDAttore){
+  const idFilm= [];
+  let idDaModificare
+  const response = await fetch("https://imdb8.p.rapidapi.com/actors/get-all-filmography?nconst=" + IDAttore ,  {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "imdb8.p.rapidapi.com",
+      "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+    }
+  })
+  const data = await response.json();
+  console.log(data)
+  for (let i = 0; i < data['filmography'].length; i++) {
+    if(data['filmography'][i]['titleType'] !== "movie") {
+    continue;
+    }
+    idDaModificare = data['filmography'][i]['id']
+    idDaModificare = idDaModificare.substring(7, (idDaModificare.length - 1) )
+    idFilm[i] = idDaModificare;
+    console.log(idFilm[i]);
+  }
+
+}
+
+
 let j = 0
 let arrayFilm = [];
 async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI SINGOLO FILM
@@ -200,6 +266,7 @@ async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI 
   console.log(arrayFilm)
 }
 
+
 function filterByAnno(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH DEI GENERI IN BASE ALL'ANNO E LI PRENDE
   var integer = parseInt(Anno, 10);
   const annopiudieci= integer + 10
@@ -233,6 +300,8 @@ function filterByAnnoNo(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE
   }
   console.log('consollog di array film ',arrayFilm)
 }
+
+
 //cast
 //anno
 //lunghezza
