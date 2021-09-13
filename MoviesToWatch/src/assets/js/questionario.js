@@ -24,12 +24,12 @@ domandeGenere  = [
 ]
 
 domandeVarie = [
-  ["Anno", "2020", "2020"],
-  ["Anno", "2021", "2021"],
-  ["Anno", "2000", "2000"],
-  ["Anno", "2005", "2005"],
-  ["Anno", "1999", "1999"],
-  ["Anno", "1990", "90'"],
+  ["Anno", "1970", "Un tuffo negli anni &apos;70&quest;"],
+  ["Anno", "1980", "Anni &apos;80&quest;"],
+  ["Anno", "1990", "Amo gli anni &apos;90"],
+  ["Anno", "2000", "&apos;00&quest;"],
+  ["Anno", "2010", "Indietro di qualche anno&quest;"],
+  ["Anno", "2020", "Un film recente&quest;"]
 ]
 //top rated
 //popolar movies
@@ -121,8 +121,13 @@ let risposteNo = [];
 let countNo = 0;
 function ClickNo(){
   console.log("hai premuto no");
-  risposteNo[countNo] = risposte[i][0];
-  console.log(risposteNo);
+  risposteNo[countNo] = risposte[i][1];
+  console.log('questo è il consol log di risposteNo',risposteNo);
+
+  if( risposte[i][0] === "Anno"){
+    filterByAnnoNo(risposteNo[countNo])
+  }
+
   countNo++;
   GenerateDomanda()
 }
@@ -137,6 +142,7 @@ function ClickSkip(){
   GenerateDomanda()
 }
 
+//FUNZIONE CHE FA LA FETCH CON IL GENERE ESTRAENDO I FILM PIù POPOLARI CON IL GENERE INSERITO
 async function GetPopularMoviesByGenre(genere){
   const response = await fetch("https://imdb8.p.rapidapi.com/title/get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2F" + genere , {
     "method": "GET",
@@ -157,9 +163,10 @@ async function GetPopularMoviesByGenre(genere){
   }
   FilmData(idFilm)
 }
+
 let j = 0
 let arrayFilm = [];
-async function FilmData(idFilm) {
+async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI SINGOLO FILM
   indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
   const IdImmagine = [];
   const titolo = [];
@@ -187,49 +194,44 @@ async function FilmData(idFilm) {
     rating[i] = data['rating'];
     lunghezza[i] = data['length']
 
-    arrayFilm[j] =
-      [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ]
-    ;
-
-j++
+    arrayFilm[j] = [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ];
+    j++
   }
   console.log(arrayFilm)
 }
-/*   arrayfilm[5]    arrayfilm[6]    arrayfilm[7]   arrayfilm[8]   */
-function filterByAnno(Anno){
+
+function filterByAnno(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH DEI GENERI IN BASE ALL'ANNO E LI PRENDE
   var integer = parseInt(Anno, 10);
   const annopiudieci= integer + 10
   console.log('il tuo anno è', integer ,'anno più 10', annopiudieci)
   for(let i=0; i< arrayFilm.length;){
-if( (arrayFilm[i][2]>= integer)  && (arrayFilm[i][2]<= annopiudieci)){
-  i++
-}
-else{
-  console.log('consollog di array film i',arrayFilm[i])
-  arrayFilm.splice(i, 1)
-  console.log('consollog di array film di i',arrayFilm[i])
-
-}
-  }console.log('consollog di array film ',arrayFilm)
-
-}
-
-function filterByAnnoNo(Anno){
-  var integer = parseInt(Anno, 10);
-  const annopiudieci= integer + 10
-  console.log('il tuo anno è', integer ,'anno più 10', annopiudieci)
-  for(let i=0; i< arrayFilm.length;){
-    if( (arrayFilm[i][2]<= integer)  && (arrayFilm[i][2]>= annopiudieci)){
+    if( (arrayFilm[i][2]>= integer)  && (arrayFilm[i][2]<= annopiudieci)){
       i++
     }
     else{
       console.log('consollog di array film i',arrayFilm[i])
       arrayFilm.splice(i, 1)
       console.log('consollog di array film di i',arrayFilm[i])
-
     }
-  }console.log('consollog di array film ',arrayFilm)
+  }
+  console.log('consollog di array film ',arrayFilm)
+}
 
+function filterByAnnoNo(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH DEI GENERI IN BASE ALL'ANNO E LI SCARTA
+  var integer = parseInt(Anno, 10);
+  const annopiudieci= integer + 10
+  console.log('il tuo anno è', integer ,'anno più 10', annopiudieci)
+  for(let i=0; i< arrayFilm.length;){
+    if( (arrayFilm[i][2]>= integer)  && (arrayFilm[i][2]<= annopiudieci)){
+      console.log('consollog di array film i',arrayFilm[i])
+      arrayFilm.splice(i, 1)
+      console.log('consollog di array film di i',arrayFilm[i])
+    }
+    else{
+      i++;
+    }
+  }
+  console.log('consollog di array film ',arrayFilm)
 }
 //cast
 //anno
