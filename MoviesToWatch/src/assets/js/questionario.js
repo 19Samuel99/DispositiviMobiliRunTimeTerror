@@ -221,12 +221,13 @@ async function getAllFilmography(IDAttore){
     if(data['filmography'][i]['titleType'] !== "movie") {
     continue;
     }
+    console.log(data['filmography'].length)
     idDaModificare = data['filmography'][i]['id']
     idDaModificare = idDaModificare.substring(7, (idDaModificare.length - 1) )
     idFilm[i] = idDaModificare;
-    console.log(idFilm[i]);
   }
-
+  console.log(idFilm);
+  FilmData(idFilm)
 }
 
 
