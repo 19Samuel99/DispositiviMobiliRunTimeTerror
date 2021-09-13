@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
               console.log('esiste');
               if (firebase.auth().currentUser !== null)
                 {console.log('user id: ' + firebase.auth().currentUser.uid);}
-              this.nav.navigateForward(['areautente']);
+              this.nav.navigateForward(['home']);
             }else{
               console.log('non esiste');
               this.firestore.doc(`Utenti/${this.authservice.getUID()}`).set({
@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
                 giavisti: [],
                 davedere: []
               });
-              this.nav.navigateForward(['areautente']);
+              this.nav.navigateForward(['home']);
             }
           });
         }
