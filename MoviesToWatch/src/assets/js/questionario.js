@@ -67,7 +67,14 @@ domandeVarie = [
   ["Anno", "1990", "Amo gli anni &apos;90"],
   ["Anno", "2000", "&apos;00&quest;"],
   ["Anno", "2010", "Indietro di qualche anno&quest;"],
-  ["Anno", "2020", "Un film recente&quest;"]
+  ["Anno", "2020", "Un film recente&quest;"],
+  ["Rating", "7", "Un film apprezzato dalla critica&quest;"],
+  ["Durata", "2", "Hai tanto tempo a disposizione&quest;"]
+]
+domandaRatingeDurata = [
+  ["Rating", "7", "Un film apprezzato dalla critica&quest;"]
+  ["Durata", "2", "Hai tanto tempo a disposizione&quest;"]
+
 ]
 //top rated
 //popolar movies
@@ -108,7 +115,7 @@ let i = -1;
 let risposte = [];
 function GenerateDomanda(){
   i++;
-  if(i >= array.length){
+  if(i > array.length){
     console.log("domande finite");
     document.getElementById("div_domanda").innerHTML = "Domande finite";
     document.getElementById("question-actions_actions").hidden = true;
@@ -126,32 +133,47 @@ function GenerateDomanda(){
   console.log('risposte[i]',risposte[i])
   console.log('risposte',risposte)
   console.log('result[i]',result[i])
+
+
 }
 
 let risposteSi = [];
-let countSi = 0;
-function ClickSi(){
+let countSi = -1;
+async function ClickSi(){
+  countSi++;
   console.log("hai premuto si");
-  risposteSi[countSi] = risposte[i][1];
+  risposteSi[countSi] = risposte[i];
   console.log('questo è il consol log di rispostesi', risposteSi[countSi]);
 
-  if( risposte[i][0] === "Genere"){
-    GetPopularMoviesByGenre(risposteSi[countSi])
+  if( risposteSi[countSi][0] === "Anno"){
+    filterByAnno(risposteSi[countSi][1])
   }
-  if(risposte[i][0] === "Attore"){
-    getAllFilmography(risposteSi[countSi])
+  if(risposteSi[countSi][0] === "Rating"){
+    filterByRatingMaggiore()
   }
-  if( risposte[i][0] === "Anno"){
-    filterByAnno(risposteSi[countSi])
+  if(risposteSi[countSi][0] === "Durata"){
+    filterByDurataMaggiore()
   }
-
-  countSi++;
-  if(countSi === 1){
+  if( risposteSi[countSi][0] === "Genere"){
+    await GetPopularMoviesByGenre(risposteSi[countSi][1])
     let range = domandeVarie.length;
     let outputCount = domandeVarie.length;
     result = randomUniqueNum(range, outputCount)
     array = domandeVarie;
+    i=-1
   }
+  if(risposteSi[countSi][0] === "Attore"){
+   await getAllFilmography(risposteSi[countSi][1])
+    let range = domandaRatingeDurata.length;
+    let outputCount = domandaRatingeDurata.length;
+    result = randomUniqueNum(range, outputCount)
+    array = domandaRatingeDurata;
+    i=-1
+  }
+
+
+
+
 
 
   GenerateDomanda()
@@ -168,7 +190,12 @@ function ClickNo(){
   if( risposte[i][0] === "Anno"){
     filterByAnnoNo(risposteNo[countNo])
   }
-
+  if(risposte[i][0] === "Rating"){
+    filterByRatingMinore()
+  }
+  if(risposte[i][0] === "Durata"){
+    filterByDurataMinore()
+  }
   countNo++;
   GenerateDomanda()
 }
@@ -177,7 +204,7 @@ let risposteSkip = [];
 let countSkip = 0;
 function ClickSkip(){
   console.log("hai premuto non so");
-  risposteSkip[countSkip] = risposte[i][0];
+  risposteSkip[countSkip] = risposte[i];
   console.log(risposteSkip);
   countSkip++;
   GenerateDomanda()
@@ -205,9 +232,12 @@ async function GetPopularMoviesByGenre(genere){
   FilmData(idFilm)
 }
 
+
+
 async function getAllFilmography(IDAttore){
   const idFilm= [];
   let idDaModificare
+  let z=0
   const response = await fetch("https://imdb8.p.rapidapi.com/actors/get-all-filmography?nconst=" + IDAttore ,  {
     "method": "GET",
     "headers": {
@@ -216,19 +246,28 @@ async function getAllFilmography(IDAttore){
     }
   })
   const data = await response.json();
-  console.log(data)
+  console.log('questo è data',data)
   for (let i = 0; i < data['filmography'].length; i++) {
     if(data['filmography'][i]['titleType'] !== "movie") {
     continue;
     }
+    if(data['filmography'][i]['status'] !== "released") {
+      continue;
+    }
+    if(data['filmography'][i]['category'] !== "actress" && data['filmography'][i]['category'] !== "actor"){
+        continue;
+    }
+
     console.log(data['filmography'].length)
     idDaModificare = data['filmography'][i]['id']
     idDaModificare = idDaModificare.substring(7, (idDaModificare.length - 1) )
-    idFilm[i] = idDaModificare;
+    idFilm[z] = idDaModificare;
+    z++
   }
   console.log(idFilm);
-  FilmData(idFilm)
+  await FilmDataAttori(idFilm)
 }
+
 
 
 let j = 0
@@ -242,6 +281,40 @@ async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI 
   const lunghezza = [];
 
   for (let i = 20; i < 35 /*idFilm.length*/; i++) {
+    const response = await fetch(indirizzo + idFilm[i], {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+      }
+
+    })
+    const data = await response.json();
+    console.log(data);
+    if(data['title'] === "") {
+      continue;
+    }
+    titolo[i] = data['title'];
+    anno[i] = data['year'];
+    IdImmagine[i] = data['poster'];
+    rating[i] = data['rating'];
+    lunghezza[i] = data['length']
+
+    arrayFilm[j] = [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ];
+    j++
+  }
+  console.log(arrayFilm)
+}
+//è uguale a filmdata ma prende dal primo film invece che dal 30 visto che con questa fetch anche i primi sono pieni e sono i più importanti mentra con l'altra sono vuoti
+async function FilmDataAttori(idFilm) {                                                  //FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI SINGOLO FILM
+  indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
+  const IdImmagine = [];
+  const titolo = [];
+  const anno = [];
+  const rating = [];
+  const lunghezza = [];
+
+  for (let i = 0; i < idFilm.length; i++) {
     const response = await fetch(indirizzo + idFilm[i], {
       "method": "GET",
       "headers": {
@@ -302,7 +375,63 @@ function filterByAnnoNo(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE
   console.log('consollog di array film ',arrayFilm)
 }
 
+function filterByRatingMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
 
+  for(let i=0; i< arrayFilm.length;){
+    if( (arrayFilm[i][4] < 7) ){
+      console.log('consollog di array film i',arrayFilm[i])
+      arrayFilm.splice(i, 1)
+      console.log('consollog di array film di i',arrayFilm[i])
+    }
+    else{
+      i++;
+    }
+  }
+  console.log('consollog di array film ',arrayFilm)
+}
+
+function filterByRatingMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
+
+  for(let i=0; i< arrayFilm.length;){
+    if( (arrayFilm[i][4] >= 7) ){
+      console.log('consollog di array film i',arrayFilm[i])
+      arrayFilm.splice(i, 1)
+      console.log('consollog di array film di i',arrayFilm[i])
+    }
+    else{
+      i++;
+    }
+  }
+  console.log('consollog di array film ',arrayFilm)
+}
+
+function filterByDurataMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
+  for(let i=0; i< arrayFilm.length;){
+    if( (parseint(arrayFilm[i][5], 10) >= 2) ){
+      console.log('consollog di array film i',arrayFilm[i])
+      arrayFilm.splice(i, 1)
+      console.log('consollog di array film di i',arrayFilm[i])
+    }
+    else{
+      i++;
+    }
+  }
+  console.log('consollog di array film ',arrayFilm)
+}
+
+function filterByDurataMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
+  for(let i=0; i< arrayFilm.length;){
+    if( (parseint(arrayFilm[i][5], 10) === 1) ){
+      console.log('consollog di array film i',arrayFilm[i])
+      arrayFilm.splice(i, 1)
+      console.log('consollog di array film di i',arrayFilm[i])
+    }
+    else{
+      i++;
+    }
+  }
+  console.log('consollog di array film ',arrayFilm)
+}
 //cast
 //anno
 //lunghezza
