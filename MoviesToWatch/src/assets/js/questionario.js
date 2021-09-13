@@ -122,9 +122,8 @@ function GenerateDomanda(){
   document.getElementById("question-actions_actions").hidden = false;
  /* console.log(array);
   console.log("i:" + i);
-  ;*/
   console.log("result", result);
-  console.log("result[i]", result[i]);
+  console.log("result[i]", result[i]);*/
   console.log("array", array);
   document.getElementById("div_domanda").innerHTML = array[result[i]][2];
   risposte[i] = array[result[i]];
@@ -134,7 +133,7 @@ function GenerateDomanda(){
   console.log('risposte',risposte)
   console.log('result[i]',result[i])
 }
-
+let countRD = 0
 let risposteSi = [];
 let countSi = -1;
 async function ClickSi(){
@@ -145,11 +144,21 @@ async function ClickSi(){
 
   if(risposteSi[countSi][0] === "Anno"){
     filterByAnno(risposteSi[countSi][1])
+    if (countRD === 0){
+      let range = domandaRatingeDurata.length;
+      let outputCount = domandaRatingeDurata.length;
+      result = randomUniqueNum(range, outputCount)
+      array = domandaRatingeDurata;
+      i=-1
+    }else {console.log('sei entrato nell else')}
+
   }
   if(risposteSi[countSi][0] === "Rating"){
+    countRD++
     filterByRatingMaggiore()
   }
   if(risposteSi[countSi][0] === "Durata"){
+    countRD++
     filterByDurataMaggiore()
   }
   if(risposteSi[countSi][0] === "Genere"){
@@ -183,9 +192,11 @@ function ClickNo(){
     filterByAnnoNo(risposteNo[countNo])
   }
   if(risposte[i][0] === "Rating"){
+    countRD++
     filterByRatingMinore()
   }
   if(risposte[i][0] === "Durata"){
+    countRD++
     filterByDurataMinore()
   }
   countNo++;
@@ -370,7 +381,7 @@ function filterByAnnoNo(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE
 function filterByRatingMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
 
   for(let i=0; i< arrayFilm.length;){
-    if( (arrayFilm[i][4] < 7) ){
+    if( arrayFilm[i][4] < 7 ){
       console.log('consollog di array film i',arrayFilm[i])
       arrayFilm.splice(i, 1)
       console.log('consollog di array film di i',arrayFilm[i])
@@ -385,7 +396,7 @@ function filterByRatingMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI D
 function filterByRatingMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
 
   for(let i=0; i< arrayFilm.length;){
-    if( (arrayFilm[i][4] >= 7) ){
+    if( arrayFilm[i][4] >= 7 ){
       console.log('consollog di array film i',arrayFilm[i])
       arrayFilm.splice(i, 1)
       console.log('consollog di array film di i',arrayFilm[i])
@@ -399,7 +410,9 @@ function filterByRatingMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DAL
 
 function filterByDurataMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
   for(let i=0; i< arrayFilm.length;){
-    if( (parseint(arrayFilm[i][5], 10) >= 2) ){
+    durataFilm =arrayFilm[i][5][0]
+    console.log(durataFilm)
+    if( durataFilm >= 2 ){
       console.log('consollog di array film i',arrayFilm[i])
       arrayFilm.splice(i, 1)
       console.log('consollog di array film di i',arrayFilm[i])
@@ -413,7 +426,9 @@ function filterByDurataMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DAL
 
 function filterByDurataMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
   for(let i=0; i< arrayFilm.length;){
-    if( arrayFilm[i][5] === 1 ){
+    durataFilm =arrayFilm[i][5][0]
+    console.log(durataFilm)
+    if( durataFilm === 1 ){
       console.log('consollog di array film i',arrayFilm[i])
       arrayFilm.splice(i, 1)
       console.log('consollog di array film di i',arrayFilm[i])
