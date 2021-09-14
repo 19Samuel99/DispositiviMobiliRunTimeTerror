@@ -85,10 +85,11 @@ ion-content{
   }
 
   .div_imgLocandina{
+    padding: 10px;
     justify-content: space-between;
     width: auto;
     height: auto;
-    border: 1px solid deeppink;
+    // border: 1px solid deeppink;
   }
 
   .div_domanda{
@@ -126,6 +127,14 @@ ion-content{
     align-items: center;
   }
 
+  .question-actions_film{
+    display: flex;
+    margin: auto;
+    width: 65%;
+    justify-content: center;
+    align-items: center;
+  }
+
   .td_bottoni{
     display: flex;
     justify-content: center;
@@ -134,7 +143,7 @@ ion-content{
     //margin-left: 10px;
   }
 
-  #btn_answer_yes, #btn_answer_no, #btn_answer_skip {
+  #btn_answer_yes, #btn_answer_no, #btn_answer_skip, #btn_film_skip{
     border-radius: 15px;
     margin: 10px 10px 5px ;
     background: #282828;
@@ -151,7 +160,7 @@ ion-content{
   #btn_answer_no{
     color: #ffffff;
   }
-  #btn_answer_skip{
+  #btn_answer_skip, #btn_film_skip{
     color: #ffffff;
     font-size: 20px;
    }

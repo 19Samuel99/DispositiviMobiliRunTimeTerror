@@ -46,7 +46,7 @@
                 </div>
               </td>
             </tr>
-            <tr>
+            <tr id="tr_actions_actions" >
               <div  class="question-actions_actions" id="question-actions_actions" hidden>
                 <td class="td_bottoni">
                   <button id="btn_answer_no" onclick="ClickNo()" value="No"> No!</button>
@@ -57,6 +57,19 @@
                 <td class="td_bottoni">
                   <button id="btn_answer_yes" onclick="ClickSi()" value="Si"> Si!</button>
                 </td>
+              </div>
+            </tr>
+            <tr>
+              <div  class="question-actions_film" id="question-actions_film" hidden>
+               <!-- <td class="td_bottoni">
+                  <button id="btn_film_no" onclick="giaVisto()" value="Aggiungi a film già visto"> Già visto </button>
+                </td>-->
+                <td class="td_bottoni">
+                  <button id="btn_film_skip" onclick="ClickFilmBtn()" value="skip"> Un altro consiglio </button>
+                </td>
+              <!--  <td class="td_bottoni">
+                  <button id="btn_film_yes"  onclick="daVedere()" value="Aggiungi a film da vedere"> Da vedere </button>
+                </td>-->
               </div>
             </tr>
           </table>

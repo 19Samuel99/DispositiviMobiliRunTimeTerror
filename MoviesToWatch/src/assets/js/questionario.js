@@ -114,6 +114,7 @@ function GenerateDomanda(){
   if(i >= array.length){
     if(arrayFilm.length>1){
       creaRisultati(arrayFilm)
+      return;
     }else {
       console.log("domande finite");
       document.getElementById("div_domanda").innerHTML = "Domande finite";
@@ -145,7 +146,12 @@ async function ClickSi(){//FUNZIONE CHE PARTE AL CLICK SI! SUL QUESTIONARIO
       result = randomUniqueNum(range, outputCount)
       array = domandaRatingeDurata;
       i=-1
-    }else {console.log('sei entrato nell else')}
+    }else {
+      if(flag<1){
+        creaRisultati(arrayFilm)
+        return;
+      }
+    }
 
   }
   if(risposteSi[countSi][0] === "Rating"){
@@ -489,20 +495,41 @@ async function creaRisultati(arrayFilm){
     result = [0,1,2,3,4]
   }
 
-  await stampaFilm(result,arrayFilm)
+  document.getElementById("tr_actions_actions").hidden = true;
+  await stampaFilm()
 
 }
 
-function stampaFilm(result,arrayFilm){
+let countFilm=0;
+let aLocandina;
+function stampaFilm(){//FUNZIONE CHE STAMPA LA LOCANDINA DEL FILM NEL QUESTIONARIO
   console.log("entra in stampa film")
-  let aLocandina = document.createElement("a");
+
+  document.getElementById("question-actions_film").hidden= false;
+  aLocandina = document.createElement("a");
   let imgLocandina = document.createElement("img");
-  imgLocandina.src= arrayFilm[result[i]][3]
+  imgLocandina.src= arrayFilm[result[countFilm]][3]
   imgLocandina.style.height="450px";
   aLocandina.appendChild(imgLocandina)
-  aLocandina.href = "http://localhost:8100/schedainformativa/" + arrayFilm[result[i]][6]
+  aLocandina.href = "http://localhost:8100/schedainformativa/" + arrayFilm[result[countFilm]][6]
   document.getElementById("div_imgLocandina").appendChild(aLocandina);
   //document.getElementById("div_imgLocandina").innerHTML = arrayFilm[result[i]][1];
   document.getElementById("div_domanda").hidden= true;
   return flag= 1;
 }
+
+function ClickFilmBtn(){//AL PREMERE "UN ALTRO CONSIGLIO" VEDE SE CI SONO ALTRI FILM RISULTANTI
+  countFilm++;
+  if(countFilm < result.length){
+    document.getElementById("div_imgLocandina").removeChild(aLocandina);
+    stampaFilm();
+  }
+  else{
+    document.getElementById("div_imgLocandina").removeChild(aLocandina);
+    document.getElementById("div_domanda").hidden= false;
+    document.getElementById("div_domanda").innerHTML ="Film finiti!";
+    setTimeout(() => {  location.reload(); }, 2000);
+  }
+
+}
+
