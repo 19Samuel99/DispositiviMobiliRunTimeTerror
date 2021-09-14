@@ -28,40 +28,7 @@ ion-content{
     }
 
   }
-/*
-  ion-select{
-    color: white;
-  }
-  //* Set the placeholder color and opacity /  RICORCA DI CHIUDER IL COMMENTO SE USATO
-  ion-select::part(placeholder) {
-    color: white;
-    opacity: 0.6;
-  }
-  /* Set the icon color and opacity /          RICORCA DI CHIUDER IL COMMENTO SE USATO
-  ion-select::part(icon) {
-    color: #db0000;
-    opacity: 1;
-  }
 
-  .bottone_consiglio{
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    width: 250px;
-    height: 50px;
-    font-weight: bold;
-    font-size: 20px;
-    margin: 10px auto;
-    --background: #db0000;
-
-  }
-  .bottone_consiglio:hover{
-    --background: #D10101;
-  }
-*/
 }
 
 //css per l'uso del div con la domanda
@@ -85,7 +52,7 @@ ion-content{
   }
 
   .div_imgLocandina{
-    padding: 10px;
+    padding-top: 10px;
     justify-content: space-between;
     width: auto;
     height: auto;

@@ -7,56 +7,57 @@ domandeGenere  = [
   ["Genere", "crime" , "Ossessionato con il crimine&quest;"],
   ["Genere", "documentary" , "Vuoi imparare qualcosa di nuovo&quest;"],
   ["Genere", "drama" , "Dramma&quest; Io amo il dramma"],
-  ["Genere", "family" , " Giornata in famiglia&quest;"],
+  ["Genere", "family" , " Giornata in famiglia&#128106;"],
   ["Genere", "fantasy" , "Nel mood per un fantasy&quest;"],
   ["Genere", "film_noir" , "Che ne dici di un Noir&quest;"],
   ["Genere", "history" , "Voglia di storia&quest;"],
   ["Genere", "horror" , "Qualcosa di spaventoso&quest;"],
-  ["Genere", "music" , "Un po&apos; di musica&quest;"],
+  ["Genere", "music" , "Un po&apos; di musica&#127911;"],
   ["Genere", "musical" , "Guarda un musical"],
   ["Genere", "mystery" , "Risolviamo un mistero"],
-  ["Genere", "romance" , "Il romanticismo &egrave; nell&apos;aria "],
+  ["Genere", "romance" , "Il romanticismo &egrave; nell&apos;aria&#128158;"],
   ["Genere", "sci_fi" , "Entra nel mondo dei film di fantascienza."],
   ["Genere", "sport" , "Film sportivo&quest;"],
   ["Genere", "thriller" , "Cosa ne dici di un Thriller"],
   ["Genere", "war" , "Film di guerra&quest;"],
   ["Genere", "western" , "Un viaggio nel vecchio West&quest;"],
-  ["Attore", "nm0000138" ,"Leonardo di caprio"],
-  ["Attore","nm6864189", "johnny deep"],
-  ["Attore","nm0000093", "brad pitt"],
-  ["Attore","nm0000168", "samuel l jackson"],
+
+  ["Attore", "nm0000138" ,"Un film con Leonardo di caprio&quest;"],
+  ["Attore","nm6864189", "Ti piace Johnny Deep&quest;"],
+  ["Attore","nm0000093", "Cosa ne pensi di Brad Pitt&quest;"],
+  ["Attore","nm0000168", "Un p&apos; di Samuel L. Jackson&quest;"],
   ["Attore","nm0000120" ,"Jim Carrey"],
-  ["Attore", "nm0000129", "Tom Cruise"],
-  ["Attore","nm0001618" ,"joaquin phoenix"],
-  ["Attore","nm0000288", "Christian Bale"],
-  ["Attore","nm0000323", "Michael Caine"],
-  ["Attore", "nm0000134", "Robert De Niro"],
-  ["Attore","nm0000226", "Will Smith"],
-  ["Attore","nm0000125", "Sean Connery"],
+  ["Attore", "nm0000129", "Tom Cruise&quest;"],
+  ["Attore","nm0001618" ,"Qualcosa di Joaquin Phoenix&quest;"],
+  ["Attore","nm0000288", "Un film conChristian Bale"],
+  ["Attore","nm0000323", "Conosci Michael Caine&quest;"],
+  ["Attore", "nm0000134", "Qualcosa di Robert De Niro&quest;"],
+  ["Attore","nm0000226", "Un film Will Smith&quest;"],
+  ["Attore","nm0000125", "Un film conSean Connery"],
   ["Attore","nm0000123" ,"George Clooney"],
-  ["Attore", "nm0425005", "Dwayne Johnson (the rock!)"],
+  ["Attore", "nm0425005", "Dwayne (the rock!) Johnson!"],
   ["Attore","nm0000199", "Al Pacino"],
   ["Attore","nm0000246", "Bruce Willis"],
-  ["Attore","nm0000151" ,"Morgan Freeman"],
-  ["Attore","nm0000206" ,"Keanu Reeves"],
+  ["Attore","nm0000151" ,"Conosci Morgan Freeman&quest;"],
+  ["Attore","nm0000206" ,"Un p&apos; di Keanu Reeves"],
   ["Attore","nm0000190" ,"Matthew McConaughey"],
-  ["Attore","nm0000142" ,"Clint Eastwood"],
-  ["Attore","nm0004874" ,"Vin Diesel"],
+  ["Attore","nm0000142" ,"Clint Eastwood!"],
+  ["Attore","nm0004874" ,"Un film con Vin Diesel&quest;"],
 
   ["Attore","nm2225369", "Jennifer Lawrence"],
-  ["Attore","nm3053338", "Margot Robbie"],
+  ["Attore","nm3053338", "Un film con Margot Robbie&quest;"],
   ["Attore","nm0000658", "Meryl Streep"],
-  ["Attore","nm0000235", "Uma Thurman"],
-  ["Attore","nm0001401", "Angelina Jolie"],
-  ["Attore","nm0424060", "Scarlett Johansson"],
+  ["Attore","nm0000235", "Uma Thurman&quest;"],
+  ["Attore","nm0001401", "Un film con Angelina Jolie&quest;"],
+  ["Attore","nm0424060", "Un p&apos; di Scarlett Johansson&quest;"],
   ["Attore","nm0000098", "Jennifer Aniston"],
   ["Attore","nm0000173", "Nicole Kidman"],
   ["Attore","nm0000234", "Charlize Theron"],
   ["Attore","nm0000047", "Sophia Loren"],
-  ["Attore","nm0914612", "Emma Watson"],
-  ["Attore","nm0000204", "Natalie Portman"],
-  ["Attore","nm0000113", "Sandra Bullock"],
-  ["Attore","nm2933757", "Gal Gadot"]
+  ["Attore","nm0914612", "Ti piace Emma Watson&quest;"],
+  ["Attore","nm0000204", "Un film con Natalie Portman&quest;"],
+  ["Attore","nm0000113", "Sandra Bullock&quest;"],
+  ["Attore","nm2933757", "Conosci Gal Gadot&quest;"]
 ]
 
 domandeVarie = [
@@ -220,7 +221,7 @@ function ClickSkip(){//FUNZIONE CHE PARTE AL CLICK NON SO SUL QUESTIONARIO
 
 //FUNZIONE CHE FA LA FETCH CON IL GENERE ESTRAENDO I FILM PIù POPOLARI CON IL GENERE INSERITO
 async function GetPopularMoviesByGenre(genere){
-  document.getElementById("div_domanda").innerHTML = "Wait...";
+  document.getElementById("div_domanda").innerHTML ="<img src=\"..\\..\\assets\\image\\Spinner-2.7s-200px.gif\" width=\"200px\" height=\"200px\">";
   document.getElementById("question-actions_actions").hidden = true;
   const response = await fetch("https://imdb8.p.rapidapi.com/title/get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2F" + genere , {
     "method": "GET",
@@ -245,7 +246,7 @@ async function GetPopularMoviesByGenre(genere){
 
 
 async function getAllFilmography(IDAttore){//FETCH CHE RITORNA TUTTA LA FILMOGRAFIA DELL'ATTORE INSERITO CON IL SUO ID
-  document.getElementById("div_domanda").innerHTML = "Wait...";
+  document.getElementById("div_domanda").innerHTML ="<img src=\"..\\..\\assets\\image\\Spinner-2.7s-200px.gif\" width=\"200px\" height=\"200px\">";
   document.getElementById("question-actions_actions").hidden = true;
   const idFilm= [];
   let idDaModificare
@@ -527,6 +528,7 @@ function ClickFilmBtn(){//AL PREMERE "UN ALTRO CONSIGLIO" VEDE SE CI SONO ALTRI 
   else{
     document.getElementById("div_imgLocandina").removeChild(aLocandina);
     document.getElementById("div_domanda").hidden= false;
+    document.getElementById("question-actions_film").hidden= true;
     document.getElementById("div_domanda").innerHTML ="Film finiti!";
     setTimeout(() => {  location.reload(); }, 2000);
   }
