@@ -119,7 +119,7 @@ function GenerateDomanda(){
     }else {
       console.log("domande finite");
       document.getElementById("div_domanda").innerHTML = "Domande finite";
-      document.getElementById("question-actions_actions").hidden = true;
+      document.getElementById("tr_actions_actions").hidden = true;
       setTimeout(() => {  location.reload(); }, 2000);
     }
   }
