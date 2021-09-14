@@ -19,7 +19,7 @@ img {
 
 ion-content{
   --ion-background-color: #000000;
-
+  color: #ffffff;
   ion-label{
     color: #fff;
 
@@ -35,4 +35,7 @@ ion-content{
     width: 70%;
     height: auto;
   }
+}
+#giavisti_non_presente{
+  color: #ffffff;
 }
