@@ -112,10 +112,14 @@ function GenerateDomanda(){
   i++;
   console.log("GenerateDomanda i:", i);
   if(i >= array.length){
-    console.log("domande finite");
-    document.getElementById("div_domanda").innerHTML = "Domande finite";
-    document.getElementById("question-actions_actions").hidden = true;
-    return;
+    if(arrayFilm.length>1){
+      creaRisultati(arrayFilm)
+    }else {
+      console.log("domande finite");
+      document.getElementById("div_domanda").innerHTML = "Domande finite";
+      document.getElementById("question-actions_actions").hidden = true;
+      return;
+    }
   }
   document.getElementById("question-actions_actions").hidden = false;
   console.log("array", array);
@@ -302,7 +306,7 @@ async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI 
     rating[i] = data['rating'];
     lunghezza[i] = data['length']
 
-    arrayFilm[j] = [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ];
+    arrayFilm[j] = [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i],idFilm[i] ];
     j++
   }
   console.log("arrayFilm:",arrayFilm)
@@ -336,7 +340,7 @@ async function FilmDataAttori(idFilm) {                                         
     rating[i] = data['rating'];
     lunghezza[i] = data['length']
 
-    arrayFilm[j] = [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ];
+    arrayFilm[j] = [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i],idFilm[i] ];
     j++
   }
   console.log("arrayFilm:",arrayFilm)
@@ -491,7 +495,14 @@ async function creaRisultati(arrayFilm){
 
 function stampaFilm(result,arrayFilm){
   console.log("entra in stampa film")
-
-  document.getElementById("div_domanda").innerHTML = arrayFilm[result[i]][1];
+  let aLocandina = document.createElement("a");
+  let imgLocandina = document.createElement("img");
+  imgLocandina.src= arrayFilm[result[i]][3]
+  imgLocandina.style.height="450px";
+  aLocandina.appendChild(imgLocandina)
+  aLocandina.href = "http://localhost:8100/schedainformativa/" + arrayFilm[result[i]][6]
+  document.getElementById("div_imgLocandina").appendChild(aLocandina);
+  //document.getElementById("div_imgLocandina").innerHTML = arrayFilm[result[i]][1];
+  document.getElementById("div_domanda").hidden= true;
   return flag= 1;
 }
