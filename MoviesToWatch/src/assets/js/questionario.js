@@ -7,8 +7,8 @@ domandeGenere  = [
   ["Genere", "crime" , "Ossessionato con il crimine&quest;"],
   ["Genere", "documentary" , "Vuoi imparare qualcosa di nuovo&#127759;"],
   ["Genere", "drama" , "Dramma&quest; Io amo il dramma"],
-  ["Genere", "family" , " Giornata in famiglia&#128106;"],
-  ["Genere", "fantasy" , "Portami in un mondo fantastico!"],
+  ["Genere", "family" , " Goditi del tempo in famiglia&#33;&#128106;"],
+  ["Genere", "fantasy" , "Portami in un mondo fantastico&#33;"],
   ["Genere", "film_noir" , "Che ne dici di un Noir&quest;"],
   ["Genere", "history" , "Voglia di storia&quest;"],
   ["Genere", "horror" , "Qualcosa di spaventoso&#128128;"],
@@ -62,7 +62,7 @@ domandeGenere  = [
 
 domandeVarie = [
   ["Anno", "1970", "Un tuffo negli anni &apos;70&quest;"],
-  ["Anno", "1980", "Anni &apos;80&quest;"],
+  ["Anno", "1980", "Un classico anni &apos;80&quest;"],
   ["Anno", "1990", "Amo gli anni &apos;90"],
   ["Anno", "2000", "&apos;00&quest;"],
   ["Anno", "2010", "Indietro di qualche anno&quest;"],
