@@ -4,7 +4,7 @@ domandeGenere  = [
   ["Genere", "animation" , "Film d&apos;animazione&quest;"],
   ["Genere", "biography" , " Ti senti inspirato per una biografia&quest;"],
   ["Genere", "comedy" , "Giornata triste&quest; Guarda una commedia"],
-  ["Genere", "crime" , "Ti piace risolvere crimini&quest;"],
+  ["Genere", "crime" , "Un crime&quest;"],
   ["Genere", "documentary" , "Un po&apos; di informazione. Un documentario&quest;"],
   ["Genere", "drama" , "Dramma&quest; Io amo il dramma"],
   ["Genere", "family" , " Giornata in famiglia&quest;"],
@@ -73,8 +73,6 @@ domandaRatingeDurata = [
   ["Rating", "7", "Un film apprezzato dalla critica&quest;"],
   ["Durata", "2", "Hai tanto tempo a disposizione&quest;"]
 ]
-//top rated
-//popolar movies
 
 function randomUniqueNum(range, outputCount) { // funzione per generare in maniera random e senza ripetizioni di tutte le domande
 
@@ -120,23 +118,16 @@ function GenerateDomanda(){
     return;
   }
   document.getElementById("question-actions_actions").hidden = false;
- /* console.log(array);
-  console.log("i:" + i);
-  console.log("result", result);
-  console.log("result[i]", result[i]);*/
   console.log("array", array);
   document.getElementById("div_domanda").innerHTML = array[result[i]][2];
   risposte[i] = array[result[i]];
-
-  console.log('risposte[i][0]',risposte[i][0]);
-  console.log('risposte[i]',risposte[i])
-  console.log('risposte',risposte)
-  console.log('result[i]',result[i])
 }
+
+let flag = 0;
 let countRD = 0
 let risposteSi = [];
 let countSi = -1;
-async function ClickSi(){
+async function ClickSi(){//FUNZIONE CHE PARTE AL CLICK SI! SUL QUESTIONARIO
   countSi++;
   console.log("hai premuto si");
   risposteSi[countSi] = risposte[i];
@@ -177,13 +168,17 @@ async function ClickSi(){
     array = domandaRatingeDurata;
     i=-1
   }
-
-  GenerateDomanda()
+  if(flag<1){
+    GenerateDomanda()
+  }
+  else {
+    return
+  }
 }
 
 let risposteNo = [];
 let countNo = 0;
-function ClickNo(){
+function ClickNo(){//FUNZIONE CHE PARTE AL CLICK NO! SUL QUESTIONARIO
   console.log("hai premuto no");
   risposteNo[countNo] = risposte[i][1];
   console.log('questo è il consol log di risposteNo',risposteNo);
@@ -205,7 +200,7 @@ function ClickNo(){
 
 let risposteSkip = [];
 let countSkip = 0;
-function ClickSkip(){
+function ClickSkip(){//FUNZIONE CHE PARTE AL CLICK NON SO SUL QUESTIONARIO
   console.log("hai premuto non so");
   risposteSkip[countSkip] = risposte[i];
   console.log(risposteSkip);
@@ -215,6 +210,8 @@ function ClickSkip(){
 
 //FUNZIONE CHE FA LA FETCH CON IL GENERE ESTRAENDO I FILM PIù POPOLARI CON IL GENERE INSERITO
 async function GetPopularMoviesByGenre(genere){
+  document.getElementById("div_domanda").innerHTML = "Wait...";
+  document.getElementById("question-actions_actions").hidden = true;
   const response = await fetch("https://imdb8.p.rapidapi.com/title/get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2F" + genere , {
     "method": "GET",
     "headers": {
@@ -237,7 +234,9 @@ async function GetPopularMoviesByGenre(genere){
 
 
 
-async function getAllFilmography(IDAttore){
+async function getAllFilmography(IDAttore){//FETCH CHE RITORNA TUTTA LA FILMOGRAFIA DELL'ATTORE INSERITO CON IL SUO ID
+  document.getElementById("div_domanda").innerHTML = "Wait...";
+  document.getElementById("question-actions_actions").hidden = true;
   const idFilm= [];
   let idDaModificare
   let z=0
@@ -306,7 +305,7 @@ async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI 
     arrayFilm[j] = [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ];
     j++
   }
-  console.log(arrayFilm)
+  console.log("arrayFilm:",arrayFilm)
 }
 //è uguale a filmdata ma prende dal primo film invece che dal 30 visto che con questa fetch anche i primi sono pieni e sono i più importanti mentra con l'altra sono vuoti
 async function FilmDataAttori(idFilm) {                                                  //FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI SINGOLO FILM
@@ -340,16 +339,16 @@ async function FilmDataAttori(idFilm) {                                         
     arrayFilm[j] = [ i, titolo[i] ,anno[i] ,IdImmagine[i] , rating[i],lunghezza[i] ];
     j++
   }
-  console.log(arrayFilm)
+  console.log("arrayFilm:",arrayFilm)
 }
 
 
-function filterByAnno(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH DEI GENERI IN BASE ALL'ANNO E LI PRENDE
+function filterByAnno(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH IN BASE ALL'ANNO E LI PRENDE
   var integer = parseInt(Anno, 10);
   const annopiudieci= integer + 10
   console.log('il tuo anno è', integer ,'anno più 10', annopiudieci)
   for(let i=0; i< arrayFilm.length;){
-    if( (arrayFilm[i][2]>= integer)  && (arrayFilm[i][2]<= annopiudieci)){
+    if( (arrayFilm[i][2]>= integer)  && (arrayFilm[i][2]< annopiudieci)){
       i++
     }
     else{
@@ -359,6 +358,12 @@ function filterByAnno(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE F
     }
   }
   console.log('consollog di array film ',arrayFilm)
+  console.log("arrayFilm.length ",arrayFilm.length )
+
+  if(arrayFilm.length <= 12){
+    console.log("entra in if array length")
+    creaRisultati(arrayFilm)
+  }
 }
 
 function filterByAnnoNo(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH DEI GENERI IN BASE ALL'ANNO E LI SCARTA
@@ -366,7 +371,7 @@ function filterByAnnoNo(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE
   const annopiudieci= integer + 10
   console.log('il tuo anno è', integer ,'anno più 10', annopiudieci)
   for(let i=0; i< arrayFilm.length;){
-    if( (arrayFilm[i][2]>= integer)  && (arrayFilm[i][2]<= annopiudieci)){
+    if( (arrayFilm[i][2]>= integer)  && (arrayFilm[i][2]< annopiudieci)){
       console.log('consollog di array film i',arrayFilm[i])
       arrayFilm.splice(i, 1)
       console.log('consollog di array film di i',arrayFilm[i])
@@ -376,6 +381,12 @@ function filterByAnnoNo(Anno){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE
     }
   }
   console.log('consollog di array film ',arrayFilm)
+  console.log("arrayFilm.length ",arrayFilm.length )
+
+  if(arrayFilm.length <= 12){
+    console.log("entra in if array length")
+    creaRisultati(arrayFilm)
+  }
 }
 
 function filterByRatingMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
@@ -391,6 +402,12 @@ function filterByRatingMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI D
     }
   }
   console.log('consollog di array film ',arrayFilm)
+  console.log("arrayFilm.length ",arrayFilm.length )
+
+  if(arrayFilm.length <= 12){
+    console.log("entra in if array length")
+    creaRisultati(arrayFilm)
+  }
 }
 
 function filterByRatingMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
@@ -406,6 +423,12 @@ function filterByRatingMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DAL
     }
   }
   console.log('consollog di array film ',arrayFilm)
+  console.log("arrayFilm.length ",arrayFilm.length )
+
+  if(arrayFilm.length <= 12){
+    console.log("entra in if array length")
+    creaRisultati(arrayFilm)
+  }
 }
 
 function filterByDurataMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
@@ -422,13 +445,19 @@ function filterByDurataMinore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DAL
     }
   }
   console.log('consollog di array film ',arrayFilm)
+  console.log("arrayFilm.length ",arrayFilm.length )
+
+  if(arrayFilm.length <= 12){
+    console.log("entra in if array length")
+    creaRisultati(arrayFilm)
+  }
 }
 
 function filterByDurataMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI DALLE FETCH e filtra il rating
   for(let i=0; i< arrayFilm.length;){
     durataFilm =arrayFilm[i][5][0]
     console.log(durataFilm)
-    if( durataFilm === 1 ){
+    if( durataFilm == 1 ){
       console.log('consollog di array film i',arrayFilm[i])
       arrayFilm.splice(i, 1)
       console.log('consollog di array film di i',arrayFilm[i])
@@ -438,8 +467,31 @@ function filterByDurataMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI D
     }
   }
   console.log('consollog di array film ',arrayFilm)
+  console.log("arrayFilm.length ",arrayFilm.length )
+  if(arrayFilm.length <= 12){
+    console.log("entra in if array length")
+    creaRisultati(arrayFilm)
+  }
 }
-//cast
-//anno
-//lunghezza
-//rating
+
+async function creaRisultati(arrayFilm){
+
+  if(arrayFilm.length >5){
+    let range = arrayFilm.length;
+    let outputCount = 5;
+    result = randomUniqueNum(range, outputCount)
+  }
+  else {
+    result = [0,1,2,3,4]
+  }
+
+  await stampaFilm(result,arrayFilm)
+
+}
+
+function stampaFilm(result,arrayFilm){
+  console.log("entra in stampa film")
+
+  document.getElementById("div_domanda").innerHTML = arrayFilm[result[i]][1];
+  return flag= 1;
+}
