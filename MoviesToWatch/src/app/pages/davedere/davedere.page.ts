@@ -17,7 +17,7 @@ export class DavederePage implements OnInit {
               public auth: AngularFireAuth) { }
 
   ngOnInit() {
-    this.controllaDaVedere();
+    this.controllaDaVedere();//PARTE AL CARICAMENTO DELLA PAGINA
   }
   linkHome(){
     this.router.navigate(['/home']);
@@ -41,7 +41,7 @@ export class DavederePage implements OnInit {
   linkSchedainformativa(){
     this.router.navigate(['/schedainformativa']);
   }
-  async controllaDaVedere() {
+  async controllaDaVedere() {//ESTRAE DAL DB I FILM GIA VISTI  RICHIAMA LA FUNZIONE PER CREARE GLI ELEMNTI NELLA PAGINA GIA VISTI
       const arraiDiID = [];
       const promise = this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).get();
       promise.toPromise().then(snapshot =>{
@@ -53,19 +53,11 @@ export class DavederePage implements OnInit {
           console.log(arraiDiID);
         }
         console.log('questo è array fuori dal ciclo', arraiDiID);
-        creaFilmDaVedere(arraiDiID);
+        creaFilmDaVedere(arraiDiID);// RICHIAMA LA FUNZIONE PER CREARE GLI ELEMNTI NELLA PAGINA DA VEDERE
 
      });
 
   }
 
 }
-  //return await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).get().subscribe(snapshot=> console.log('document data:' , snapshot.data()))
-    //return await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).get().subscribe(snapshot=> console.log('document data:' , snapshot.data().davedere))
-   // console.log('ma funziona?')
- //
 
-/* let   rootRef = firebase.database().ref();
-   let  currentUID = firebase.auth().currentUser.uid
-   let  oneRef = rootRef.child('Utenti').child(currentUID).child('davedere')
-console.log(oneRef)*/

@@ -3,14 +3,14 @@ function delayScreen(){
    window.location.href='http://localhost:8100/login/'
 },300);}
 
-async function getNomeFilm( nome) {
+async function getNomeFilm( nome) { //FUNZIONE RICHIAMATA SULL'ONCLICK DEL BOTTONE DELLA PAGINA RICERCA, RITORNA I FILM CON IL NOME INSERITO
   document.getElementById('risultato').innerHTML = ""
   indirizzo = 'https://imdb8.p.rapidapi.com/title/find?q=';
   nome.split(' ').join('%20')
   const response = await fetch(this.indirizzo + nome, {
     method: "GET",
     headers: {
-      'x-rapidapi-key': '0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e',
+      'x-rapidapi-key': 'e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
 
@@ -124,12 +124,12 @@ async function getNomeFilm( nome) {
 }
 
 
-async function GetFullCredits(idFilm) {
+async function GetFullCredits(idFilm) {//FUNZIONE CHE PARTE AL CARICAMENTO DI SCHEDA INFORMATIVA CON L'ID DEL FILM E RITORNA TUTTE LE INFO DEL FILM
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-full-credits?tconst=';
   const response1 = await fetch(this.indirizzo + idFilm, {
     method: "GET",
     headers: {
-      'x-rapidapi-key': '0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e',
+      'x-rapidapi-key': 'e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
   });
@@ -199,12 +199,12 @@ async function GetFullCredits(idFilm) {
 
 }//chiusura GetFullCredits
 
-async function GetGeneresByID(idFilm){
+async function GetGeneresByID(idFilm){//RITORNA IL GENERE DEL FILM
   indirizzo = 'https://imdb8.p.rapidapi.com/title/get-genres?tconst=';
   const response = await fetch(this.indirizzo + idFilm, {
     method: "GET",
     headers:{
-      'x-rapidapi-key': '0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e',
+      'x-rapidapi-key': 'e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8',
       'x-rapidapi-host': 'imdb8.p.rapidapi.com'
     }
   });
@@ -218,12 +218,12 @@ async function GetGeneresByID(idFilm){
 }
 
 
-async function RicercaPloteTrailereRating(idFilm){
+async function RicercaPloteTrailereRating(idFilm){//RITORNA IL PLOT DEL FILM
   indirizzo = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/';
   const response = await fetch(indirizzo + idFilm, {
     method: "GET",
     headers: {
-      'x-rapidapi-key': '6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03',
+      'x-rapidapi-key': 'e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8',
       'x-rapidapi-host': 'imdb-internet-movie-database-unofficial.p.rapidapi.com'
     }
 
@@ -242,12 +242,12 @@ async function RicercaPloteTrailereRating(idFilm){
 }
 
 
-async function GetTopRated() {
+async function GetTopRated() {//RITORNA LA LISTA DEI FILM TOP RATED
   const response = await fetch("https://imdb8.p.rapidapi.com/title/get-top-rated-movies", {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e"
+      "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8"
     }
   })
   const data = await response.json();
@@ -261,7 +261,7 @@ async function GetTopRated() {
   GetFullCreditsTopRated(idFilm);
 }
 
-  async function GetFullCreditsTopRated(idFilm) {
+  async function GetFullCreditsTopRated(idFilm) {//RITORNA TUTTE LE INFO PER CREARE LA LISTA DEI TOP RATED
     indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
     const IdImmagine = [];
     const titolo = [];
@@ -272,7 +272,7 @@ async function GetTopRated() {
         "method": "GET",
         "headers": {
           "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-          "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+          "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8"
         }
 
       })
@@ -376,7 +376,7 @@ async function traduciPlot(text) {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "just-translated.p.rapidapi.com",
-      "x-rapidapi-key": "0c5e03252dmsh36dc90292f548fdp18aae0jsnb769e67dd14e" https://rapidapi.com/lebedev.str/api/just-translated/
+      "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8" https://rapidapi.com/lebedev.str/api/just-translated/
     }
   })
   const translation = await response3.json();
@@ -385,7 +385,7 @@ async function traduciPlot(text) {
 }
 */
 
-async function creaFilmGiaVisti(idFilm) {
+async function creaFilmGiaVisti(idFilm) {//PARTE AL CARICAMENTO DI PAGINA GIà VISTI E RITORNA LA LISTA DEI FILM INSERITI DALL'UTENTE
   if(!idFilm.length){
     document.getElementById("giavisti_non_presente").hidden = false;
     document.getElementById("lista_filmGiaVisti").hidden = true;
@@ -407,7 +407,7 @@ async function creaFilmGiaVisti(idFilm) {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+        "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8"
       }
     })
     const data = await response.json();
@@ -476,7 +476,7 @@ async function creaFilmGiaVisti(idFilm) {
   }
 }
 
-async function creaFilmDaVedere(idFilm) {
+async function creaFilmDaVedere(idFilm) {//PARTE AL CARICAMENTO DI PAGINA DA VEDERE E RITORNA LA LISTA DEI FILM INSERITI DALL'UTENTE
   if(!idFilm.length){
     document.getElementById("davedere_non_presente").hidden = false;
     document.getElementById("lista_filmDaVedere").hidden = true;
@@ -497,7 +497,7 @@ async function creaFilmDaVedere(idFilm) {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+        "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8"
       }
     })
     const data = await response.json();

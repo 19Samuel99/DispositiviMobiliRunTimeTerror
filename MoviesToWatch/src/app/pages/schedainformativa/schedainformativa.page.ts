@@ -25,7 +25,7 @@ export class SchedainformativaPage implements OnInit {
 
   ngOnInit() {
     this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
-    GetFullCredits(this.idFilm);
+    GetFullCredits(this.idFilm);//PARTE AL CARICAMENTO DELLA PAGINA
   }
 
   linkHome() {
@@ -48,13 +48,13 @@ export class SchedainformativaPage implements OnInit {
     this.router.navigate(['/ricerca']);
   }
 
-  async addDaVedere() {
+  async addDaVedere() {//AGGIUNGE IL FILM AL PREMERE DEL BOTTONE IN SCHEDA INFORMATIVA
     this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
     await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).update({
       davedere: firebase.firestore.FieldValue.arrayUnion( this.idFilm )
     });
   }
-  async addGiaVisti() {
+  async addGiaVisti() {//AGGIUNGE IL FILM AL PREMERE DEL BOTTONE IN SCHEDA INFORMATIVA
     this.idFilm = this.activatedRoute.snapshot.paramMap.get('idFilm');
     await this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).update({
       giavisti: firebase.firestore.FieldValue.arrayUnion( this.idFilm )

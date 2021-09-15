@@ -1,4 +1,4 @@
-domandeGenere  = [
+domandeGenere  = [ //DEFINIZIONE DEGLI ARRAY PER GENERARE LA DOMANDA E I CONTROLLI PER TROVARE IL FILM
   ["Genere", "action" , "Fatti travolgere dall&apos;azione"],
   ["Genere", "adventure" , "Pronto per vivere una nuova avventura&quest;"],
   ["Genere", "animation" , "Film d&apos;animazione&quest;"],
@@ -9,7 +9,6 @@ domandeGenere  = [
   ["Genere", "drama" , "Dramma&quest; Io amo il dramma"],
   ["Genere", "family" , " Goditi del tempo in famiglia&#33;&#128106;"],
   ["Genere", "fantasy" , "Portami in un mondo fantastico&#33;"],
-  ["Genere", "film_noir" , "Che ne dici di un Noir&quest;"],
   ["Genere", "history" , "Voglia di storia&quest;"],
   ["Genere", "horror" , "Qualcosa di spaventoso&#128128;"],
   ["Genere", "music" , "Un po&apos; di musica&#127911;"],
@@ -95,7 +94,7 @@ function randomUniqueNum(range, outputCount) { // funzione per generare in manie
 
 let result = [];
 let array = [];
-function QuestionarioStart(){
+function QuestionarioStart(){// PARTE AL PREMERE DEL BOTTONE CHE APPARE NEL QUESTIONARIO E LO FA INIZIARE
   let range = domandeGenere.length;
   let outputCount = domandeGenere.length;
   result = randomUniqueNum(range, outputCount)
@@ -109,7 +108,7 @@ function QuestionarioStart(){
 
 let i = -1;
 let risposte = [];
-function GenerateDomanda(){
+function GenerateDomanda(){//FUNZIONE CHE MOSTRA LA DOMANDA NEL QUESTIONARIO
   i++;
   console.log("GenerateDomanda i:", i);
   if(i >= array.length){
@@ -148,7 +147,7 @@ async function ClickSi(){//FUNZIONE CHE PARTE AL CLICK SI! SUL QUESTIONARIO
       array = domandaRatingeDurata;
       i=-1
     }else {
-      if(flag<1){
+      if(flag<=1){
         creaRisultati(arrayFilm)
         return;
       }
@@ -227,7 +226,7 @@ async function GetPopularMoviesByGenre(genere){
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+      "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8"
     }
   })
   const data = await response.json();
@@ -240,7 +239,7 @@ async function GetPopularMoviesByGenre(genere){
     idFilm[i] = idDaModificare;
     console.log(idFilm[i]);
   }
-  FilmData(idFilm)
+  await FilmData(idFilm)
 }
 
 
@@ -255,7 +254,7 @@ async function getAllFilmography(IDAttore){//FETCH CHE RITORNA TUTTA LA FILMOGRA
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "imdb8.p.rapidapi.com",
-      "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+      "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8"
     }
   })
   const data = await response.json();
@@ -285,7 +284,7 @@ async function getAllFilmography(IDAttore){//FETCH CHE RITORNA TUTTA LA FILMOGRA
 
 let j = 0
 let arrayFilm = [];
-async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI SINGOLO FILM
+async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI SINGOLO FILM PER IL GENERE INSERITO
   indirizzo = "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/";
   const IdImmagine = [];
   const titolo = [];
@@ -293,12 +292,12 @@ async function FilmData(idFilm) {//FUNZIONE CHE RITORNA LE INFORMAZIONI DI OGNI 
   const rating = [];
   const lunghezza = [];
 
-  for (let i = 20; i < 35 /*idFilm.length*/; i++) {
+  for (let i = 20; i < 60 /*idFilm.length*/; i++) {
     const response = await fetch(indirizzo + idFilm[i], {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+        "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8"
       }
 
     })
@@ -332,7 +331,7 @@ async function FilmDataAttori(idFilm) {                                         
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-        "x-rapidapi-key": "6eb4c8471amsh3c0309278efd822p141880jsna07d16bfda03"
+        "x-rapidapi-key": "e4db6a6ebamshb19a0f17a58b00ep177b18jsn9670a35590d8"
       }
 
     })
@@ -485,7 +484,7 @@ function filterByDurataMaggiore(){//FUNZIONE CHE FILTRA L'ARRAY DEI FILM PRESI D
   }
 }
 
-async function creaRisultati(arrayFilm){
+async function creaRisultati(arrayFilm){//FUNZIONE CHE PREPARA I FILM PER POI STAMPARE I RISULTATI
 
   if(arrayFilm.length >5){
     let range = arrayFilm.length;
@@ -493,7 +492,9 @@ async function creaRisultati(arrayFilm){
     result = randomUniqueNum(range, outputCount)
   }
   else {
-    result = [0,1,2,3,4]
+    let range = arrayFilm.length;
+    let outputCount = arrayFilm.length;
+    result = randomUniqueNum(range, outputCount)
   }
 
   document.getElementById("tr_actions_actions").hidden = true;
@@ -505,6 +506,13 @@ let countFilm=0;
 let aLocandina;
 function stampaFilm(){//FUNZIONE CHE STAMPA LA LOCANDINA DEL FILM NEL QUESTIONARIO
   console.log("entra in stampa film")
+
+  if(result.length == 0){
+    document.getElementById("div_domanda").hidden= false;
+    document.getElementById("question-actions_film").hidden= true;
+    document.getElementById("div_domanda").innerHTML ="Non ci sono film con i criteri inseriti!";
+    setTimeout(() => {  location.reload(); }, 2000);
+  }
 
   document.getElementById("question-actions_film").hidden= false;
   aLocandina = document.createElement("a");
@@ -521,7 +529,11 @@ function stampaFilm(){//FUNZIONE CHE STAMPA LA LOCANDINA DEL FILM NEL QUESTIONAR
 
 function ClickFilmBtn(){//AL PREMERE "UN ALTRO CONSIGLIO" VEDE SE CI SONO ALTRI FILM RISULTANTI
   countFilm++;
+  console.log("countFilm", countFilm);
+  console.log("result.length:", result.length)
+
   if(countFilm < result.length){
+    console.log("count<result")
     document.getElementById("div_imgLocandina").removeChild(aLocandina);
     stampaFilm();
   }

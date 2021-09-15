@@ -17,7 +17,7 @@ export class GiavistiPage implements OnInit {
               public auth: AngularFireAuth) { }
 
   ngOnInit() {
-    this.controllaGiaVisti();
+    this.controllaGiaVisti();//PARTE AL CARICAMENTO DELLA PAGINA
   }
   linkHome(){
     this.router.navigate(['/home']);
@@ -41,7 +41,7 @@ export class GiavistiPage implements OnInit {
   linkSchedainformativa(){
     this.router.navigate(['/schedainformativa']);
   }
-  async controllaGiaVisti() {
+  async controllaGiaVisti() {//ESTRAE DAL DB I FILM GIA VISTI  RICHIAMA LA FUNZIONE PER CREARE GLI ELEMNTI NELLA PAGINA GIA VISTI
     let arraiDiID = [];
     const promise = this.firestore.collection('Utenti').doc(firebase.auth().currentUser.uid).get()
     promise.toPromise().then(snapshot =>{
@@ -53,7 +53,7 @@ export class GiavistiPage implements OnInit {
         console.log(arraiDiID);
       }
       console.log('questo è array fuori dal ciclo', arraiDiID)
-      creaFilmGiaVisti(arraiDiID);
+      creaFilmGiaVisti(arraiDiID);// RICHIAMA LA FUNZIONE PER CREARE GLI ELEMNTI NELLA PAGINA GIA VISTI
     });
 
   }
