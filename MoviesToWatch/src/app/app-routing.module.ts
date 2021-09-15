@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'splashscreen',
@@ -29,12 +29,12 @@ const routes: Routes = [
   {
     path: 'questionario',
     loadChildren: () => import('./pages/questionario/questionario.module').then( m => m.QuestionarioPageModule),
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'toprated',
     loadChildren: () => import('./pages/toprated/toprated.module').then( m => m.TopratedPageModule),
-   // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'davedere',
@@ -54,12 +54,11 @@ const routes: Routes = [
   {
     path: 'ricerca',
     loadChildren: () => import('./pages/ricerca/ricerca.module').then( m => m.RicercaPageModule),
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'schedainformativa/:idFilm',
-    loadChildren: () => import('./pages/schedainformativa/schedainformativa.module').then( m => m.SchedainformativaPageModule),
-    //canActivate: [AuthGuard]
+    loadChildren: () => import('./pages/schedainformativa/schedainformativa.module').then( m => m.SchedainformativaPageModule)
   },
 
 ];
